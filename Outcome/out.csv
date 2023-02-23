@@ -1,0 +1,101 @@
+,title,ownerId,link,isAnswered,answerCount
+0,Backport EVP_PKEY_Q_KEYGEN to OpenSSL 1.1,2460632,https://stackoverflow.com/questions/75392993/backport-evp-pkey-q-keygen-to-openssl-1-1,1,True
+1,The &#39;typing&#39; package is an obsolete backport of a standard library package and is incompatible with PyInstaller,14951773,https://stackoverflow.com/questions/70710731/the-typing-package-is-an-obsolete-backport-of-a-standard-library-package-and-i,3,True
+2,Avoid transitive dependency on python typing backport?,2540669,https://stackoverflow.com/questions/75262818/avoid-transitive-dependency-on-python-typing-backport,0,False
+3,How to backport a single file from &quot;today&quot; to &quot;very long ago&quot;?,1885442,https://stackoverflow.com/questions/61047234/how-to-backport-a-single-file-from-today-to-very-long-ago,0,False
+4,Is it possible to backport &quot;yield_self&quot; to Ruby versions prior to 2.5?,74089,https://stackoverflow.com/questions/72897260/is-it-possible-to-backport-yield-self-to-ruby-versions-prior-to-2-5,1,True
+5,How to backport Rake proxy to Rails 4?,74089,https://stackoverflow.com/questions/72630279/how-to-backport-rake-proxy-to-rails-4,0,False
+6,Linux kernel: Backport and old external drivers,4612520,https://stackoverflow.com/questions/72604052/linux-kernel-backport-and-old-external-drivers,0,False
+7,Where is the source code for Airflow backport providers?,9087739,https://stackoverflow.com/questions/72179512/where-is-the-source-code-for-airflow-backport-providers,1,True
+8,Where to find a backport Spring4Shell fix from Spring 5.2.20/5.3.18 to Spring 4.3.x,11142,https://stackoverflow.com/questions/71860058/where-to-find-a-backport-spring4shell-fix-from-spring-5-2-20-5-3-18-to-spring-4,0,False
+9,backport security patch for https://nvd.nist.gov/vuln/detail/CVE-2022-23593 and https://nvd.nist.gov/vuln/detail/CVE-2022-23592 to 2.7,8449114,https://stackoverflow.com/questions/71502617/backport-security-patch-for-https-nvd-nist-gov-vuln-detail-cve-2022-23593-and,0,False
+10,apache-airflow-backport-providers-google fails to install with apache-airflow(1.10.12),9266090,https://stackoverflow.com/questions/68523210/apache-airflow-backport-providers-google-fails-to-install-with-apache-airflow1,2,True
+11,ThreeTen-Backport error on Android - ZoneRulesException: No time-zone data files registered,6253504,https://stackoverflow.com/questions/38281808/threeten-backport-error-on-android-zonerulesexception-no-time-zone-data-files,5,True
+12,Issue installing apache-airflow-backport-providers-google module on airflow instance of Google Composer,17020097,https://stackoverflow.com/questions/69589570/issue-installing-apache-airflow-backport-providers-google-module-on-airflow-inst,1,True
+13,How to backport methods like str.removeprefix?,5378816,https://stackoverflow.com/questions/67883073/how-to-backport-methods-like-str-removeprefix,1,True
+14,Backport Tensorflow models,5822184,https://stackoverflow.com/questions/68852531/backport-tensorflow-models,0,False
+15,Backport provider packages for Airflow 1.10.12,14847612,https://stackoverflow.com/questions/68236440/backport-provider-packages-for-airflow-1-10-12,1,False
+16,backport Synopsys DesignWare AXI DMA Driver on linux 4.14.226,3671541,https://stackoverflow.com/questions/68106876/backport-synopsys-designware-axi-dma-driver-on-linux-4-14-226,0,False
+17,Need a way to backport serialize() to xquery1.0,26494,https://stackoverflow.com/questions/67417004/need-a-way-to-backport-serialize-to-xquery1-0,1,False
+18,How to enable or backport Bluethooth BLE feature in Linux kernel 3.10.0 version?,6694425,https://stackoverflow.com/questions/63932314/how-to-enable-or-backport-bluethooth-ble-feature-in-linux-kernel-3-10-0-version,1,True
+19,How to backport Python in Yocto build?,9194851,https://stackoverflow.com/questions/65715893/how-to-backport-python-in-yocto-build,1,True
+20,CompletableFuture and handle() method backport to Java7,8702751,https://stackoverflow.com/questions/65096236/completablefuture-and-handle-method-backport-to-java7,0,False
+21,JDK flight recorder backport in RedHat OpenJDK 8,12872166,https://stackoverflow.com/questions/60150612/jdk-flight-recorder-backport-in-redhat-openjdk-8,2,True
+22,Could not download backport-util-concurrent.jar (backport-util-concurrent:backport-util-concurrent:3.1): No cached version available for offline mode,13677497,https://stackoverflow.com/questions/62187614/could-not-download-backport-util-concurrent-jar-backport-util-concurrentbackpo,1,False
+23,How to backport `ObjectFactory.namedDomainObjectList(...)` to gradle (5.6.4),534812,https://stackoverflow.com/questions/61067302/how-to-backport-objectfactory-nameddomainobjectlist-to-gradle-5-6-4,1,False
+24,importlib_resources backport not compatible with pyfakefs?,6177655,https://stackoverflow.com/questions/60068183/importlib-resources-backport-not-compatible-with-pyfakefs,1,True
+25,How do I build gitlab-ci pages only on the latest semver tag? Ignoring backport tags/etc,480802,https://stackoverflow.com/questions/57465109/how-do-i-build-gitlab-ci-pages-only-on-the-latest-semver-tag-ignoring-backport,2,True
+26,ThreeTen Backport causing runtime only on some devices,559850,https://stackoverflow.com/questions/54933443/threeten-backport-causing-runtime-only-on-some-devices,1,True
+27,How to initialize ThreeTen Android backport in a Unit test,8434188,https://stackoverflow.com/questions/54527311/how-to-initialize-threeten-android-backport-in-a-unit-test,1,True
+28,What are your favorite tools to backport modifications from branch to trunk in subversion directories?,2965,https://stackoverflow.com/questions/162748/what-are-your-favorite-tools-to-backport-modifications-from-branch-to-trunk-in-s,2,True
+29,Windows Community Toolkit export/backport MasterDetailsView from repo,4154256,https://stackoverflow.com/questions/53961025/windows-community-toolkit-export-backport-masterdetailsview-from-repo,1,True
+30,How do you use Three Ten Backport classes with JDBC?,527312,https://stackoverflow.com/questions/53604641/how-do-you-use-three-ten-backport-classes-with-jdbc,0,False
+31,Should you fully qualify the package prefix when using ThreeTen-Backport versus java.time?,527312,https://stackoverflow.com/questions/53565627/should-you-fully-qualify-the-package-prefix-when-using-threeten-backport-versus,1,True
+32,Not able to import classes from Three Ten Backport,527312,https://stackoverflow.com/questions/53561946/not-able-to-import-classes-from-three-ten-backport,1,True
+33,ThreeTen-Backport implementation vs. backport of JSR-310?,1566990,https://stackoverflow.com/questions/31120824/threeten-backport-implementation-vs-backport-of-jsr-310,1,True
+34,How to add mod_proxy_wstunnel to Apache2 2.2 on Raspberry Pi (Backport mod_proxy_wstunnel),3356979,https://stackoverflow.com/questions/30443999/how-to-add-mod-proxy-wstunnel-to-apache2-2-2-on-raspberry-pi-backport-mod-proxy,3,True
+35,Backport Python 3.4&#39;s regular expression &quot;fullmatch()&quot; to Python 2,548792,https://stackoverflow.com/questions/30212413/backport-python-3-4s-regular-expression-fullmatch-to-python-2,2,True
+36,backport &quot;declare -n&quot; from BASH 4.4 to 4.2,1086346,https://stackoverflow.com/questions/50301116/backport-declare-n-from-bash-4-4-to-4-2,3,True
+37,How to backport functionality in Qt?,1329652,https://stackoverflow.com/questions/49862299/how-to-backport-functionality-in-qt,1,True
+38,Streams backport compile error,8323440,https://stackoverflow.com/questions/48149940/streams-backport-compile-error,1,True
+39,converting ZonedDateTime to Calendar using ThreeTen-Backport (JSR 310),2707727,https://stackoverflow.com/questions/45450213/converting-zoneddatetime-to-calendar-using-threeten-backport-jsr-310,1,True
+40,Backport C++14 return type deduction to C++11,5272185,https://stackoverflow.com/questions/47697079/backport-c14-return-type-deduction-to-c11,1,True
+41,Backport installation script for Broadcom 14e4:43ae wifi controller fails,8150363,https://stackoverflow.com/questions/46063922/backport-installation-script-for-broadcom-14e443ae-wifi-controller-fails,1,True
+42,How do I backport if constexpr with the shortest code possible?,3289081,https://stackoverflow.com/questions/45586847/how-do-i-backport-if-constexpr-with-the-shortest-code-possible,1,True
+43,backport of importlib for python 2.7 from 3.6,5348945,https://stackoverflow.com/questions/45350363/backport-of-importlib-for-python-2-7-from-3-6,1,True
+44,Python 2.7 Backport: enum classes are not instances of abstact enum classes,8365526,https://stackoverflow.com/questions/45311039/python-2-7-backport-enum-classes-are-not-instances-of-abstact-enum-classes,1,True
+45,Backport changes from renamed file,438742,https://stackoverflow.com/questions/9772598/backport-changes-from-renamed-file,7,True
+46,Backport Java 8 Lambda code - JSON byte array to Avro,5813962,https://stackoverflow.com/questions/43024678/backport-java-8-lambda-code-json-byte-array-to-avro,0,False
+47,Is there a python 2 backport for the concurrency.futures package from python 3,565212,https://stackoverflow.com/questions/42377350/is-there-a-python-2-backport-for-the-concurrency-futures-package-from-python-3,1,True
+48,"Android: How can we backport withEndAction to older versions, with help of Nine Old Androids",1976900,https://stackoverflow.com/questions/14316416/android-how-can-we-backport-withendaction-to-older-versions-with-help-of-nine,6,True
+49,Backport CSRF_TRUSTED_ORIGINS to Django 1.6,771848,https://stackoverflow.com/questions/38518389/backport-csrf-trusted-origins-to-django-1-6,1,True
+50,How do I backport a commit in git?,3757,https://stackoverflow.com/questions/1440181/how-do-i-backport-a-commit-in-git,5,True
+51,Automatically backport python 2.7 to 2.6,850781,https://stackoverflow.com/questions/37168462/automatically-backport-python-2-7-to-2-6,1,True
+52,How to parse 2-digit years in Java 8 / JSR 310 / threeten.org backport?,4892979,https://stackoverflow.com/questions/30217525/how-to-parse-2-digit-years-in-java-8-jsr-310-threeten-org-backport,0,False
+53,How to build kernel backport on CentOS 7?,588867,https://stackoverflow.com/questions/37013460/how-to-build-kernel-backport-on-centos-7,1,False
+54,Easy way to backport Java 6 code to Java 5?,738,https://stackoverflow.com/questions/17993/easy-way-to-backport-java-6-code-to-java-5,7,True
+55,Add android-numberpicker backport to Android Studio Gradle project,4360628,https://stackoverflow.com/questions/29109290/add-android-numberpicker-backport-to-android-studio-gradle-project,3,True
+56,ConcurrentHashMap JDK 8 to JDK 6 backport,801466,https://stackoverflow.com/questions/23162181/concurrenthashmap-jdk-8-to-jdk-6-backport,3,True
+57,Rewriting all java.time uses to ThreeTen-Backport,9204,https://stackoverflow.com/questions/33569079/rewriting-all-java-time-uses-to-threeten-backport,0,False
+58,How to backport Ansible extras module?,365445,https://stackoverflow.com/questions/32449790/how-to-backport-ansible-extras-module,1,True
+59,Android Transition Framework Backport?,471744,https://stackoverflow.com/questions/20182387/android-transition-framework-backport,2,True
+60,Comparing ThreeTen backport to JSR-310,324152,https://stackoverflow.com/questions/29346649/comparing-threeten-backport-to-jsr-310,1,True
+61,Backport of `.merge()` for Angular 1.3.x,940158,https://stackoverflow.com/questions/30456947/backport-of-merge-for-angular-1-3-x,1,True
+62,How to backport jquery.on to jquery.bind?,1055279,https://stackoverflow.com/questions/30031965/how-to-backport-jquery-on-to-jquery-bind,2,True
+63,Backport Cognos Reports to Durable Model,4375712,https://stackoverflow.com/questions/27555071/backport-cognos-reports-to-durable-model,1,True
+64,Is there any backport-util for fork join framework for Java 1.5?,91277,https://stackoverflow.com/questions/5668555/is-there-any-backport-util-for-fork-join-framework-for-java-1-5,2,True
+65,android-switch-backport -- how do you set resources?,338479,https://stackoverflow.com/questions/27029885/android-switch-backport-how-do-you-set-resources,1,False
+66,Git strategy to backport bugfixes into older branches (cherry-pick vs. merge),245966,https://stackoverflow.com/questions/13275223/git-strategy-to-backport-bugfixes-into-older-branches-cherry-pick-vs-merge,2,True
+67,Backport .po file translations,2291758,https://stackoverflow.com/questions/24886037/backport-po-file-translations,2,True
+68,Dashing EC2 Widget Throwing Backport error with AWS-SDK,466366,https://stackoverflow.com/questions/23807659/dashing-ec2-widget-throwing-backport-error-with-aws-sdk,2,False
+69,obfuscating nineoldandroids and android-switch-backport with proguard,2394901,https://stackoverflow.com/questions/24042558/obfuscating-nineoldandroids-and-android-switch-backport-with-proguard,1,True
+70,Android GAME_ROTATION_VECTOR backport,1576741,https://stackoverflow.com/questions/18886503/android-game-rotation-vector-backport,2,False
+71,can i backport &quot;pattern_replace&quot; char filter into elasticsearch 0.19.9?,1353543,https://stackoverflow.com/questions/23730909/can-i-backport-pattern-replace-char-filter-into-elasticsearch-0-19-9,0,False
+72,how to backport this code from version 3.3 to version 2.7,3416749,https://stackoverflow.com/questions/22714274/how-to-backport-this-code-from-version-3-3-to-version-2-7,1,False
+73,gcc error while installing asyncio backport trollius (Python 2.7.5 and Win7),437863,https://stackoverflow.com/questions/22117815/gcc-error-while-installing-asyncio-backport-trollius-python-2-7-5-and-win7,1,True
+74,Workflow to &quot;backport&quot; change into different Mercurial (Hg) branch?,123930,https://stackoverflow.com/questions/10288482/workflow-to-backport-change-into-different-mercurial-hg-branch,1,True
+75,"Regarding dom4j,iCal4j and backport-util-concurrent Export Control Classification Number (ECCN)",649390,https://stackoverflow.com/questions/20237072/regarding-dom4j-ical4j-and-backport-util-concurrent-export-control-classificatio,1,False
+76,Can&#39;t import android-switch-backport,1650012,https://stackoverflow.com/questions/20189264/cant-import-android-switch-backport,0,False
+77,java.lang.NoClassDefFoundError: edu/emory/mathcs/backport/java/util/concurrent/BlockingQueue,2258474,https://stackoverflow.com/questions/19834487/java-lang-noclassdeffounderror-edu-emory-mathcs-backport-java-util-concurrent-b,1,True
+78,Backport railtie console change from Rails 4 to Rails 3.2.11?,32154,https://stackoverflow.com/questions/18361963/backport-railtie-console-change-from-rails-4-to-rails-3-2-11,0,False
+79,Backport android.graphics.Camera.setLocation() functionality,302645,https://stackoverflow.com/questions/15371288/backport-android-graphics-camera-setlocation-functionality,0,False
+80,How to backport Android 4.0&#39;s switch button to Honeycomb and earlier,1156041,https://stackoverflow.com/questions/17062447/how-to-backport-android-4-0s-switch-button-to-honeycomb-and-earlier,1,True
+81,How-to git backport (rebase/cherry-pick) an already merged branch,1163698,https://stackoverflow.com/questions/16690187/how-to-git-backport-rebase-cherry-pick-an-already-merged-branch,2,True
+82,What is the best backport of Android switch widget for 2.2?,161287,https://stackoverflow.com/questions/15008384/what-is-the-best-backport-of-android-switch-widget-for-2-2,2,True
+83,What is the backport of Rails 3 style finders (.where) to Rails 2?,30203,https://stackoverflow.com/questions/16468941/what-is-the-backport-of-rails-3-style-finders-where-to-rails-2,1,True
+84,Retrotranslator Maven Plugin does not recognize backport packages on another project,1188441,https://stackoverflow.com/questions/15927405/retrotranslator-maven-plugin-does-not-recognize-backport-packages-on-another-pro,0,False
+85,Does a ASP.NET WebAPI backport to .NET 2.0/3.5 already exist?,1256071,https://stackoverflow.com/questions/12523064/does-a-asp-net-webapi-backport-to-net-2-0-3-5-already-exist,1,False
+86,How to deploy .net 3.5 application that is now using the task parallel library backport,781799,https://stackoverflow.com/questions/15623954/how-to-deploy-net-3-5-application-that-is-now-using-the-task-parallel-library-b,1,True
+87,How to backport a 6.1.1 jsf portlet to get it running on a 6.1.0 liferay portal?,1344421,https://stackoverflow.com/questions/14260442/how-to-backport-a-6-1-1-jsf-portlet-to-get-it-running-on-a-6-1-0-liferay-portal,1,True
+88,How does one backport a change if the path of the file w/changes has changed between branches?,33426,https://stackoverflow.com/questions/12845217/how-does-one-backport-a-change-if-the-path-of-the-file-w-changes-has-changed-bet,2,True
+89,Is cherry-picking the right way to backport and consolidate topic branch fixes?,781332,https://stackoverflow.com/questions/12289458/is-cherry-picking-the-right-way-to-backport-and-consolidate-topic-branch-fixes,2,True
+90,PHP 5.3.0 USE keyword -- how to backport in 5.2?,258487,https://stackoverflow.com/questions/5869084/php-5-3-0-use-keyword-how-to-backport-in-5-2,4,True
+91,Backport stagefright and NuPlayer to Android 2.2,570930,https://stackoverflow.com/questions/10297244/backport-stagefright-and-nuplayer-to-android-2-2,1,False
+92,Android GridLayout and Space backport,1057786,https://stackoverflow.com/questions/8212035/android-gridlayout-and-space-backport,3,True
+93,Backport of RTTI.TRttiIndexedProperty to Delphi XE,744588,https://stackoverflow.com/questions/9690523/backport-of-rtti-trttiindexedproperty-to-delphi-xe,1,True
+94,Drupal 6 backport of Drupal 7 admin-bar and overlay?,79778,https://stackoverflow.com/questions/5319765/drupal-6-backport-of-drupal-7-admin-bar-and-overlay,3,True
+95,Queries regarding &#39;backport-android-bluetooth&#39;,1077324,https://stackoverflow.com/questions/8635632/queries-regarding-backport-android-bluetooth,2,True
+96,Using backport-android-bluetooth on Android 1.6,109797,https://stackoverflow.com/questions/2506316/using-backport-android-bluetooth-on-android-1-6,4,True
+97,Will the new ActionBar API be included in the Fragment backport?,604742,https://stackoverflow.com/questions/4909798/will-the-new-actionbar-api-be-included-in-the-fragment-backport,3,True
+98,How to use the fragments backport?,446529,https://stackoverflow.com/questions/5282935/how-to-use-the-fragments-backport,2,True
+99,Fragment Backport requires seperate class for the backport and for the honeycomb?,604742,https://stackoverflow.com/questions/5198394/fragment-backport-requires-seperate-class-for-the-backport-and-for-the-honeycomb,3,True
