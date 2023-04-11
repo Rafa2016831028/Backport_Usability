@@ -6,11 +6,20 @@ This project aims to investigate the usability aspect of Backport scheme in the 
 
 # Stack Exchange
  - Search posts with 'backport' word in Title or body
+ - [Link of website](https://data.stackexchange.com/stackoverflow/query/new)
+
  ```
-SELECT Id, CreationDate,
+SELECT Id as [Post Link], owneruserid as [User Link], CreationDate,
        Score, ViewCount, Tags, Title,Body, CommentCount,OwnerUserId
        AnswerCount, FavoriteCount
   FROM posts
  WHERE Title Like '%backport%';
-
 ```
+
+ ```
+SELECT Id as [Post Link], owneruserid as [User Link], CreationDate,
+       Score, ViewCount, Tags, Title,Body, CommentCount,OwnerUserId
+       AnswerCount, FavoriteCount
+  FROM posts
+ WHERE Title Like '%backport%' or Tags like '%backport%';
+ ```
