@@ -26,3 +26,10 @@ SELECT Id as [Post Link], owneruserid as [User Link], CreationDate,
 
  # Keywords
  LTS , backport , cherry-picking, workflow
+
+ # Install
+  ```
+  sudo apt-get install python-pip
+  sudo pip install numpy
+  sudo pip install pandas
+   ```
