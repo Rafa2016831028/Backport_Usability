@@ -1,7 +1,7 @@
 import sys
 import os
 from os import listdir
-import matplotlib
+import matplotlib.pyplot as plt
 from os.path import isfile, join
 import pandas as pd
 import numpy as np
@@ -40,11 +40,15 @@ def analyzeFiles(path_name = ''):
         # domain_posts['year']= domain_posts['date'].dt.year
         # print(domain_posts['date'].head(5))
         
+        domain_posts.hist('date')
+        plt.show()
+        
         # check value with index 
         # print(domain_posts.iloc[1528])
-        # domain_posts['date'].plot(kind='hist', edgecolor='black')
+    
         print("-------------------- -------------")
         
 
 
 analyzeFiles('SO_Data')
+
