@@ -32,4 +32,5 @@ SELECT Id as [Post Link], owneruserid as [User Link], CreationDate,
   sudo apt-get install python-pip
   sudo pip install numpy
   sudo pip install pandas
+  pip3 install -U scikit-learn
    ```

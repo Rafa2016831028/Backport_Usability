@@ -18,6 +18,7 @@ def analyzeFiles(path_name = ''):
     
     for idx, domain_path in enumerate(path_folder):
         all_posts=[]
+        clean_post =[]
         feature_paths = [domain_path+'/'+os.path.basename(x) for x in os.listdir(domain_path)]
         for index, file_path in enumerate(feature_paths):
             with open(file_path,"r") as fp:
@@ -36,17 +37,21 @@ def analyzeFiles(path_name = ''):
         domain_posts['date'] = domain_posts['CreationDate'].str[:4]
         domain_posts = domain_posts[domain_posts["date"].str.contains("/") == False]
         domain_posts['date'] = pd.to_numeric(domain_posts['date'], errors='raise')
-        domain_posts.hist(column='date')
-        # domain_posts['year']= domain_posts['date'].dt.year
-        # print(domain_posts['date'].head(5))
+        # domain_posts.hist(column='date')
+        col_list = domain_posts.date.values.tolist()
         
-        domain_posts.hist('date')
-        plt.show()
-        
-        # check value with index 
-        # print(domain_posts.iloc[1528])
-    
+        # plt.show()
         print("-------------------- -------------")
+        clean_post = clean_post+col_list    
+    # clean_post.hist(column='date')
+    df = pd.DataFrame(clean_post)
+    # df.plot.line()
+    df.hist()
+   
+    plt.show()
+        
+    
+        
         
 
 
