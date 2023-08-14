@@ -1,0 +1,556 @@
+Post Link,User Link,CreationDate,Score,ViewCount,Tags,Title,Body,CommentCount,AnswerCount,FavoriteCount
+"46190497","7537350","2017-09-13 06:39:14","0","100","<github><git-init>","git init re-creates .git file in home directory","<p>I want to keep a separate work space for my development job.I moved .git file from my home directory to another directory named 'workspace'. Now when I use <code>git init</code> in <code>workspace</code> directory, everything works just fine but when I use <code>git init</code> inside my home directory, it re-creates the <code>.git</code> file in my home directory.
+I am using Ubuntu and my home directory is <code>home/tyler</code>.This is where <code>.git</code> file is stored my default.</p>
+
+<p>My directory structure is:
+home/tyler
+home/workspace</p>
+","4","7537350",""
+"3212459","165673","2010-07-09 12:16:51","956","654785","<git><git-init>","Is there a command to undo git init?","<p>I just Git init'ed a repos with a wrong user, and want to undo it.  Is there any command for this?  Do I actually have to go in and edit the .git directory?</p>
+","2","165673","0"
+"32496587","1306132","2015-09-10 08:17:51","1","489","<linux><windows><git><permissions><git-init>","Where can I get the description of `--shared` option of `git init` command for Windows?","<p>I am reading the <a href=""http://git-scm.com/docs/git-init"" rel=""nofollow"">Git documentation</a> about the <code>git init</code> command:</p>
+
+<blockquote>
+  <p><strong>--shared[=(false|true|umask|group|all|world|everybody|0xxx)]</strong> <br>Specify that the Git repository is to be shared amongst several users. This
+  allows users belonging to the same group to push into that repository.
+  When specified, the config variable ""core.sharedRepository"" is set so
+  that files and directories under $GIT_DIR are created with the
+  requested permissions. When not specified, Git will use permissions
+  reported by umask(2).</p>
+  
+  <p>The option can have the following values, defaulting to group if no
+  value is given:</p>
+  
+  <p><strong>umask (or false)</strong> <br>Use permissions reported by umask(2). The default,
+  when --shared is not specified.</p>
+  
+  <p><strong>group (or true)</strong> <br>Make the repository group-writable, (and g+sx, since
+  the git group may be not the primary group of all users). This is used
+  to loosen the permissions of an otherwise safe umask(2) value. Note
+  that the umask still applies to the other permission bits (e.g. if
+  umask is 0022, using group will not remove read privileges from other
+  (non-group) users). See 0xxx for how to exactly specify the repository
+  permissions.</p>
+  
+  <p><strong>all (or world or everybody)</strong> <br>Same as group, but make the repository
+  readable by all users.</p>
+  
+  <p><strong>0xxx 0xxx</strong> <br>is an octal number and each file will have mode 0xxx. 0xxx
+  will override users' umask(2) value (and not only loosen permissions
+  as group and all does). 0640 will create a repository which is
+  group-readable, but not group-writable or accessible to others. 0660
+  will create a repo that is readable and writable to the current user
+  and group, but inaccessible to others.</p>
+</blockquote>
+
+<p>This information is for Linux-based OS only. Am I right? But what about Windows? I use <a href=""http://git-for-windows.github.io/"" rel=""nofollow"">Git for Windows</a>. Windows uses ACL instead of umask for working with permissions. :(</p>
+","2","1306132",""
+"29381674","4648310","2015-04-01 02:07:41","1","17002","<git><git-init>","how to undo git init?","<p>I clicked <code>git init</code> in my users folder by mistake, and then everything in my users folder has been turned with a blue question mark. </p>
+
+<p>How can I fix this?</p>
+","3","4648310",""
+"74752722","17409297","2022-12-10 12:00:22","0","245","<git><git-init><.git-folder>","How to un-initialize a git folder in the root of my pc?","<p>I am beginner with git. A few weeks ago, I unintentionally created a &quot;git init&quot; on the root of my pc (location: desktop) which means all of my computer files are on that git folder.</p>
+<p>How can i delete that git folder, without losing any of my coding or personal files?</p>
+","3","17409297",""
+"76031314","875915","2023-04-17 02:14:54","2","45","<ruby-on-rails><git-init>","Why does ""rails new my_app"" initialize a git repository?","<p>When I run the Ruby on Rails command <code>rails new my_app</code>, it creates the new <code>my_app</code> directory, and it contains a <code>.git</code> subdirectory, i.e., <code>./my_app/.git</code>, so it's apparently doing a <code>git init</code>.  Where is that <code>git init</code> command coming from, and why does it do that?</p>
+<p>Rails version: 7.0.4.3<br />
+Ruby version: 3.0.1.p64</p>
+","0","875915",""
+"26171623","2223138","2014-10-03 00:26:23","0","119","<git><git-commit><git-pull><git-init>","Can I revert to git init if I didn't do an initial commit","<p>I'm new to git and I did not do an initial commit.  I had a folder on my machine and ran git init, then git pull from the remote respository, and then committed the changes I had made locally.  Is it possible to revert changes wrought by the initial pull?  Does git init establish anything I can go back to?  I want to revert all files to how they were when I ran git init.</p>
+","0","2223138",""
+"63850387","2370337","2020-09-11 15:52:07","1","692","<git><production-environment><git-init>","How to init git on a running production server and update from a remote repo","<p>I just got onboard with a project that has a live server that has been running for a year without git.  In the past, the owner/dev made all code updates personally without version tracking.  Then he started using git (with a gitlab account) for tracking his changes (but not for pushing changes to the server.)    So before I got there, the manager added a copy of the site to gitlab, and started creating issues and feature branches.  Now, he wants to start using git to push code changes to the production server. We have two issues:</p>
+<ol>
+<li>The live production server folder does not contain a git repo.</li>
+<li>After starting the gitlab repo, some of the files in he live production server folder were modified to fix bugs.</li>
+</ol>
+<p>I need to add a git repo to the live production server folder, Merge all the code on live and on the remote, and push a production branch (with all of the features and production bug fixes) without breaking the site.</p>
+<p>Here is my procedure so far:</p>
+<ol>
+<li>Create a copy of the live production server folder.</li>
+<li>Copy the .gitignore file to the new folder from gitlab.</li>
+<li>Init a git repo in that new folder.</li>
+<li>Set up a remote, pointed at gitlab.</li>
+<li>Add and commit and push that branch to gitlab.</li>
+<li>Compare the files (between pushed branch and the main dev branch in gitlab.)</li>
+<li>Create an up-to-date production branch in gitlab with all fixes and updates.</li>
+<li>Copy the .gitignore file to the live production server folder.</li>
+<li>Init a git repo in the live production server folder.</li>
+<li>Add and commit</li>
+<li>Checkout and track the production branch in gitlab.</li>
+</ol>
+<p>Please tell me if this procedure is effective, Let me know if I should change any of it. Also, How can I minimize the change of breaking production?  What potential issues should I be aware of?</p>
+<p>In this instance, having the live site down during the day for a minute or two is not an issue, but I would still like to have some good instructions that minimize downtime.</p>
+<p>EDIT ================</p>
+<p>I am currently on step 5.  I created the copy folder to limit the operations performed on the live production server folder.  I wanted to limit changes to the live production server folder to reduce the risk that we accidentally broke the production site.  In the finalized directions, creating an extra folder might be unnecessary.  (or is it?)</p>
+","0","2370337",""
+"38889077","5550576","2016-08-11 06:44:03","0","582","<git><macos><git-init>","How to cancel init in git","<p>I'm using MacOS and I initialized /User/myAccount into a git repository by mistake. I don't really want that. How can I undo the init and make it back to the original look?</p>
+","1","5550576",""
+"39480088","608639","2016-09-13 22:46:13","0","586","<git><git-init>","Fix a 'git init' issued from the wrong directory without deleting the `.git` folder?","<p>This is very close to both <a href=""https://stackoverflow.com/q/3212459"">Is there a command to undo git init?</a> and <a href=""https://stackoverflow.com/q/1213430"">How to fully delete a git repository created with init?</a> Unfortunately, the accepted answers do not fit well because I <code>init</code>'d my home directory. (I missed a <code>cd</code>, and then issued <code>git init</code>).</p>
+
+<p>Now, when I try to clone at my home directory, git just hangs and then time's out:</p>
+
+<pre><code>$ git clone -v https://gtihub.com/weidai11/cryptopp cryptopp-docs
+Cloning into 'cryptopp-docs'...
+fatal: unable to access 'https://gtihub.com/weidai11/cryptopp/': Connection timed out after 300043 milliseconds
+</code></pre>
+
+<p>The web interface is fine during this timeout period. I can navigate the project, examine commits, etc. I can also clone the same repo from another machine.</p>
+
+<p>I want to avoid blowing out my other configuration information housed in the <code>~/.git</code> folder.</p>
+
+<p>How do I fix a <code>git init</code> issued from the wrong directory without deleting the <code>.git</code> folder?</p>
+
+<hr>
+
+<p>Here's what I am seeing in the home directory:</p>
+
+<pre><code>$ ls -Al | grep '.*git*'
+drwxr-xr-x   10 jwalton  staff       340 Sep 11 18:51 .git
+-rw-r--r--    1 jwalton  staff        83 Jun 16 03:29 .gitconfig
+</code></pre>
+
+<p>And git is showing a bunch of untracked files from the home directory:</p>
+
+<pre><code>$ cd ~
+$ git status -s | wc -l
+91
+</code></pre>
+","9","608639",""
+"30510849","792868","2015-05-28 15:25:38","4","11712","<git><git-init>","Git Clone Repo Has No .git File","<p>I cloned a repo with <code>git clone &lt;path to repo&gt;</code> but when I run <code>git status</code> I get the <code>fatal: not a git repository</code> error.</p>
+
+<p>What I want to know is, if I run <code>git init</code> in the local directory that was cloned, will it screw anything up or cause issues with the initial repo on GitHub?</p>
+
+<p>I <code>cd &amp;&amp; ls -a</code> into a few directories but I don't see the <code>.git</code> file.</p>
+
+<p>So I first did a search with <code>$ git ls-files | grep .git</code> and got the same <code>fatal no repo</code> error.</p>
+
+<p>Then I did a search with <code>$ find . | grep .git</code> and it listed 3 <code>.gitignore</code> files. Which I assume means the initial creator didn't initialize git.</p>
+
+<p>I want to create a branch and begin working and making commits without messing up the original repo.</p>
+
+<p>I've referenced these following StackOverflow questions but they don't give me the answer I need:</p>
+
+<p><a href=""https://stackoverflow.com/questions/11961600/fatal-not-a-git-repository-or-any-of-the-parent-directories-from-git-status"">&quot;fatal: Not a git repository (or any of the parent directories)&quot; from git status</a></p>
+
+<p><a href=""https://stackoverflow.com/questions/13888972/fatal-not-a-git-repository-or-any-of-the-parent-directories-git"">fatal: Not a git repository (or any of the parent directories): .git</a></p>
+","5","792868","0"
+"58195083","7639034","2019-10-02 04:08:15","1","140","<git><ssh-agent><git-init>","How can I create remote repository from local system without creating a repository directly from github portal?","<p>I am a newbie at Git. I am still learning.</p>
+
+<p>Here are the steps that I have taken in order to create the repository so far:</p>
+
+<ol>
+<li>Navigated to the directory that is going to be associated with the repository.</li>
+<li>Ran the command: <code>git init</code></li>
+<li>Then I checked the status of all the untracked files using the command: <code>git status</code></li>
+<li>I needed to commit all the files so I added all to the staged files using the command: <code>git add .</code></li>
+<li>I committed the code using the command: <code>git commit -m ""Initial Commit""</code></li>
+<li>Then I tried to push the code using the command: <code>git push --set-upstream origin master</code></li>
+<li>Since the remote is not set yet, I faced the error: <code>fatal: No configured push destination.</code></li>
+</ol>
+
+<p>After the facing the above error, I tried to add the remote using the command:</p>
+
+<pre><code>git remote add origin git@github.com:username/repo-name
+git push --set-upstream origin master
+</code></pre>
+
+<p>After hitting the above commands, I faced the error:</p>
+
+<pre><code>The authenticity of host 'github.com (IP)' can't be established.
+</code></pre>
+
+<p>So I tried to create an SSH key as suggested in <a href=""https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"" rel=""nofollow noreferrer"">this link</a>. The SSH key was created successfully, but when I tried to add my SSH key to the ssh-agent using the following commands:</p>
+
+<pre><code>eval $(ssh-agent -s)
+</code></pre>
+
+<p>I encountered the following error:</p>
+
+<pre><code>'eval' is not recognized as an internal or external command
+</code></pre>
+
+<p>I also tried to execute <code>ssh-agent -s</code> directly, but then I encountered the following error:</p>
+
+<pre><code>unable to start ssh-agent service, error :1058
+</code></pre>
+
+<p>I googled the issue and found <a href=""https://github.com/lukesampson/pshazz/issues/70"" rel=""nofollow noreferrer"">this link</a>. I tried to use the following commands:</p>
+
+<pre><code>&gt; Set-Service ssh-agent -StartupType Manual
+&gt; install-sshd.ps1
+</code></pre>
+
+<p>But both have given me the following errors respectively:</p>
+
+<pre><code>&gt; 'Set-Service' is not recognized as an internal or external command
+&gt; 'install-sshd.ps1' is not recognized as an internal or external command
+</code></pre>
+
+<p>By the way I am using Windows 10.</p>
+
+<p>What should I do next?</p>
+","0","7639034","0"
+"58526326","2534905","2019-10-23 15:27:55","0","2419","<git><jenkins><jenkins-pipeline><pipeline><git-init>","How to create a git repository inside a pipeline as code","<p>I am attempting to move a declarative pipeline from being written in a Jenkins Pipeline Configuration input box, to code hosted in BitBucket so that we have source control for any changes we make to this pipeline.</p>
+
+<p>Due to the pipeline as code steps being written in a Jenkinsfile in a git repository, when I try to initialise a git repository to add my generated files to, I get an error:</p>
+
+<pre><code>+ git remote add origin git@bitbucket.org:X/Y.git
+fatal: remote origin already exists.
+</code></pre>
+
+<p>Is there any way to handle this properly?</p>
+
+<p>Edit:</p>
+
+<pre><code>            sh ""git init""
+            sh ""git add .""
+            sh ""git commit -m \""Initial commit\""""
+            sh ""git remote rm origin""
+            sh ""git remote add origin git@bitbucket.org:X/Y.git""
+            sh ""git remote -v""
+            sh ""git push origin master""
+            sh ""cat .git/config""
+</code></pre>
+","5","2534905",""
+"1213430","105813","2009-07-31 16:06:20","1647","1709542","<git><git-init>","How to fully delete a git repository created with init?","<p>I created a git repository with <code>git init</code>. I'd like to delete it entirely and init a new one.</p>
+","0","105813","0"
+"28364089","2562058","2015-02-06 10:51:33","0","120","<git><git-clone><git-init>","Double .git folders","<p>Assume a remote repo which filesystem is a folder, say <code>MyRepo</code>, that contains other folders, say <code>A1, A2</code> and <code>A3</code>, and assume that those folders contains a bunch of files that I am tracking. Assume that I want to clone such a repo in <code>C:\Foo</code> , where <code>Foo</code> is a folder. I move into <code>C:\Foo</code>, run <code>git init</code> thus obtaining <code>C:\Foo\.git</code> folder. Then, I <code>clone</code> obtaining </p>
+
+<pre><code>C:\Foo\.git
+C:\Foo\MyRepo
+C:\Foo\MyRepo\.git
+C:\Foo\MyRepo\A1
+C:\Foo\MyRepo\A2
+C:\Foo\MyRepo\A3
+</code></pre>
+
+<p>I have two .git folders. My questions are</p>
+
+<ol>
+<li>Is that possible to remove <code>C:\Foo\.git</code>?</li>
+<li>In general, does the location of the .git folder makes difference? For example, if I overwrite <code>C:\Foo\.git</code> with <code>C:\Foo\MyRepo\.git</code> would that create problems?</li>
+</ol>
+","1","2562058",""
+"59350231","12353306","2019-12-16 03:33:59","1","475","<git><head><revision><git-init>","I made new local git repository but it show this message. fatal: bad revision 'HEAD'","<p>Hi I just made a new git local repository in my local machine.</p>
+
+<pre><code>Jon-linux ∴ mkdir git_test
+
+Jon-linux ∴ cd git_test 
+
+Jon-linux ∴ git init
+Initialized empty Git repository in /home/jonghyeon/git_test/.git/
+fatal: bad revision 'HEAD'
+</code></pre>
+
+<p>I want to remove that fatal message, so I googled it and I found some, however, it doesn't work for me.</p>
+
+<p>Can anybody help me?</p>
+","3","12353306","0"
+"35352793","1707075","2016-02-12 00:35:01","1","112","<git><oh-my-zsh><git-init>","After installing oh-my-zsh, I get fatal message when 'git init'","<p>I recently installed oh-my-zsh (using theme 'cordial'). The problem is that when I 'git init' I get this message </p>
+
+<blockquote>
+  <p>fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.
+  Use '--' to separate paths from revisions, like this:
+  'git  [...] -- [...]'</p>
+</blockquote>
+
+<p>I switched to bash and ran 'git init' and it did not give me the message, there is no problem.</p>
+
+<p>I figured out that once I made an initial commit it stopped giving me the message but I don't know how I fix this problem before I commit.</p>
+
+<p>Any suggestions would be greatly appreciated!</p>
+
+<p>Thanks in advance.</p>
+","0","1707075",""
+"60488421","3731467","2020-03-02 12:02:04","0","767","<git><git-init>","git init --separate-git-dir overwrites the existing .git folder","<p>I have a repo:</p>
+
+<pre><code>mkdir test
+cd test
+git init
+touch hi.txt
+git add .
+git commit -m 'first test add'
+git status
+</code></pre>
+
+<p>Wherein I'd like to add a separate git repo to manage different work:</p>
+
+<pre><code>git init --separate-git-dir .git2
+</code></pre>
+
+<p>Running this command, however overwrites <code>.git</code> with file that stores a symlink.</p>
+
+<p>I don't want this to happen :(</p>
+
+<p>I'd like to have the original <code>.git</code> repo/folder and <code>.git2</code> live in harmony...</p>
+
+<p>So that I can run commands like:</p>
+
+<p><code>git --git-dir=.git2 add new_file.txt</code></p>
+
+<p>Thanks!</p>
+","1","3731467",""
+"42101506","2835758","2017-02-07 22:50:40","1","887","<git><macos><git-init>","All of my /User/{username} files and folders are in my .git folder for some reason","<p>So currently I am trying to learn Git and am having a little trouble although many tutorials seem to be thorough and consistent.</p>
+
+<p>When I type <code>git init</code> I get <code>/Users/{username}/.git/</code> which seems to be ok since the tutorials also return the same path.</p>
+
+<p>But when I type <code>git status</code> I get every file and folder (both hidden and non hidden) that is in my <code>/Users/{username}/</code> directory for some reason, and it says all of those files/folders are untracked.</p>
+
+<p>I don't want those files/folders in there as I only want my <code>.git</code> folder to contain my projects so I can proceed learning how to push projects into my remote repository (GitHub).</p>
+
+<p>My system is Mac OSX, with OSX Sierra installed.</p>
+","1","2835758",""
+"59654150","10663387","2020-01-08 21:36:30","13","34993","<gitlab><ssh-keys><git-push><iterm><git-init>","git@gitlab.com: Permission denied (publickey). fatal: Could not read from remote repository","<p>I am using macOS Catalina. <strong>I already have a repository on GitLab and an <code>SSH-key</code> assigned.</strong> Now I want to create another repository from the terminal. I do the following:</p>
+
+<pre><code>git config user.name my_name
+git config user.email my_email
+git init
+</code></pre>
+
+<p>Then I get this:</p>
+
+<pre><code>Initialized empty Git repository in directory
+</code></pre>
+
+<p>So far so good.</p>
+
+<pre><code>git remote add origin git@gitlab.com:my_name/repo.git
+git add .
+git commit -m 'commit'
+git push -u origin master
+</code></pre>
+
+<p>Then I get the following error:</p>
+
+<pre><code>git@gitlab.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+</code></pre>
+
+<p>Then I go to the repository I already had and try to push there, everything works so I guess I don't have a problem with <code>SSH-key</code>. I know this is a very common question on the internet but none of the answers solved my problem.</p>
+","5","10663387","0"
+"50955660","1422096","2018-06-20 19:26:06","0","125","<git><ssh><synchronization><git-bare><git-init>","Synchronize a distant server directory with a local git repositery","<p>I want to synchronize a directory <code>/home/myproject</code> of my distant machine with, as source, the directory <code>D:\myproject\</code> of my local machine. I would like to use <code>git</code> (to also benefit from commits history, etc.)</p>
+
+<p>I did this on distant machine (creation of a bare repository, see also <a href=""https://stackoverflow.com/questions/7861184/what-is-the-difference-between-git-init-and-git-init-bare"">What is the difference between &quot;git init&quot; and &quot;git init --bare&quot;?</a>):</p>
+
+<pre><code>mkdir /home/myproject.git
+cd /home/myproject.git
+git init --bare
+</code></pre>
+
+<p>and this on local machine (with current directory <code>D:\myproject\</code>):</p>
+
+<pre><code>git init
+git add main.py   # D:\myproject\main.py exists on local machine
+git commit -m ""First""
+git remote add dest root@203.0.113.0:/home/myproject.git    # via ssh
+git push dest master
+</code></pre>
+
+<p>It works, now distant server's <code>/home/myproject.git</code> is synchronized, but the directory <code>/home/myproject/</code> (that should contain for example <code>/home/myproject/main.py</code>) still <strong>doesn't exist</strong>!</p>
+
+<p>So I have to do this on the distant server:</p>
+
+<pre><code>cd /home
+git clone myproject.git myproject
+</code></pre>
+
+<p>and now <code>/home/myproject/main.py</code> exists.</p>
+
+<p>Problem: each time I do <code>git push</code> on local machine, it's distant server's <code>/home/myproject.git</code> which is updated, <strong>and not <code>/home/myproject/</code></strong>.</p>
+
+<p><strong>Question: how to configure these repositories such that <code>git push</code> automatically updates all the files in <code>/home/myproject</code> such as <code>/home/myproject/main.py</code>, instead of only <code>/home/myproject.git</code>?</strong></p>
+","2","1422096",""
+"25172470","836390","2014-08-07 00:35:46","8","2727","<git><environment-variables><git-config><git-init>","Git error ""fatal: GIT_WORK_TREE (or --work-tree=<directory>) not allowed without specifying GIT_DIR (or --git-dir=<directory>)""","<p>I have <code>GIT_WORK_TREE</code> set to <code>.</code> and <code>GIT_DIR</code> set to <code>.git</code>. When I run <code>git init --bare</code>, I get the following error:</p>
+
+<blockquote>
+  <p>fatal: <code>GIT_WORK_TREE</code> (or <code>--work-tree=&lt;directory&gt;</code>) not allowed without specifying <code>GIT_DIR</code> (or <code>--git-dir=&lt;directory&gt;</code>)</p>
+</blockquote>
+
+<p>What's up with that? I suspect that it might have something to do with <code>GIT_DIR</code> being set to <code>.</code> (maybe it considers <code>GIT_DIR</code> unset if it points to the current working directory?). Regardless, it would be great to have this behave properly so I don't have to unset GIT_WORK_TREE every time I want to initialize a Git repo.</p>
+","1","836390","0"
+"69452191","16985689","2021-10-05 14:21:44","-1","103","<git><git-init>","How to undo git folder I created because of mistake?","<p>I was recently learning the git and windows PowerShell functions. I mistakenly made my Admin folder git repository and it is continuously showing changes I have made since then. Can anyone help me with this problem?</p>
+","0","16985689",""
+"44472840","8141150","2017-06-10 11:32:46","0","108","<git><init><git-init><bare>","git init in post-receive","<p>i suffered a very bad problem.
+i want push local repository to remote repository from my client and then excute post-receive script copy to webroot.there is a piece of code in my post-receive as follows: </p>
+
+<pre><code>cd /home/james/mywebsite
+git init
+git pull ssh://git@git.xxx.com/repository/xxx.git
+cp ./* /usr/local/apache2/htdocs/mywebsite/
+...
+</code></pre>
+
+<p>but the problem is that git init command create a bare repository which files in .git now is all in /home/james/mywebsite derectory.this caused i cannot use git pull command.but i'm not use git init --bare.why create a bare repository?</p>
+
+<p>tisp:
+1 mysql git version is 1.7.1.
+2 i use git user created my repository and it is located at /repository/xxx.git.
+please help me...dear all</p>
+","6","8141150",""
+"27137385","4293571","2014-11-25 21:48:33","1","2310","<macos><git><git-init>","How do I use ""git init"" to initialize a new folder?","<p>I want to initialize a folder for a new HTML project.  The folder is called HTML. I want to create "".git""(repository?) in that folder. Here is what I keep getting after I put ""git init"" after my folder name: </p>
+
+<pre><code>dyld: lazy symbol binding failed: Symbol not found: ___strlcpy_chk 
+Referenced from: /usr/local/git/bin/git 
+Expected in: /usr/lib/libSystem.B.dylib 
+
+dyld: Symbol not found: ___strlcpy_chk 
+Referenced from: /usr/local/git/bin/git 
+Expected in: /usr/lib/libSystem.B.dylib 
+</code></pre>
+
+<p>What does this mean? Is there another command I should use? I need to initialize the folder so that .git comes up.</p>
+
+<p>I've tried to fix this on my own by using different folders and nothing is getting created under ""git init"".  Git is properly installed on my Mac.   </p>
+","4","4293571","0"
+"64032315","1697709","2020-09-23 16:25:15","0","6659","<git><visual-studio-code><git-init>","Problem at initialising a git repository using VS Code","<p>I have created one new file in an otherwise empty directory using VS Code. I went to version control and chose initialising this directory as a git repository. Now, a blue strip is moving around and a blue clock sign appeared on the git icon.</p>
+<p>What does it wait for? With command line, git init is a no-brainer and lasts for a fraction of a second.</p>
+","4","1697709",""
+"28150266","3620613","2015-01-26 12:37:12","3","4424","<git><git-init>","What does 'reinitialize' mean/actually do in git?","<p>I found a related question below, but can't understand 'pick up newly added templates', and seems this explaination was removed in latest <a href=""http://git-scm.com/docs/git-init"" rel=""nofollow"">http://git-scm.com/docs/git-init</a></p>
+
+<p><a href=""https://stackoverflow.com/questions/5149694/does-running-git-init-twice-initialize-a-repository-or-reinitialize-an-existing"">Does running git init twice initialize a repository or reinitialize an existing repo?</a></p>
+
+<blockquote>
+  <p>Running git init in an existing repository is safe. It will not
+  overwrite things that are already there. The primary reason for
+  rerunning git init is to pick up newly added templates.</p>
+</blockquote>
+
+<p>I just don't know what will reinitialize actually do, hope someone can explain it detail, thanks a lot :)</p>
+","1","3620613",""
+"28914310","4643960","2015-03-07 11:17:19","10","34730","<git><git-init>","git init will not create git directories for me","<p>I am new to Git.
+I can get a Git directory structure in a bare directory with <code>git -init --bare</code>.
+I can see where the git information is stored.</p>
+<p>However, when I try to use <code>git init</code> or even <code>git clone</code>, I never see any <code>.git</code> subdirectory in my local repository.  I can add files and push, but have no idea where those files are actually stored on disk for my local repository.</p>
+<p>From the documentation:</p>
+<blockquote>
+<pre><code>$ git init
+</code></pre>
+<p>This creates a new subdirectory named <code>.git</code> that contains all of your necessary repository files – a Git repository skeleton.</p>
+</blockquote>
+<p>However, I never see that skeleton directory.  I have used <code>dir -AH</code> to see if the git directory is hidden, but there is none. Why do I not get a git skeleton directory? And where, exactly are the added (staged) files put?</p>
+","0","4643960","0"
+"30973287","3457012","2015-06-22 06:25:47","1","133","<git><github><git-commit><git-add><git-init>","Can git ever send your code to a repo that isn't yours?","<p>Can running </p>
+
+<pre><code>git add .
+git commit -m ""message""
+</code></pre>
+
+<p>in a git repo which you've initialized using</p>
+
+<pre><code>git init
+</code></pre>
+
+<p>ever result in your code being sent to a repo that is not yours? I am concerned because I did this while not logged in to my git hub account.</p>
+","6","3457012","0"
+"49935303","4758320","2018-04-20 06:25:50","3","1962","<git><git-init>","Issue on git repository creation and accessibility using git","<p>I had created created repository in <code>UNIX</code> machine,</p>
+
+<p><code>$sudo git --bare init /var/repos/git/repo00001</code></p>
+
+<p>Also I have done following commands executed for individual <code>UNIX users</code>,</p>
+
+<pre><code>$ git config --global user.email ""MyfullName@mindtree.com""
+$ git config --global user.name ""Anand Sadasivam""
+</code></pre>
+
+<p>Under which directory I should be creating <code>git repsitories</code>, I have issue while check-in files. What should be the permission, user, group needs to be set for directory <code>/var/repos/git</code> on under which I am creating git repositories. At present its done under root privilege. Do I need to create separate <code>UNIX user</code> for <code>git</code> exclusively or any specific step or git command I have to follow to create user first before creating repository with <code>git init</code></p>
+
+<p>I had observed <code>--bare</code> for <code>init</code> created some basic structure under <code>git repository</code>. But when I did <code>git clone</code> my repository was empty.</p>
+
+<p>Since I had used <code>--bare</code>, I could see folder structure created as follows,</p>
+
+<pre><code># ls
+HEAD  branches  config  description  hooks  info  objects  refs
+</code></pre>
+
+<p>Following are the commands I have done at <code>git bash client side</code> in <code>Windows</code> for initial check-in of some file,- <code>Readme.txt</code></p>
+
+<pre><code>$ git clone anand@xx.xx.xx.xxx:/var/repos/git/repo00001
+Cloning into 'repo00001'...
+anand@xx.xx.xx.xxx's password:
+warning: You appear to have cloned an empty repository.
+
+&lt;&lt;I had created Readme.txt file under the present directory&gt;&gt;
+
+$ git add Readme.txt
+
+$ git status
+On branch master
+
+$ git commit -a
+[master (root-commit) 8201309] Initial commit
+ Committer: Anand Sadasivam &lt;MMyEmpID@mindtree.com&gt;
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+ create mode 100644 Readme.txt
+
+$ git push origin master
+anand@xx.xx.xx.xxx's password:
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 240 bytes | 120.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+error: remote unpack failed: unable to create temporary object directory
+To xx.xx.xx.xxx:/var/repos/git/repo00001
+ ! [remote rejected] master -&gt; master (unpacker error)
+error: failed to push some refs to 'anand@xx.xx.xx.xxx:/var/repos/git/repo00001'
+
+$ git show-ref
+82013098f6801ea32bb620b612f779c8dade6d83 refs/heads/master
+
+$ git push origin HEAD:master
+anand@xx.xx.xx.xxx's password:
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 240 bytes | 120.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+error: remote unpack failed: unable to create temporary object directory
+To xx.xx.xx.xxx:/var/repos/git/repo00001
+ ! [remote rejected] HEAD -&gt; master (unpacker error)
+error: failed to push some refs to 'anand@xx.xx.xx.xxx:/var/repos/git/repo00001'
+</code></pre>
+
+<p>Is this situation had arisen because <code>Windows Settings</code> been followed while <code>git bash/gui client</code> installation.</p>
+
+<p>Or it is completely <code>repository</code> permission issue or <code>repository creation user</code> issue in <code>UNIX</code></p>
+","6","4758320","0"
+"68099283","13097450","2021-06-23 11:51:39","-2","861","<git><npm><git-init><npm-init>","What is the difference between ""npm init "" and ""git init ""?","<p>sometimes I get confused what is the differences between <code>npm init</code> and <code>git init </code> when I want to start a project. I do not know where and when I should use each of them?</p>
+<p>Can I use them together or I should use them separately?</p>
+<p>Should I use them just at the start of the project or I can use them anytime?</p>
+","2","13097450",""
+"54201268","4014834","2019-01-15 14:49:26","1","1001","<git><git-init>","Is it possible to specify new local git repository location for existing config?","<p>By default, I typically run <code>git init</code> and have the local repository in the root directory. I store and work with my project files on a small-ish SSD but have a BIG ol' SATA HD on the same machine not doing much. I was thinking I should get into the practice of using it for the actual repositories for each project.
+<br><br><br>
+<strong>EDIT:</strong>
+<br>
+By this I mean I have the directory structure:</p>
+
+<p>SMALL-DRIVE > My Project > .git > repository files...<br>
+SMALL-DRIVE > My Project > src > dev files...</p>
+
+<p>and while I'd like the keep the 2nd one as is, I want to move the 1st one to</p>
+
+<p>BIG-DRIVE > repositories > My Project > .git > repository files...
+(or something similar)</p>
+
+<p>Everything is staying on the same machine and there would be no change to the remote repository that I push to.
+<br><br></p>
+
+<p>I <strong>believe</strong> I can pass <code>git init</code> this new path for new projects (pretty sure I can figure that out on my own), but is there a way to update an existing config to use the new path? And if so, is there a command that will move the current files in the repository or would I just manually move the .git directory?</p>
+","1","4014834",""
+"55497621","11304922","2019-04-03 14:29:41","0","167","<git><version-control><git-stage><git-init>","How to undo 'git add -A' and 'git init', but still keep subfolders in Git?","<p>I mistakenly ran 'git init' followed by 'git add -A' on a main folder (named ""workspace"").  I intended to 'cd' down into a new project folder (named ""authentication"") before running these commands.</p>
+
+<p>The issue is, this main folder ""workspace"" <em>already</em> had numerous project subfolders that were individually in Git beforehand.  The main folder was not previously under Git, nor ever meant to be. Fortunately, I have NOT ran 'git commit' on the main folder.</p>
+
+<p>How do I safely reverse the 'git add -A' on the main folder, as well as revert the 'git init' command on the main folder, <strong>WITHOUT affecting all the subfolder projects</strong> that are to remain individually under version control (Git)?</p>
+","0","11304922",""

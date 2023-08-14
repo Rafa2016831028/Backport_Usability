@@ -1,0 +1,1250 @@
+Post Link,User Link,CreationDate,Score,ViewCount,Tags,Title,Body,CommentCount,AnswerCount,FavoriteCount
+"54622999","148298","2019-02-11 01:50:53","1","1124","<git><subtree><git-worktree>","What's the difference between git-worktree and git-subtree?","<p>Just when I thought Git couldn't get any more complicated, I just discovered git worktree. Either this is a synonym for subtree or feature I never knew about. Is worktree the same as subtree or are they different. If they are different, how are they different and what problem does worktree solve?</p>
+","1","148298",""
+"76216090","11705021","2023-05-10 07:51:08","0","24","<git-worktree>","git worktree remove force command fails with errors","<p>Sometime when I'm running the command <code>git worktree remove --force</code> on windows, I'm getting failed to delete error: <code>Permission denied</code> or <code>Directory not empty</code>.</p>
+<p>Is there a way to overcome it?</p>
+","0","11705021",""
+"76263855","1238300","2023-05-16 13:52:10","-2","74","<git><git-worktree>","How do I hard reset a worktree to origin with git?","<p>I am experiencing with git worktrees. I created a bare clone and create my worktrees form it. I created a branch in a separate worktree, worked on it, and pushed it. Then I made a local commit that I would like to remove, so I ran
+<code>git reset --hard origin/mybranch</code> but as a result I get the following error message:</p>
+<pre><code>fatal: ambiguous argument 'origin': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git &lt;command&gt; [&lt;revision&gt;...] -- [&lt;file&gt;...]'
+</code></pre>
+<p>If I remove and recreate the worktree then I end up in the same state with the faulty commit still there.
+If I remove both the worktree and the branch (with <code>git branch -r</code>) and recreate the worktree then I get to the main branch (and not the one I created) with seemingly no way to get the feature branch I created.</p>
+<p>How can I revert my worktree to the remote version of my branch ?</p>
+<hr />
+<p>EDIT: I made a whole test scenario trying some of the suggested answers, you can see my bash session below. I do have a remote named <code>origin</code>. I think the problem mainly comes from the fact that I am using a bare clone (<code>git commit --bare XXX</code>). When using a non-bare repo it works correctly.</p>
+<pre><code>~/sources/iced&gt; git clone --bare https://github.com/iced-rs/iced.git iced
+# ...
+Receiving objects: 100% (31149/31149), 9.85 MiB | 3.54 MiB/s, done.
+Resolving deltas: 100% (21892/21892), done.
+~/sources/iced&gt; cd iced
+~/sources/iced/iced&gt; git worktree add ../0.8 0.8
+Preparing worktree (checking out '0.8')
+HEAD is now at 0e1a9e65 Merge branch 'master' into 0.8
+~/sources/iced/iced&gt; cd ../0.8
+~/sources/iced/0.8&gt; git log --pretty=oneline | head
+0e1a9e653f79759caa955e87c594bea8606a189c Merge branch 'master' into 0.8
+2b8742937fb41fbe2ce60a494bfce2fd8b6ab916 Bump version of `iced_native` :tada:
+1b79df44337abf46f9ef3fbd2f46a96da952639d Merge pull request #1717 from iced-rs/remove-clone-image-bytes
+~/sources/iced/0.8&gt; nvim
+~/sources/iced/0.8&gt; git add . &amp;&amp; git commit -m &quot;dummy commit&quot;
+[0.8 e8bbb041] dummy commit
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+~/sources/iced/0.8&gt; git log --pretty=oneline | head
+e8bbb0414b8a602a54b2363915db24f593621492 dummy commit
+0e1a9e653f79759caa955e87c594bea8606a189c Merge branch 'master' into 0.8
+2b8742937fb41fbe2ce60a494bfce2fd8b6ab916 Bump version of `iced_native` :tada:
+~/sources/iced/0.8&gt; cd ../iced
+~/sources/iced/iced&gt; git remote
+origin
+~/sources/iced/iced&gt; git reset --hard origin/0.8
+fatal: ambiguous argument 'origin/0.8': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git &lt;command&gt; [&lt;revision&gt;...] -- [&lt;file&gt;...]'
+~/sources/iced/iced&gt; cd ../0.8
+~/sources/iced/0.8&gt; git reset --hard origin/0.8
+fatal: ambiguous argument 'origin/0.8': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git &lt;command&gt; [&lt;revision&gt;...] -- [&lt;file&gt;...]'
+~/sources/iced/0.8&gt; cd ../iced
+~/sources/iced/iced&gt; git reset --hard '0.8@{upstream}'
+fatal: no upstream configured for branch '0.8'
+~/sources/iced/iced&gt; cd ../0.8
+~/sources/iced/0.8&gt; git reset --hard '0.8@{upstream}'
+fatal: no upstream configured for branch '0.8'
+
+</code></pre>
+","4","1238300",""
+"76426635","689242","2023-06-07 19:42:20","1","28","<git><git-worktree>","git worktree add renamed remote branches","<h2>PROBLEM:</h2>
+<p>I used these commands to create a two new branches. New branch <code>GTEC-426-eth</code> was supposed to originate from <code>feature/eth_testing</code> while new branch <code>GTEC-426-ksz</code> was supposed to originate from the <code>feature/KSZ8851SNL_testing</code>.</p>
+<pre><code>git worktree add -b GTEC-426-eth ../worktrees/GTEC-426-eth feature/eth_testing
+git worktree add -b GTEC-426-ksz ../worktrees/GTEC-426-ksz feature/KSZ8851SNL_testing
+</code></pre>
+<p>After changes were done on these new branches, they were pushed to the origin.</p>
+<pre><code>git push --set-upstream origin GTEC-426-eth
+git push --set-upstream origin GTEC-426-ksz
+</code></pre>
+<p>Now I am checking the Gitlab graph and it seems that this did not add new branches but <strong>renamed</strong> the existing ones...</p>
+<p>This is the graph from <code>tig</code> GIT client if I run it from the <code>GTEC-426-ksz</code> branch:</p>
+<p><a href=""https://i.stack.imgur.com/6nYb3.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/6nYb3.png"" alt=""enter image description here"" /></a></p>
+<p>This is a graph of <code>GTEC-426-ksz</code> branch on Gitlab:</p>
+<p><a href=""https://i.stack.imgur.com/Vu3Py.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/Vu3Py.png"" alt=""enter image description here"" /></a></p>
+<p>What did I do wrong?</p>
+<hr />
+<h2>POSSIBLE REASONS:</h2>
+<p>I read in the <code>man git worktree</code> about <code>-b</code>:</p>
+<pre><code> -b &lt;new-branch&gt;, -B &lt;new-branch&gt;
+           With add, create a new branch named &lt;new-branch&gt; starting at &lt;commit-ish&gt;, and check out &lt;new-branch&gt; into the new working tree. If &lt;commit-ish&gt; is omitted, it defaults to HEAD. By default, -b refuses to create a new
+           branch if it already exists.  -B overrides this safeguard, resetting &lt;new-branch&gt; to &lt;commit-ish&gt;.
+</code></pre>
+<p>I am working on Windows/WSL and I suspect that because Windows has problems with normal/capital letters it might interpreted <code>-b</code> as  <code>-B</code>... I have no other idea why this could otherwise happen...</p>
+","4","689242",""
+"68160480","14588927","2021-06-28 09:01:49","2","124","<git><git-worktree>","Work on the same git directory simultaneously","<p>Is it possible to do the following things on the same git directory simultaneously:</p>
+<ul>
+<li><p>compiling on one branch</p>
+</li>
+<li><p>working on another branch</p>
+</li>
+</ul>
+","2","14588927",""
+"68310226","16411030","2021-07-09 01:28:44","1","327","<git><file><restore><git-worktree>","Can I get back the files in working tree which disappeared resulting from running git restore -s@ -SW?","<p>I forgot to add .ai to my .gitignore file, but ran
+<code>$ git add .</code>
+and added quite some <code>.ai</code> files to the index.</p>
+<p>When I ran
+<code>$ git status</code>
+and saw them, I wanted to remove them from the index.</p>
+<p>In haste, I ran
+<code>$ git restore -s@ -SW</code>
+resulting in all of my <code>.ai</code> files are gone away from my working tree. I should not have used <code>W</code>.</p>
+<p>Is there any way in which I can get my <code>.ai</code> files back?</p>
+","6","16411030","0"
+"38687792","1680906","2016-07-31 19:44:18","1","293","<git><github><commit><git-worktree>","How do I make a commit is not in the master branch with git-worktree","<p>I have a repository with name ""Name"" for example. And in the repository has two branches:</p>
+
+<ul>
+<li>master </li>
+<li>gh-pages</li>
+</ul>
+
+<p>If I have made changes to the folder ""Name"", the commands I get the commit:</p>
+
+<pre><code>$ git worktree add ../Name-gh-pages gh-pages
+</code></pre>
+
+<p>With this command, I get two directories:</p>
+
+<ul>
+<li>""Name"" with files from ""master"" branch</li>
+<li>""Name-gh-pages"" with files from ""gh-pages"" branch</li>
+</ul>
+
+<p>If I have made changes to the folder ""Name"", the commands I get the commit:</p>
+
+<pre><code>$ git add .
+$ git commit -m ""test""
+</code></pre>
+
+<p>How do I commit if I make changes to a folder ""Name-gh-pages""? Command ""git add ."" sees the changes only in the folder ""Name"". Command ""git checkout gh-pages"" is not working in this case.</p>
+
+<p><strong>Update.</strong> jibe suggested solution.</p>
+
+<pre><code>$ git worktree add ../Name-gh-pages gh-pages
+</code></pre>
+
+<p>We now have two working directory.</p>
+
+<pre><code>$ git add .
+$ git commit -m ""test""
+$ git push
+</code></pre>
+
+<p>We've committed to the ""master"" branch.</p>
+
+<pre><code>$ cd ..
+$ cd Name-gh-pages
+$ git add .
+$ git commit -m ""test gh-pages""
+$ git push
+</code></pre>
+
+<p>We've committed to the ""gh-pages"" branch.</p>
+","0","1680906",""
+"69125521","11705021","2021-09-09 22:54:22","3","1298","<git><git-worktree>","Does one git worktree support multiple branches?","<p>Per the documentation, each <code>git worktree</code> serves one <code>branch</code> (<code>dev</code>/<code>feature</code>/<code>prod</code> and so on), but it also sound not reasonable to me, that each branch will have its own <code>worktree</code> as it will creates many folders, and at some point might be confusing.</p>
+<p>Does one <code>git worktree</code> can support multiple <code>branches</code>? for example all the branches which belongs to <code>feature</code> and then switch between what relevant for the moment? Is it correct approach?</p>
+","3","11705021","0"
+"69470009","510036","2021-10-06 17:14:57","1","2163","<git><git-diff><git-worktree>","git diff --cached: unknown option `cached'","<p>Within a Git worktree directory within a Docker container, I'm getting the error <code>error: unknown option `cached'</code> when running <code>git diff --cached</code>.</p>
+<p>Git is on version 2.32.0 which clearly states it should exist.</p>
+<p>When switching back to the main repository and mounting it in the container, the command works fine.</p>
+<p>What's going on here?</p>
+","0","510036",""
+"69582003","393010","2021-10-15 08:38:48","1","162","<git><git-worktree>","Difference between git main and linked working tree?","<p>Is there any difference between a &quot;main working tree&quot; and a &quot;linked working tree&quot; in git? If so, what differences are there?</p>
+<hr />
+<p>Git has a subcommand called <a href=""https://git-scm.com/docs/git-worktree"" rel=""nofollow noreferrer"">git-worktree</a> used to be able to manage multiple working trees in one repository. When cloned with this command:</p>
+<pre><code>git clone &lt;url&gt; --separate-git-dir=.git main
+</code></pre>
+<p>the directory <code>main</code> will contain the &quot;main working tree&quot;. After that a new working tree can be created with <code>git worktree add temp</code>. <code>temp</code> is now a &quot;linked working tree&quot;.</p>
+<p>Is there any way to tell the difference of the two types? One thing should be that <code>main</code> can not be removed in the same way as <code>temp</code> (<code>git worktree remove temp</code>). But are there other things that are possible/impossible to do with one kind of the worktree and not the other?</p>
+","4","393010",""
+"52681165","4474522","2018-10-06 16:39:19","6","1937","<git><git-commit><git-cherry-pick><git-workflow><git-worktree>","git compare two branches which contains some common commit with different hash","<p><strong>Context :</strong> 
+We are a team of programmer who work on a project with severals branches 
+: </p>
+
+<pre><code>Master, Release, Develop
+</code></pre>
+
+<p>Sometimes we need to fix a bug on release, and we need to report this fix on develop, to report our bug fix we use : <code>git cherry-pick commit-SHA</code></p>
+
+<p>With this command the bugfix is well reported on develop but the commit has a different hash</p>
+
+<p><strong>What we need :</strong> </p>
+
+<p>Sometimes we need to know the list of commits that has not been reported, to do so, we use the command who compare the two branches and give us the list of commit which exist in release but not in develop :   <code>git log develop..origin/release</code></p>
+
+<p><strong>The ISSUE :</strong> </p>
+
+<p>This command compare the hash of commits, but as i said before, when we report our commits, their hash changes, thus, we get some commits as if they were not been reported while they are</p>
+
+<p>I'm lookin for a way to report our bugfix without changing the hash of commits, or a way to list the difference of commits between two branches, not by the hash but based on the message or another thing</p>
+
+<p>Thanks</p>
+","4","4474522","0"
+"73486442","5175709","2022-08-25 11:09:41","0","41","<git><git-worktree>","Why does `git branch` annotate a branch with `+` and another with `*`?","<p>When I do <code>git branch</code>, it returns something like:</p>
+<pre><code>~/Dev/project/main (main) $ git branch
+  bug22
+* main
++ feature33
+  feature19
+</code></pre>
+","0","5175709",""
+"56831520","7942901","2019-07-01 07:25:38","0","60","<git><git-worktree>","commit from worktree changes remote url in .git/config","<p>when i try to commit from a worktree, the repo config file
+is changed to an incorrect remote url.
+when i am committing from the main worktree it is changed back to the correct one.</p>
+
+<p>from my repo in master branch i create a worktree by:</p>
+
+<pre><code>/path/to/my/master$ git worktree add ../branch_x -b feature/branch_x
+</code></pre>
+
+<p>when i have a commit ready</p>
+
+<pre><code>path/to/my/branch_x$ git add .
+path/to/my/branch_x$ git commit -m ""some message""
+</code></pre>
+
+<p>then in the /path/to/my/master/.git/config file</p>
+
+<pre><code>[remote ""origin""]
+        url = ssh://path_to_bitbucket:7999/bitbucket/proj/master.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+        pushurl = git@path_to_bitbucket/master.git
+</code></pre>
+
+<p>is changed to </p>
+
+<pre><code>[remote ""origin""]
+        url = ssh://path_to_bitbucket:7999/bitbucket/proj/branch_x.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+        pushurl = git@path_to_bitbucket/branch_x.git
+</code></pre>
+
+<p>and then all work with remote fails...</p>
+","3","7942901",""
+"73671518","12033855","2022-09-10 11:42:03","0","62","<git><dotfiles><git-worktree>","Merge select files in git repo with local repo which don't have any commits","<p>I have a remote git repo with more than 100 commits. I have a copy of those files locally and have some changes. I initialized a git repo locally. I added the remote as <code>origin</code>, but now I am facing some problems. The local repo is only initialized, and no commits yet, and no files staged. I have some important changes locally which are not present in the remote. The problems:</p>
+<ol>
+<li>I can't pull remote because that will overwrite the existing local files</li>
+<li>I can't commit all local changes and push because they don't share the same commit history</li>
+<li>I can't force push also, because that will delete the commit history in remote</li>
+</ol>
+<p>What I am trying to achieve is to pull all commit history from remote, and then merge the local commit into the latest commit on remote.</p>
+<p>Please note (in case this info will also help): This is a dotfiles git repo. In my previous machine, I set the local git repo using the command <code>git --work-tree=/home/user --git-dir=.git/ init</code>. In my new machine, before setting this repo again, and pulling the changes, I instead copied the config files and other dotfiles from my old machine and made a few changes. Now in the new machine I used the same command but the above mentioned problems were raised. Both remotely and locally I have the <code>~/.mozilla/firefox</code> also backed up, so it contains binary (or similar) files which are neither readable nor writable, but have been changed while using firefox, including <code>.db</code> files. So for those files, I just wanna keep the local ones, and ignore the remote ones.</p>
+<p>How can I approach this?</p>
+","0","12033855",""
+"73809347","6330106","2022-09-22 04:27:10","1","392","<git><git-worktree>","Occasional ""fatal: not a git repository"" in a git worktree","<p>I have 4 Ubuntu machines and a Jenkins job runs on them. A shared disk is mounted to them as <code>/data/repositories/</code>. Under it, there are many non-bare repositories created by <code>git clone &lt;url&gt; --no-checkout -b master</code>.</p>
+<p>When the job is triggered, it runs these step:</p>
+<ol>
+<li>In <code>/data/repositories/foo</code>, fetch <code>Branch A</code> and <code>Branch B</code></li>
+<li>Parse <code>Branch B</code> head and get its commit <code>SHA1VALUE</code></li>
+<li>Create a work tree by <code>git worktree add --no-checkout /path/to/worktree SHA1VALUE</code></li>
+<li>Get the changed files in <code>Branch A</code> head</li>
+<li>Enable sparse checkout in <code>/path/to/worktree</code></li>
+<li>Write the changed files into <code>/data/repositories/foo/.git/worktrees/xx/info/sparse-checkout</code></li>
+<li>Run <code>git checkout</code> in <code>/path/to/worktree</code> to check out these files</li>
+<li>Use <code>git cherry-pick</code> to apply <code>Branch A</code> head onto <code>SHA1VALUE</code> in <code>/path/to/worktree</code></li>
+<li>Push the new commit to <code>Branch B</code>.</li>
+</ol>
+<p><code>/path/to/worktree</code> is not on the shared disk but on each machine's own disk. In Step 7 and Step 9, it may occasionally raise an error <code>fatal: not a git repository /data/repositories/foo/.git/worktrees/xx</code>. When the error occurs, <code>/data/repositories/foo/.git/worktrees/xx</code> is not there as if it's been deleted by some process or thread right before the step. In the job, it won't be deleted on purpose until the job is finished or an exception is raised in these steps.</p>
+<p>If I rebuild the job with the same parameters, the problem does not occur again.</p>
+<p>If <code>/data/repositories/foo/.git/worktrees/xx</code> is not successfully created in the first place, it would be detected during these steps and Step 8 would always fail.</p>
+<p>Multiple jobs could run on the same <code>/data/repositories/foo</code> at the same time. But in <code>/data/repositories/foo/.git/worktrees/xx/info/sparse-checkout</code>, the <code>xx</code> part is unique.</p>
+<p>Thanks for any clues.</p>
+","4","6330106",""
+"74772506","17194088","2022-12-12 14:20:34","2","318","<git><node-modules><git-worktree>","include node_modules when using git worktree","<p>I have a big node repo that has a <code>node_modules</code> folder, which is untracked (included in the <code>.gitignore</code> file). I recently started learning about git worktrees and I would like to be able to add worktrees that include the <code>node_modules</code> folder without having to run npm install on that worktree. Is there a way to accomplish that without editing <code>.gitignore</code> or copying the folder manually? I just would like to have worktrees ready to go when creating them</p>
+<p>thanks in advance</p>
+<p>searched for related questions, checked the documentation of git worktree</p>
+","1","17194088",""
+"74862356","2278311","2022-12-20 11:24:04","0","514","<git><git-worktree>","git pull doesn't pull latest changes when using git worktree","<p>I like git worktree, but keep getting into situations where the local working directory is not the same as the remote branch, even though git pull says &quot;Already up to date&quot;.</p>
+<p>Here's a little MRE I did:</p>
+<ul>
+<li>Created a remote repo in the GitLab web interface.</li>
+<li>Cloned it using <code>git clone --bare &lt;url&gt;</code></li>
+<li>Added the <code>main</code> branch locally using <code>git worktree add main</code></li>
+<li>Added a new branch using <code>git worktree add new-branch</code>, <code>cd</code>ed into it and did a <code>git push</code>.</li>
+<li>Using the GitLab web interface, I added a file <code>main-branch-change-1</code> directly in the <code>main</code> branch, then rebased <code>new-branch</code> on top of the new <code>main</code>, then added a second file <code>feature-branch-change-1</code> in <code>new-branch</code>.</li>
+<li><code>git pull</code> on the local <code>new-branch</code> says &quot;Already up to date&quot;, while commit hash and <code>git log</code> clearly shows the local is not up to date. The file <code>main-branch-change-1</code> is present, but not <code>feature-branch-change-1</code>.</li>
+<li><code>git fetch --all</code> in the bare repo followed by <code>git pull</code> in <code>new-branch</code> changes nothing.</li>
+<li><code>git pull</code> in the <code>main</code> branch followed by <code>git pull</code> in <code>new-branch</code> changes nothing.</li>
+</ul>
+<p>What do I have to do to sync these changes?</p>
+<p>Some screenshots:</p>
+<p>GitLab graph
+<a href=""https://i.stack.imgur.com/viOed.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/viOed.png"" alt=""remote graph"" /></a></p>
+<p>Content of remote <code>new-branch</code>
+<a href=""https://i.stack.imgur.com/fPhDr.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/fPhDr.png"" alt=""remote new-branch content"" /></a></p>
+<p>Locally
+<a href=""https://i.stack.imgur.com/oLt92.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/oLt92.png"" alt=""local state"" /></a></p>
+","3","2278311",""
+"75179162","8528969","2023-01-19 23:06:11","1","44","<git><git-worktree>","How do I pull a branch from origin to local while working with git-worktree?","<p>What I am used to in the main worktree land:</p>
+<ul>
+<li>I want to work on my co-workers branch as they are on holiday</li>
+</ul>
+<p>on branch <code>main</code>, I run <code>git pull origin/main</code>, this fast forwards and pulls all refs down to my local.
+My co-worker's branch is <code>newFeature</code>, so I run <code>git checkout newFeature</code> and I am on that branch!</p>
+<p>How do I do the same when working with a bare repo and git worktrees?
+I cannot figure out how to checkout <code>newFeature</code> locally, such that I have a folder right beside my <code>main</code></p>
+","0","8528969",""
+"75720596","1222547","2023-03-13 10:23:56","0","233","<git><atlassian-sourcetree><git-worktree>","Is it possible to let sourcetree or any other git GUI work for a git worktree?","<p>For example, If I have created a A repo (home/user/A_dir) by “git init”, there is a .git (/home/user/A_dir/.git) then when I open the A_dir in sourcetree it works well.</p>
+<p>Next I create a worktree using <code>git worktree add --checkout /home/user/B_dir &lt;branch_name&gt;</code> , when I open the B_dir in smartgit it says “git status failed with code 128: not a git repository: /home/user/A_dir/.git/worktrees/A1” and I found in B_dir there is no .git folder, there is only .git file “gitfile:/home/user/A_dir/.git/worktrees/A1”</p>
+<p>Is it possbile that make the sourcetree work on B_dir?</p>
+","4","1222547",""
+"75726155","1241927","2023-03-13 19:28:31","0","29","<git><git-worktree>","What is the difference between ""head"" and ""HEAD"" in git?","<p>I've recently starting using Git worktrees and found something interesting that I can't find any docs for online. When I create a worktree, the &quot;head&quot; and &quot;HEAD&quot; references are not identical and point to different things. While on a worktree, the &quot;head&quot; reference points to the original master branch, while the &quot;HEAD&quot; reference points to the latest commit on the worktree.</p>
+<p>Why is that? And why don't both point to the same commit?</p>
+<p>Thanks.</p>
+","2","1241927",""
+"75870668","11258206","2023-03-28 20:12:38","1","65","<node.js><git><npm><git-worktree>","Use of git worktree to handle git ignored node_modules/ of two existing branches or move to a different approach","<p>I have a repo with two branches, and I don't know how to handle the git ignored node_modules folder that should contain different packages in the two branches.
+From my understanding, <code>git-worktree</code> is the correct approach, but I can't figure out how to use it.</p>
+<p>Because the two branches already have many commits, I need a solution that preserve all of them.</p>
+<p>At the moment, every time a checkout, I run:</p>
+<pre><code>rm -r node_modules
+npm install
+</code></pre>
+<p>But because this process is not convenient, I investigated, and it looks that the <a href=""https://felixrieseberg.com/managing-node_modules-and-branches/"" rel=""nofollow noreferrer"">suggested</a> solution is to use <code>git worktree</code>.
+<a href=""https://stackoverflow.com/questions/52404771/how-to-ignore-gitignore-when-using-git-worktree"">Somewhere</a> else, it doesn't seam the correct approach.</p>
+<p>If it is the correct approach, I can't figure out how to use it in practice.</p>
+<p>If I run:</p>
+<pre><code>git worktree add ./node_modules &lt;current_branch_name&gt;
+</code></pre>
+<p>I get:</p>
+<pre><code>fatal: '&lt;current_branch_name&gt;' is already checked out at '/some/path/my-project-folder'
+</code></pre>
+<p>If I run</p>
+<pre><code>git worktree add ./node_modules &lt;other_branch_name&gt;
+</code></pre>
+<p>The folder is created, but running <code>npm install</code> the packages are installed in it, making it unusable when I switch branch with <code>git checkout &lt;other_branch_name&gt;</code>.</p>
+<p>If I create two folders with:</p>
+<pre><code>git worktree add ./node_modules_foo &lt;current_branch_name&gt;
+git worktree add ./node_modules_bar &lt;other_branch_name&gt;
+</code></pre>
+<p>They are created, but not used by <code>npm install</code> unless I move the <code>package.json</code> files in them, that is not what I want and could be done also without <code>git worktree</code>.</p>
+<p>Is it <code>git worktree</code> the correct approach for this problem and how to use it correctly?</p>
+<p>I also investigate another approach, to specify a different installation folder in the <code>package.json</code> file, but it looks it is not an option.</p>
+","1","11258206",""
+"76019566","5736700","2023-04-14 23:17:39","1","172","<git><git-worktree>","How do you push git worktrees to a remote branch","<p>I don't know if I have a fundamental misundertanding about what a worktree is or what, but, I have tried fixing some bugs on a worktree. Used the <code>git worktree add</code> command to make it. I navigated to the folder it created, made my changes, made a commit, and now I am ready to push to the commit to a remote branch so I can create a Pull Request.</p>
+<p>This is my workflow when doing good old fashioned git branches. I will:</p>
+<ol>
+<li>create a local branch</li>
+<li>make changes</li>
+<li>stage changes</li>
+<li>commit staged changes</li>
+<li>Push and set upstream branch</li>
+<li>Create a PR</li>
+</ol>
+<p>With my worktree I am stuck on step 5.</p>
+<ol>
+<li>create worktree <code>git worktree add &lt;path&gt;</code></li>
+<li>make changes</li>
+<li>stage changes</li>
+<li>commit staged changes</li>
+<li>Push and set upstream branch</li>
+<li>Refspec error</li>
+</ol>
+<p>When I try to push with <code>--set-upstream</code> I get the <code>src refspec &lt;branch&gt; does not match any</code> error. I then looked for the .git folder to find that there wasnt one, just a .git file with the path to that worktree.</p>
+<p>There are a lot of tutorials out there on worktrees, and every one I have tried to read/watch has skipped this crucial detail. They tend to just cover the add/remove commands.</p>
+<p>Is a worktree even considered a branch? I didnt think so at first but <code>git branch</code> now shows me as being on a branch with the name of my worktree, interstingly, and unexpectedly it also shows that branch as being under another branch I was working on as if it were a sub branch of some kind</p>
+<pre><code>$ git branch
++ 371601_TLS_Certificates
+* 395275_396239_MVPbugs
+  aspire-dev-shell-baseurl
+  ls
++ main
+  users/rrhughes/US/371601_TLS_Certificates
+  users/rrhughes/US/383751_resolve_URL
+  users/rrhughes/US/383751_settings_NXupdate
+  users/rrhughes/US/383751_settingsui
+  users/rrhughes/US/settings_devops
+</code></pre>
+<p>Later via brute force attempting to find a solution I tried a bare <code>git push</code> and git told me it was not tracking a remote branch (as expected). It then provided me with this command</p>
+<pre><code>git push --set-upstream origin &lt;my branch name&gt;
+</code></pre>
+<p>I copy pasted it and it worked. However, this is nearly identical to the command I was trying before, and the command that I use to set upstream from regular git branches. the only difference was the name of my branch. It is a standardization on my dev team to make remote branches under a file structure for easy navigation and organization, so my command usually looks like this.</p>
+<pre><code>git push --set-upstream origin users/username/bugs/&lt;my branch name&gt;
+</code></pre>
+<p>Updated Question(s): So I am still confused why this did not work. Do I need to name my local worktree exactly what I will name it in the remote? If I want to name my local branch something simple, how do I set it to track a remote with a different name that meets my teams remote branch naming standard?</p>
+<p>-Original Question: how do I get these changes on this worktree into my remote repo so I can create a PR?-</p>
+","7","5736700",""
+"76101547","2730737","2023-04-25 13:11:30","0","33","<git><git-worktree><sparse-checkout>","How to create a git worktree of sub path","<p>Is there something similar to <code>git worktree add directory commit-ish:SUB_PATH</code>?</p>
+<hr />
+<h2>Use Case</h2>
+<p>I have the following structure</p>
+<pre><code>- alpha
+  |- VERSION
+    \- file.txt
+  \- sub
+- beta
+</code></pre>
+<p>And the goal is to check out the repo as following</p>
+<pre><code>- .git
+- alpha
+  |- v1
+    |- .git
+    \- file.txt
+  |- v2
+    |- .git
+    \- file.txt
+  |- v3
+    |- .git
+    \- file.txt
+  \- sub
+- beta
+</code></pre>
+<p>Where each of v1, v2 and v3 represent the name of a branch.
+And it's desired to minimize the scripting, and rely mostly on git commands.</p>
+<hr />
+<h2>Achieved Output</h2>
+<p>What I was able to reach so far is</p>
+<p>by first <code>sparse-checkout</code> all directories except for <code>alpha\VERSION</code> and then <code>worktree add</code> the branch to alpha\v1. As seen below</p>
+<pre><code>- .git
+- alpha
+  |- v1
+    |- .git
+    |- alpha
+      \- VERSION
+        \- file.txt
+      \- sub
+    \- beta
+  |- v2
+    ...
+  |- v3
+    ...
+  \- sub
+- beta
+</code></pre>
+<p>Using the commands</p>
+<pre><code>git init
+git config core.sparseheckout true
+echo alpha/SUB &gt; .git/info/sparse-checkout
+echo beta &gt;&gt; .git/info/sparse-checkout
+git remote add origin -f PATH_TO_REPO
+git pull origin master
+git worktree add alpha/v1 v1
+</code></pre>
+<p>Is it possible to <code>worktree add</code> only a subdirectory to reach the desired output?</p>
+","6","2730737",""
+"45256029","1014320","2017-07-22 15:09:01","2","1757","<git><git-branch><git-clone><git-checkout><git-worktree>","git: copy a worktree of a remote branch that is not present at local","<p>At work, I have a project that it has two different version with some common basic features. I make use of <code>git worktree</code> to put these versions in separate folders that I have two long-running branches beside <code>master</code> for each version and the <code>master</code> is for common features. So there are 3 folders with one repository. Also, there is a remote repository for this and the whole things are pushed there.</p>
+
+<pre><code>$git branch -a
+*master
+ version-1
+ version-2
+ remote/origin/master
+ remote/origin/version-1
+ remote/origin/version-2
+</code></pre>
+
+<p>At home PC, I have the folder of <code>master</code> and this local repository is linked to the same remote as my work repo. And when I get the list of branches it is like:</p>
+
+<pre><code>$git branch -a
+*master
+ remote/origin/master
+ remote/origin/version-1
+ remote/origin/version-2
+</code></pre>
+
+<p>I want to <code>checkout</code> to the <code>version-1</code> as well as copy the whole stuff of version-a to a local folder, that the folder is tracked by git as a <code>worktree</code> like at my work.
+does <code>git clone</code> or <code>git checkout</code> do that or I need to do something more tricky?</p>
+","6","1014320",""
+"63753680","4632019","2020-09-05 12:02:51","2","108","<git><git-checkout><git-worktree>","May I force git to change directory instead of fatal error while checking out branch from different worktree?","<p>I have few work trees:</p>
+<pre><code>$ git worktree list
+/home/kes/work/projects/video/app     7509c7f [dev]
+/home/kes/work/projects/video/second  c12cdf9 [newbr]
+</code></pre>
+<p>I want to be switched to different directory, when I do <code>git checkout newbr</code> from <code>dev</code> branch (worktree), instead of get error:</p>
+<pre><code>$ git checkout newbr
+fatal: 'newbr' is already checked out at '/home/kes/work/projects/video/second'
+</code></pre>
+<p>Currently I do:</p>
+<pre><code>cd /home/kes/work/projects/video/second
+</code></pre>
+<p>Is there an option to do this automatically?</p>
+","0","4632019",""
+"64458949","5347487","2020-10-21 07:47:30","1","267","<git><git-worktree><git-repo>","Is there a good reason why working trees should be created at the same directory hierarchy level as the git repo?","<p>When I went through many tutorials related to <code>git worktree</code>, everywhere in the command which was used to demonstrate the creation of worktree, <code>..</code> was used for the path where the working tree should be created - which indicates that the new working tree directory to be created at the same directory hierarchy level as that of the git repo.</p>
+<p>An example taken from the <a href=""https://git-scm.com/docs/git-worktree#_examples"" rel=""nofollow noreferrer"">git website</a></p>
+<pre><code>git worktree add -b emergency-fix ../temp master
+</code></pre>
+<p>And another from <a href=""https://spin.atomicobject.com/2016/06/26/parallelize-development-git-worktrees/"" rel=""nofollow noreferrer"">Atomic Object</a>-</p>
+<pre><code>git worktree add ../new-worktree-dir some-existing-branch
+</code></pre>
+<p>So I am wondering is there a good reason to create worktree at the same directory hierarchy as the git repo?</p>
+<p>Technically, you can create the working tree inside the git repo also. Git allows it.</p>
+<p>And I feel creating all the worktree belonging to a particular <code>git repo</code> under the git repo directory would give a logical grouping.</p>
+<pre><code>git worktree add -b emergency-fix ./temp master
+</code></pre>
+","5","5347487",""
+"64457757","5347487","2020-10-21 06:24:22","1","342","<git><git-clone><git-bare><git-worktree>","How to create a git repo without a working directory?","<p>I use git worktree concept to create multiple working directory. One for each feature and/or bug fix.
+So I will create a git clone of a repository once, and then I start creating worktree as needed.</p>
+<p>When I clone a git repository, by default a working directory is checked out - main worktree. Which we dont use and unnecessarily takes up space. So I am looking for a way to create a git repo with a working directory being checked out at the beginning.</p>
+<p>I tried <code>git clone --bare &lt;url&gt; ./test-git</code></p>
+<p>which actually created a git repo without a working directory but I was not able to create a git worktree out of it. I use to throw the following error -</p>
+<pre><code>bash-4.4 [/user/darshan/test-git] $git worktree add -b test-git-worktree.repo ../test-git-worktree origin/repo
+Preparing worktree (new branch 'test-git-worktree.repo')
+fatal: Not a valid object name: 'origin/repo'.
+</code></pre>
+<ol>
+<li>What am I doing wrong?</li>
+</ol>
+<p>I went inside the <code>.git</code> directory created from <code>git clone bare</code> command and found that there was <code>index</code> file and <code>lfs</code> directory missing.
+And these two items will be present in the <code>.git</code> directory created from the full git clone.</p>
+<ol start=""2"">
+<li>What do these two item indicate?</li>
+<li>On running what git command will I get these items?</li>
+</ol>
+","18","5347487",""
+"39707402","746346","2016-09-26 16:01:16","30","28441","<git><git-worktree>","Why does git worktree add create a branch, and can I delete it?","<p>I used <code>git worktree add</code> to create a new worktree. I noticed that is has created a new branch in the repo with the same name as the worktree. What is this branch for?</p>
+
+<p>I have checked out an other, pre-existing branch in the second worktree. Am I free to delete the branch that <code>git worktree add</code> created?</p>
+","5","746346","0"
+"39665570","746346","2016-09-23 16:32:04","16","3952","<git><git-worktree>","Why can two git worktrees not check out the same branch?","<p>Using a separate <a href=""https://git-scm.com/docs/git-worktree"" rel=""noreferrer"">git-worktree</a>, why can I not check out the same branch as in the main working copy? If I try, I get the error:</p>
+
+<pre><code>fatal: 'mybranch' is already checked out at '/path/to/repo'
+</code></pre>
+
+<p>I can see that if I check in from one worktree, the other would end up in a detached HEAD state, but is that so bad, and why can I not even check out the same branch?</p>
+","1","746346","0"
+"10455315","43681","2012-05-04 19:56:03","2","1083","<git><git-worktree>","git-new-workdir: Commit in working tree A causes bogus changes in tree B","<p>I use <code>git-new-workdir</code> to have two working trees for one git repository. This usually works very well, but I get funny behaviour after committing something, if the same branch is checked out in both working trees:</p>
+
+<ul>
+<li>I start with both working trees clean and on ""master"".</li>
+<li>I commit something in working tree A.</li>
+</ul>
+
+<p>Result:</p>
+
+<ul>
+<li>""git status"" in working tree A shows ""clean"" (as expected)</li>
+<li>""git status"" in working tree B suddenly shows ""Changes to be committed""</li>
+</ul>
+
+<p>The changes shown are the inverse of the commit I just made in A. For
+example, if the commit in A added a line, the ""Changes to be committed""
+in B show that this line was removed.</p>
+
+<p>What is happening here? Is this a known limitation of git-new-workdir?
+Is there a way to avoid this problem? Or should I just avoid checking in
+while the same branch is checked out in both copies?</p>
+
+<p>I would also be interested in understanding what is happening here
+internally (I know little about git's internals).</p>
+
+<p><strong>Note:</strong></p>
+
+<p>I found that the problem is easy to resolve by just running 
+<code>git reset--hard</code> in B, if B  had no uncommitted changes prior to the commit in A.</p>
+
+<p>However, if I commit in A while there are uncommitted changes in B, the
+real uncommitted changes get mixed with the bogus changes from the
+commit, and there seems to be no easy way to disentangle them. Hence
+the question.</p>
+","0","43681","0"
+"47076998","7401689","2017-11-02 13:50:05","9","4380","<git><visual-studio-code><windows-subsystem-for-linux><git-worktree>","Is there a way to get VS code work with git worktree? (Windows with WSL)","<p>I like to keep on repository checked out in several worktrees with <code>git worktree</code> to easily work on different branches simultaneously. 
+Yet VS code does not seem to recognize git as scm when it is in a git worktree folder.</p>
+
+<p>I couldn't find anything in the docs about this or an extension.
+Are there any ideas on how I could get VS code to support git features in an external worktree?</p>
+","4","7401689","0"
+"47451586","8995290","2017-11-23 09:14:26","2","974","<git><branch><git-checkout><git-worktree>","git checkout branches for development/staging/production","<p>I am currently restructuring how our company is handling development procedures. Since it is quite the hazzle for us to always ssh into the server to promote files/folders from DEV to STAGE/PRODUCTION servers I thought it might be a good idea to setup the git environment in a way that would allow us to simple merge the dev-branch into the stage-branch to perform a ""promotion"".</p>
+
+<p>For this we would need 3 different branches in our projects which checkout to different locations on the server when a new push is received.</p>
+
+<p>Lets say we have 3 folders on our server which contain the data for our 3 different environments (DEV - STAGE - PROD). Then the schema would look somewhat like this:</p>
+
+<p><a href=""https://i.stack.imgur.com/ShlS6.png"" rel=""nofollow noreferrer"">Branch checkout schema</a></p>
+
+<p>I set up the git as bare repos and I was wondering if something of that sort is possible with git.</p>
+
+<p>I will be grateful for every bit of help you guys can provide me with! :D</p>
+","2","8995290",""
+"66635437","13742862","2021-03-15 09:33:14","11","1908","<git><git-worktree>","git worktree with relative path?","<p>I have a <code>master</code> and a <code>setup</code> branch in my repo. I'm keeping the <code>setup</code> branch checked out as a worktree <em>inside</em> the main repo folder via</p>
+<pre><code>git worktree add ./local/setup
+echo '/local' &gt; .gitignore
+</code></pre>
+<p>So the main repo folder is on <code>master</code>, and the <code>local/setup</code> folder is on <code>setup</code>. Everything is fine and dandy, I can work on my <code>setup</code> files without having to switch branches, I can commit from within <code>local/setup</code> etc.</p>
+<p>But if I try to move the entire repo, or access it from a different Linux boot (<code>/home/myrepo</code> becomes <code>/mnt/ubu/home/myrepo</code>), things break. The problem seems to be that <code>git</code>'s worktree functionality records absolute paths, in</p>
+<pre><code>myrepo/.git/worktrees/setup/gitdir
+myrepo/local/setup/.git
+</code></pre>
+<p>Can I convert these to relative paths to make the repo + embedded worktree relocatable? I'm not sure what the paths in those files should be relative <em>to</em>, but I can experiment. Is this setup dangerous?</p>
+","10","13742862","0"
+"11244162","1488465","2012-06-28 12:00:29","2","925","<git><git-checkout><git-worktree>","About git-new-workdir branches syncing","<p>I am using git-new-workdir script to manage my branches but the branch apparently do not synchronize automatically. I have a repo with three branches (master, branchA and branchB). First, I cloned the repo with:</p>
+
+<pre><code>git clone git://myreposite.com/project.git
+</code></pre>
+
+<p>Second, I use git-new-workdir to split my branches</p>
+
+<pre><code>git-new-workdir project branchA branchA
+git-new-workdir project branchB branchB
+</code></pre>
+
+<p>Now I have project, branchA and branchB directories.
+Suppose someone else also had cloned my repo from other computer and checked out branchA, modified a file, committed and issued a <code>git push --all</code>.</p>
+
+<p>Thus, now I have to updated my branchA. So, I issue a <code>git pull --all</code> from master branch directory and I would expect that all my branches got updated instantly, but they didn't. When check the modified file on branchA directory nothing changed.</p>
+
+<p>What am doing wrong?</p>
+","1","1488465","0"
+"48554476","4107315","2018-02-01 02:30:23","2","1447","<git><git-worktree>","Remote git worktree is detached","<p>I'm attempting to add a worktree to a remote branch, if the branch isn't stored locally.</p>
+
+<p>I can successfully do this and get all the files using the following command:</p>
+
+<pre><code>git worktree add issue origin/issue
+</code></pre>
+
+<p>Which produces the following output:</p>
+
+<pre><code>Preparing issue (identifier issue)
+HEAD is now at d4bb4b9 Action edit performed on issue: ISSUE-1
+</code></pre>
+
+<p>This makes it seem as if the worktree was successful. If I look at the files, everything is there.</p>
+
+<p>However, the git status command looks like this </p>
+
+<pre><code>git status
+Not currently on any branch.
+nothing to commit, working tree clean
+</code></pre>
+
+<p>and I can't push/pull anything. Git version is 2.14.1 btw on windows (if it makes a difference)</p>
+
+<p>Does anyone know how to fix this? If the branch is local and you remove the origin/, it works perfectly fine. It's just dealing with the remote that it seems to not agree with.</p>
+","0","4107315","0"
+"69685827","1668622","2021-10-23 06:51:45","1","426","<git><docker><git-worktree>","Why am I getting `fatal: not a git repository...` when looking up toplevel dir in a git worktree?","<p>I'm currently tinkering with git worktrees and suddenly ran into a problem. I tried both approaches with and without bare clones described here:</p>
+<p><a href=""https://infrequently.org/2021/07/worktrees-step-by-step/"" rel=""nofollow noreferrer"">https://infrequently.org/2021/07/worktrees-step-by-step/</a>
+and
+<a href=""https://svij.org/blog/2017/04/14/mit-git-worktree-mehrere-arbeitsverzeichnisse-managen/"" rel=""nofollow noreferrer"">https://svij.org/blog/2017/04/14/mit-git-worktree-mehrere-arbeitsverzeichnisse-managen/</a> (ger)</p>
+<p>and my current directory setup looks like this:</p>
+<pre><code>$ tree -aL 1
+.
+├── worktree-branch1
+├── worktree-master
+└── .git
+</code></pre>
+<p>when I'm entering e.g. <code>worktree-master</code> and run <code>git rev-parse --show-toplevel</code> using git version <code>2.17.1</code> it points me correctly to the worktree root.</p>
+<p>When I now do the same inside a Docker-container based on <code>ubuntu:20.04</code> running version <code>2.25.1</code> of git I'm getting</p>
+<pre><code>$ git rev-parse --show-toplevel
+fatal: not a git repository: /home/me/git-project/.git/worktrees/worktree-master
+</code></pre>
+<p>Is this an issue with this specific version? Or does git make use of some strange magic which does not work inside a Docker container?</p>
+<p>Is there a workaround for this to get the worktrees toplevel dir?</p>
+","1","1668622",""
+"59776726","359532","2020-01-16 19:43:08","2","150","<ios><xcode><git><git-worktree><deriveddata>","Should I have a DerivedData folder for each git branch?","<p>I often switch branches and compile my project, and I have a git worktree so I have work on two branches at the same time (ex: current code and PR review). However, Xcode is currently setup to use one DerivedData location.</p>
+
+<p>Would it be better to specify a DerivedData folder for each branch? Or at least for each git worktree?</p>
+","0","359532",""
+"48307968","1541619","2018-01-17 18:44:44","9","3291","<git><git-worktree>","git worktrees vs ""clone --reference""","<p>What are the pros-cons of using git worktrees vs maintaining multiple clones with <code>--reference</code> flag? The main scenario I am considering is when a developer needs to maintain multiple git repositories on the disk for old releases (release/1.0, release/2.0, release/3.0) because switching branches on a single git repo and rebuilding would be costly. </p>
+
+<p>Using worktrees the developer could have a single clone of the repo, and any old releases could be created as worktrees of the repo using <code>cd /opt/main/</code>, <code>git worktree add /opt/old_release_1 release/1.0</code>. Using reference clones, the developer maintains a main clone somewhere, and uses <code>cd /opt/old_release_1</code>, <code>git clone --reference /opt/main/.git ssh://git@github.com/myrepo.git</code> to create clone repositories for the old releases.</p>
+
+<p>It seems like they can both accomplish the same goal. Are there benefits to one over the other in terms of speed, disk space... other things?</p>
+","0","1541619","0"
+"59873522","758666","2020-01-23 07:32:49","1","114","<git><mercurial><git-worktree>","Which git worktree commands should I use to have two local directories ""share the same remote""","<p>In Mercurial when I have a repository checked-out in my local directory ""C:\my-projects\my-old-hg-repo-checkout"", with the ""<strong>hg share</strong>"" extension enabled, command <code>hg share C:\my-projects\my-old-hg-repo-checkout C:\my-projects\my-new-hg-repo-checkout</code> will create a new local directory that ""shares the same remote"" (i.e if I pull remote changes in one directory, they are visible in the other).  </p>
+
+<p>How exactly can I do the same thing with my local check-out of a git directory, ""C:\my-projects\my-old-git-repo-checkout"", that I want to duplicate in ""C:\my-projects\my-new-git-repo-checkout"" (while ensuring they ""share the same remote"", i.e pulling remote changes from one directory will make them visible in the other)?</p>
+","1","758666","0"
+"31871888","946226","2015-08-07 07:25:05","63","15319","<git><git-submodules><git-worktree>","What goes wrong when using git worktree with git submodules","<p>I recently discovered the <a href=""https://git-scm.com/docs/git-worktree""><code>git worktree</code></a> command:</p>
+
+<blockquote>
+  <p>The new working directory is linked to the current repository, sharing everything except working directory specific files such as HEAD, index, etc.</p>
+</blockquote>
+
+<p>But the docs also indicate </p>
+
+<blockquote>
+  <p>… the support for submodules is incomplete. It is NOT recommended to make multiple checkouts of a superproject.</p>
+</blockquote>
+
+<p>without further explanation as to what goes wrong.</p>
+
+<p>Can someone enlighten me about the problems to expect? For example, will I be fine if I use the separate worktrees generated this way only for changes that do not affect the submodules?</p>
+","0","946226","0"
+"31935776","473467","2015-08-11 07:32:34","317","108761","<git><git-worktree>","What would I use git-worktree for?","<p>I read <a href=""https://github.com/blog/2042-git-2-5-including-multiple-worktrees-and-triangular-workflows"">Github's post on git-worktree</a>. They write:</p>
+
+<blockquote>
+  <p>Suppose you're working in a Git repository on a branch called <code>feature</code>, when a user reports a high-urgency bug in <code>master</code>. First you create a linked working tree with a new branch, <code>hotfix</code>, checked out relative to master […] You can fix the bug, push hotfix, and create a pull request.</p>
+</blockquote>
+
+<p>When I'm working on a branch called feature and some high-urgency bug in master is reported, I usually stash away whatever I'm working on and create a new branch. When I'm done, I can continue working. This is a very simple model, I've been working like that for years.</p>
+
+<p>On the other hand, using git-worktree has its own limitations:</p>
+
+<blockquote>
+  <p>For example, it's not allowed to have the same branch checked out in two linked working trees at the same time, because that would allow changes committed in one working tree to bring the other one out of sync.</p>
+</blockquote>
+
+<p>Why would I choose a more complicated workflow for a problem that's already been solved?</p>
+
+<p><strong>Is there anything about <code>git-worktree</code> that couldn't be done beforehand and that justifies this whole new, complex feature?</strong></p>
+","3","473467","0"
+"68518409","48461","2021-07-25 12:08:21","0","138","<git><git-worktree>","Using hardlink to .git instead of git worktree","<p>There is a known bug in Eclipse which prevents it from working with git worktree.</p>
+<p>The only practical work-around I can think of is creating .git hardlink from secondary (branch) working copy to the primary one containing the real .git folder.</p>
+<p>What might be the negative consequences of such a work-around (on Windows platform)?</p>
+","5","48461",""
+"41545293","4237316","2017-01-09 09:59:13","53","20038","<git><git-worktree>","'<Branch>' is already checked out at '</other/location>' in git worktrees","<p>I started using git worktrees. It seems to work, but I'm getting this error when attempting to check out a branch in the cloned worktree:</p>
+
+<pre><code>fatal: '&lt;branch&gt;' is already checked out at '&lt;/other/location&gt;'
+</code></pre>
+
+<p>How do I get around this without deleting the <code>.git/worktrees</code> directory?</p>
+","1","4237316","0"
+"34715083","130758","2016-01-11 06:00:24","5","1168","<git><version-control><git-worktree>","Long-term usage of branches with ""git worktree""","<p>I was looking into git's ""new"" <code>worktree</code> feature as it seems to fit really neatly into a problem I usually face: the need to work in multiple branches simultaneously (some of them are short-lived while others really long-lived). </p>
+
+<p>I'll generally have to work for a couple of hours on <code>release_a branch</code> and then fix something on <code>release_x branch</code> and then a bit on <code>release_h branch</code>. As I'm lazy, what I end up doing is having multiple copies of my git repository set up with Intellij, so I don't need to be constantly switching branches here and there.</p>
+
+<p>When I heard about git's <code>worktree</code> command I thought it was just what I was looking for -- a way to have a single repo have multiple working directories. And as a big plus, that would mean that I no longer would actually have to push stuff every time I changed something on a branch just for the sake of having another one pull it (as for instance, for an hotfix). I could just locally merge them.</p>
+
+<p>Is my understanding of what git's <code>worktree</code> correct?</p>
+
+<p>I've been playing with it but I can't really get how it works for my purposes. It seems that by default it will create the worktrees on its root folder, but that if I do a <code>git add .</code> those same folders will be included in the commit.</p>
+
+<p>This is how I'm creating a worktree for an already existing branch <code>my_branch</code> (assume I'm currently @ <code>master</code>):</p>
+
+<pre><code>git worktree add my_branch my_branch
+</code></pre>
+
+<p>So my questions is twofold:</p>
+
+<ol>
+<li>Is it possible / correct to apply multiple worktrees for long-time branches, or is it just something that makes sense temporarily?</li>
+<li>How should I then properly delete my unneeded worktrees?</li>
+<li>Should I have these worktrees existing inside or outside my main git repository?</li>
+</ol>
+
+<p>Thanks</p>
+","0","130758","0"
+"42822869","4598520","2017-03-15 23:50:14","1","659","<git><git-worktree>","How can I recover a staged changes from a deleted git worktree?","<p>I accidentally deleted a worktree, with staged, but uncommitted changes!
+But <code>git worktree list</code> still shows the worktree (i.e., it hasn't been pruned)</p>
+
+<p>Say, </p>
+
+<pre><code>/home/me/worktreeexample            0d4f25f [fix/something]
+/home/me/                           0fd8c7e [master]
+</code></pre>
+
+<p>But because I just ran <code>rm -rf worktreeexample/</code> there is nothing there
+    $ ls worktreeexample/</p>
+","0","4598520",""
+"62262199","509356","2020-06-08 12:35:23","4","1208","<git><git-reset><git-worktree>","How do I `git reset` in a worktree?","<p>I've noticed that if I try to <code>git reset</code> on a secondary worktree, it resets based on the <em>primary</em> worktree.</p>
+
+<p>Suppose I have <em>master (d)</em> checked out on my normal repo, and have <em>feature (f)</em> in my separate worktree.  If I do <code>git reset --hard head~1</code> I end up at <em>c</em> rather than <em>e</em> as I would expect:</p>
+
+<pre><code>master   _______a______c__d
+feature          \__b________e__f
+</code></pre>
+
+<p>I've tried looking for how to correctly reset in a worktree, but have been unable to find anything.</p>
+","5","509356",""
+"62488984","9644179","2020-06-20 17:02:00","0","167","<git><github><git-submodules><git-subtree><git-worktree>","How to create different github repos if I have one large folder with many files in it","<p>I have a folder called coursework on my machine with many files like: file 1, file 2, file 3, file 4, file 5, and file 6. On Github, I want to create repo1 with ONLY file 1, file 2 and file 3. Also, I want to create repo 2 with ONLY files file 4, file 5 and file 6 from that same coursework folder.</p>
+<p>Someone recommended me to use submodules but I am not entirely sure how to use them in this case. Is there an easier approach to accomplish this task? Thanks!</p>
+","7","9644179","0"
+"69759152","7285896","2021-10-28 18:23:58","6","624","<docker><git-worktree>","How to use Docker with git worktree","<p>I recently started using <code>git worktree</code> and it is awesome. However, I am not sure how to make it work with Docker. Here is my flow:</p>
+<ol>
+<li><p><code>repo-a</code> has a dockerFile to build a local container.</p>
+</li>
+<li><p>I create a new worktree like <code>git worktree add branch-a</code> this will create a folder named <code>branch-a</code> with branch <code>branch-a</code>.</p>
+</li>
+<li><p>I received a PR to review and I need to switch to <code>branch-b</code>. So I go back to my <code>--bare clone</code> repo and I do <code>git worktree add branch-b</code>. and cd into that folder.</p>
+</li>
+<li><p>My docker container doesn't catch new files because it is still linked to files on <code>branch-a</code> and if I do <code>docker-compose up -d</code> on <code>branch-b</code>, it throws an error saying that <code>The container name &quot;/&lt;name here&gt;&quot; is already in use by container &quot;31344e3448df72e032c42a96d078ea57c11a75023d197e9ab0683e7c773f54e4&quot;</code></p>
+</li>
+</ol>
+<p>How can I make my docker container to listen to changes on a different folder?</p>
+","2","7285896","0"
+"44747341","600515","2017-06-25 14:28:54","0","109","<git><version-control><git-status><git-index><git-worktree>","various git states, low-level understanding of git status (head, index, working states)","<p>Imagine you have one tree with one file. Suppose we have only two possible states for this file, <code>a</code>, and <code>b</code>. If it's missing or not-existent, <code>ø</code>. I'm trying to build a table to understand all the possible <code>git-status</code>es. I believe what I have makes sense, however, I've marked with <code>**</code> the areas of question:</p>
+
+<pre><code>head    index   working status
+a       a       a       no changes**
+a       a       b       unstaged:modified**
+a       a       ø       unstaged:deleted**
+a       b       a       staged:modified, unstaged:modified
+a       b       b       staged:modified
+a       b       ø       staged:modified, unstaged:deleted
+a       ø       a       no changes**
+a       ø       b       unstaged:modified**
+a       ø       ø       staged:deleted**
+ø       a       a       staged:new file
+ø       a       b       staged:new file, unstaged: modified
+ø       a       ø       staged:new file, unstaged: deleted
+ø       ø       a       untracked
+</code></pre>
+
+<p>For any of the <code>*, ø, *</code> I almost feel like it depends on the parent tree, and whether or not that is in the index... for example, <code>a, ø, ø</code> it's as if you've removed the blob from the working tree, and also the index. But, what does a removal from the index look like? Is it just the parent tree is added into the staging area with the tree entry removed? If that's the case, then it makes sense that there is no entry in the index for the blob itself.</p>
+
+<p>For any record where index = head, (<code>a,a,a</code>, <code>a,a,b</code>, <code>a,a,ø</code>) I'm assuming this state can't actually occur unless you were playing around with the plumbing commands. </p>
+
+<p>If you see errors in my table, and/or any light shed on this would be great! Thanks in advance.</p>
+","0","600515",""
+"36438333","94390","2016-04-05 22:40:14","16","7574","<git><intellij-idea><git-worktree>","How do I use git worktrees in IntelliJ IDEA 2016.1?","<p>The newest version of IntelliJ says it has support for git worktrees, but I can't seem to find anywhere that says how to use it. I was expecting to see an entry in the Git Branches popup in the lower right, but I don't see it there.</p>
+
+<p>I also don't see any descriptions in:<br>
+<a href=""https://blog.jetbrains.com/idea/2016/02/intellij-idea-16-eap-improves-debugger-and-adds-git-worktree-support/"" rel=""noreferrer"">Blog post announcing the feature</a><br>
+<a href=""https://www.youtube.com/watch?list=PLPZy-hmwOdEU9diyHSqbG_h8-Lz4-jcxG&amp;v=RDV2LJzd1wU"" rel=""noreferrer"">What's new video</a></p>
+
+<p>IntelliJ help and googling were also unhelpful</p>
+
+<p>I'm using Git version 2.7.2.0, worktrees were introduced in 2.5</p>
+","2","94390","0"
+"53528817","703139","2018-11-28 22:05:19","1","1494","<git><git-worktree>","Is there a way to detach and attach git worktrees?","<p>Is there a way to detach and attach git worktrees? Basically, I'd like to have the following workflow:</p>
+
+<ol>
+<li>Create a worktree</li>
+<li>Detach work tree after doing some work (adding commits), the directory should not get deleted</li>
+<li>checkout worktree branch in my main checkout</li>
+<li>do some push/linting/pushing to company server</li>
+<li>reattach worktree, and continue working on existing directory if necessary</li>
+</ol>
+
+<p>To explain my reasoning behind my workflow... I have a bunch of settings which are tied into the path of the of the main checkout repository... this includes linting/pre-commit checks and some other workflows (the setup is complicated, and I am unaware of the details)... what I'd ideally like to do is the following switch back and forth from the <code>git worktree</code> to the main checkout location of the repo.... similar to how you would switch between branches.</p>
+
+<p>e.g. I do the following</p>
+
+<ol>
+<li>create worktree branch A in dir A</li>
+<li>do some edits</li>
+<li>""unlock"" worktree A</li>
+<li>checkout branch A branch in main checkout directory</li>
+<li>do linting/pre-check operation (these do not edit any file in the branch)</li>
+<li>checkout master branch in main checkout directory</li>
+<li>go back to editing worktree A in dir A</li>
+</ol>
+","0","703139","0"
+"70261730","11705021","2021-12-07 14:14:25","0","123","<python-3.x><dataframe><git-worktree>","How to print git command output to python dataframe","<p>I'm using the below git command output:
+<code>git worktree list</code> into streamlit table object. For example:</p>
+<pre><code>F:/demo/a   123abc   [dev/arielma/a]
+F:/demo/b   453fbd   [dev/arielma/b]
+F:/demo/c   123abc   [dev/arielma/a]
+F:/demo/d   3234dv   (detached HEAD)
+F:/demo/e   3cxvd1   [dev/arielma/e] prunable
+</code></pre>
+<p>I would like to take only the valid ones (a to c) and print them to python dataframe. For example
+<a href=""https://i.stack.imgur.com/6Zo5w.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/6Zo5w.png"" alt=""example"" /></a></p>
+<p>where worktree name is <code>F:/demo/a</code> and its check out branch is <code>[dev/arielma/a]</code></p>
+","0","11705021",""
+"53587443","703139","2018-12-03 04:21:44","1","565","<git><git-worktree>","What all does git worktree copy?","<p>I have a pretty big git repository- 21G, when I create a new worktree for a local branch, I find that it takes particularly long creating a new dir of approx 5GB... is this normal? </p>
+
+<ul>
+<li>What all does git worktree copy over? </li>
+<li>Is there a more optimal workflow to reduce the disk/checkout overhead? </li>
+</ul>
+","0","703139","0"
+"70318340","13181795","2021-12-11 19:28:20","0","364","<git><git-worktree>","How to checkout a git worktree without specific files?","<p>I want to use <em>git worktree</em> to manage many branches. I have the following problem. I have some scripts I don't want in my branches.</p>
+<p>My command is <code>git worktree add src/new_branch</code>. To put <code>new_branches</code> in folder <code>src</code>.</p>
+<p>I already tried <code>--no-checkout</code> but when I for example do:</p>
+<pre><code>cd src ; cd new_branch ; git checkout -b new_branch2 ; git checkout new_branch
+</code></pre>
+<p>…all files from <code>master</code> are back in the branch <code>new_branch</code> again.</p>
+<p>I hope you can help me :)</p>
+","3","13181795",""
+"70439913","1568270","2021-12-21 18:14:10","0","2235","<git><git-worktree>","How do I checkout existing remote branch with git worktree - Not in local refs","<p>I have a branch feature/issue/xyz on github and when I try to checkout via git-worktee it keeps telling me does not exist</p>
+<pre><code>hint:
+hint: If you are planning on basing your work on an upstream
+hint: branch that already exists at the remote, you may need to
+hint: run &quot;git fetch&quot; to retrieve it.
+hint:
+hint: If you are planning to push out a new local branch that
+hint: will track its remote counterpart, you may want to use
+hint: &quot;git push -u&quot; to set the upstream config as you push.
+</code></pre>
+<p>I know it exists , verified bot on github &amp; in a non worktree clone locally
+I have tried :
+<code>git worktree add --track -b feature/issue/xyz feature/issue/xyz origin/feature/issue/xyz</code></p>
+<p><code>git worktree add --track -b feature/issue/xyz feature/issue/xyz origin/feature/issue/xyz</code></p>
+<p>and
+<code>git worktree add --track -b feature/issue/xyz feature/issue/xyz refs/heads/feature/issue/xyz</code></p>
+<p>I have tried git fetching but all I see is</p>
+<pre><code> * branch              HEAD       -&gt; FETCH_HEAD
+</code></pre>
+<p>and still get the same result after I try to add again</p>
+","3","1568270",""
+"44930473","7472126","2017-07-05 15:31:36","6","123","<haskell><haskell-stack><git-worktree>","Speeding up Haskell stack project compilation and git branches","<p>I cannot change GHC's compilation times, but I can control the environment in which things are compiled. What can I do with <strong>git</strong> and <strong>stack</strong> to minimize downtime due to (re-)building?</p>
+
+<p>Haskell stack caches compiled dependencies in the <code>.stack-work</code> directory, and it great for working on one thing at a time. However, I find myself switching back and forth between branches. I've done <code>git checkout</code> in place, and perhaps some of the <code>.stack-work</code> cache is usable. But I greatly prefer <code>git worktree</code> to get a copy of a branch in a different directory altogether. Worktree is especially hard on build times as each worktree directory will have its own <code>.stack-work</code>, and therefore must download/configure/compile/install its own dependencies instead of using existing ones. </p>
+
+<p>I've been doing some reading about Nix and Haskell, but since stack creates its own cache, it ignores whatever Nix has compiled and installed. From what I've read, I really want Nix to handle dependencies and stack to handle my personal code. I get great benefit from stackage and <code>stack solver</code>, so I do not want to give them up. But when I see a screenful of ""unregistering"" messages when running <a href=""https://twitter.com/ndm_haskell/status/778673153698566145"" rel=""noreferrer""><code>stack build --only-dependencies &amp;&amp; stack ghci</code></a>, I know that I've got at least 10-15 minutes before I get a prompt.</p>
+
+<p>Many thanks!</p>
+","3","7472126",""
+"54640236","1301295","2019-02-11 22:39:50","1","232","<git><git-branch><git-worktree>","checkout / clone multiple branches from my git server","<p>I have this scenario on my git server : </p>
+
+<pre><code>git branch -a
+</code></pre>
+
+<p>gives output:</p>
+
+<pre><code>  common_data
+* master
+  shared_data
+</code></pre>
+
+<p>How do I check out branches shared_data and common_data at the <strong>SAME</strong> time into separate local folders:</p>
+
+<pre><code>working_directory/common_data
+working_directory/shared_data
+</code></pre>
+
+<p>on my local workstation ? I have read numerous posts but somehow I don't get how to use the work_tree for this.</p>
+
+<p>Thanks</p>
+
+<p>GT</p>
+","0","1301295",""
+"72401435","18791843","2022-05-27 06:42:54","0","387","<git><jenkins><jenkins-pipeline><git-worktree>","Using git worktree add in Jenkinsfile gives invalid reference error","<p>First poster here.
+I started working with jenkins a couple months ago and I run into a problem where I cant figure out whats causing the issue.
+Is it not seeing the master branch that should be added? the path seems fine, it works locally. Attached a picture below:</p>
+<p>This is my jenkinsfile:</p>
+<pre><code>   stage('Build image') {
+    sh('git worktree add ./all/src_master master')
+</code></pre>
+<p>this is the output:</p>
+<pre><code>[Pipeline] { (Build image)
+[Pipeline] sh
+    + git worktree add ./all/src_master master
+    fatal: invalid reference: master
+[Pipeline] }
+</code></pre>
+<p>rev parse gives this:</p>
+<pre><code>[Pipeline] { (Build image)
+[Pipeline] sh
++ git rev-parse master
+fatal: ambiguous argument 'master': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git &lt;command&gt; [&lt;revision&gt;...] -- [&lt;file&gt;...]'
+master
+[Pipeline] }
+</code></pre>
+<p><a href=""https://i.stack.imgur.com/3SLbY.png"" rel=""nofollow noreferrer"">git worktree add reference error</a></p>
+<p>Update:
+What solved my problem:</p>
+<pre><code>    git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+    git fetch --all
+</code></pre>
+","9","18791843",""
+"64108865","10553426","2020-09-28 20:01:18","0","56","<git><concurrency><git-worktree>","Are there adverse consequences to simultaneous git pulls in two separate worktrees?","<p>I have a git repository checked out and have created a worktree for one of the branches. I hadn't updated the worktree directory in a while, so when I ran <code>git pull</code> it was taking a while. In another terminal, I ran <code>git pull</code> on the &quot;base&quot; directory.</p>
+<p>While the worktree was still working, the base directory was just waiting. The worktree showed the usual long scroll of adds/changes/deletes, and about halfway through that, the base directory started showing the long list of updated references.</p>
+<p>The worktree finished completely. The base showed in the ref list several errors like this:</p>
+<pre><code>error: cannot lock ref 'refs/remotes/origin/&lt;redacted&gt;/&lt;redacted&gt;': is at &lt;redacted SHA&gt; but expected &lt;redacted SHA&gt;
+</code></pre>
+<p>Is this use case not supported by worktrees? Is it possible to harm the contents of the repo with simultaneous operations?</p>
+","0","10553426",""
+"46301401","461597","2017-09-19 13:10:49","1","425","<git><git-worktree>","Creating branches from git-worktree given an absolute path","<p>When using a <code>git worktree add /tmp/foo</code> without specifying a branch, a new branch 'foo' will be created. This is documented on the man pages for git-<a href=""https://git-scm.com/docs/git-worktree"" rel=""nofollow noreferrer"">worktree</a>:</p>
+<blockquote>
+<p>COMMANDS<br />
+<code>add &lt;path&gt; [&lt;branch&gt;]</code>
+Create <code>&lt;path&gt;</code> and checkout <code>&lt;branch&gt;</code> into it. [...].<br />
+If <code>&lt;branch&gt;</code> is omitted and neither -b nor -B nor --detached used, then, as a convenience, a new branch based at HEAD is created automatically, <strong>as if -b $(basename ) was specified</strong>.</p>
+</blockquote>
+<p>Is there a way to modify this to create branches under the typical branch naming pattern <code>feature/&lt;ticket&gt;-&lt;description&gt;</code> ? Were I to call <code>git worktree add /tmp/feature/&lt;ticket&gt;-foo</code>, the branch would be called <code>&lt;ticket&gt;-foo</code> with the <code>feature/</code> missing.</p>
+<p>I know that when I use a relative path it works. Then a path and a branch is created from where I called the command. But that would require that I had to work with a bare repository. (Otherwise nested worktrees are problematic.)</p>
+<p>The best I could make to work was using <code>git worktree add ../feature/&lt;ticket&gt;-foo</code>. Then the branch will be <code>feature/&lt;ticket&gt;-foo</code> and the path will be <code>../feature/&lt;ticket&gt;-foo</code>. But being able to specify an absolute directory would be very useful.</p>
+","2","461597",""
+"64852576","8173007","2020-11-16 04:04:51","0","141","<git><saas><git-post-receive><git-worktree>","git post-receive for multiple worktrees on the same server","<p>I am following <a href=""https://medium.com/@victorsteven/host-your-laravel-application-with-digital-ocean-or-vultr-by-yourself-ef36b63d65d3"" rel=""nofollow noreferrer"">this tutorial</a> and it has been working really well. We now want to run several accounts on the server with the same package and I am trying to modify post-receive but I am not doing something right and cannot find the answer. The goal is to have separate cpanel type accounts running the same code from our github repo, with updates happening to all accounts whenever we push changes.</p>
+<p>The original code in post-receive is this:</p>
+<pre><code>#!/bin/bash 
+git --work-tree=/path/to/firstInstance --git-dir=/var/control/project.git checkout -f
+</code></pre>
+<p>and it works as expected, whenever we push from our local repo and update github our remote server is also updated to /var/control/project.git which then gets pushed to the first account.</p>
+<p>When I add another line for a different work-tree, so there are 3 lines which read:</p>
+<pre><code>#!/bin/bash
+git --work-tree=/path/to/firstInstance --git-dir=/var/control/project.git checkout -f
+git --work-tree=/path/to/secondInstance --git-dir=/var/control/project.git checkout -f
+</code></pre>
+<p>I can add new files to both instances but deleting only happens on the second instance. Clearly I am not doing it right but I cannot find what I am looking for here or elsewhere online. Any help would be greatly appreciated.</p>
+","0","8173007",""
+"64953464","1492973","2020-11-22 11:13:07","6","453","<git><gerrit><git-worktree>","Multiple users for single git repository","<p>We have a single server which is being used by multiple users. Disk space is quite the limitation as our git repo is quite huge and every time someone clones it, it consumes 130G of space.</p>
+<p>I understand that git is not designed to be centralised workflow but this is a very peculiar situation. We thought about upgrading the hardware but that's quite a long path as it's not a cloud instance.</p>
+<p>I tried fiddling with <code>git worktree</code> but I soon ran into permission issues. My Ideal setup would be a single repo and multiple users can push and pull via through this.</p>
+<p>I looked into the previous threads on this but unfortunately nothing solid advice over there and they are quite old threads. So, any new advice would be highly appreciated.</p>
+","3","1492973","0"
+"65300972","2396502","2020-12-15 06:23:33","0","155","<git><git-branch><git-worktree>","Worktree branches in git show unmerged even after merging","<p>I often use <code>git add worktree wtname</code> to create separate branches. When I merge the changes on the branch <code>wtname</code> to the master, I expect that <code>git branch --no-merged</code> should not list <code>wtname</code> branch. However, it does. Worse, even after removing the worktree:</p>
+<pre><code>rm -rf wtname
+git worktree remove wtname
+</code></pre>
+<p>I can't delete this branch unless I force delete it. After the above written commands, if I run <code>git branch -d wtname</code>, it throws the following error:</p>
+<pre><code>error: The branch 'wtname' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D wtname'.
+</code></pre>
+<p>Why is this the case?</p>
+","5","2396502","0"
+"47570250","4653423","2017-11-30 09:42:45","1","532","<git><git-worktree>","What is git worktree identifier","<p>When a new git worktree is created, it shows a message like below</p>
+
+<pre><code>$ git worktree add -b hotfix ../hotfix origin/master
+Enter ../hotfix (identifier hotfix)
+Branch hotfix set up to track remote branch master from origin.
+Switched to a new branch 'hotfix'
+$ cd ../hotfix
+</code></pre>
+
+<p>Here, what is the use of identifier? I have observed that if I create another worktree on a different path but same folder name like <code>../abc/hotfix</code>, it will assign the identifier as <code>hotfix2</code>. Is there any usage of this identifier for the user like using the identifier to move to particular worktree or delete it specifically?</p>
+","0","4653423",""
+"49110748","2656799","2018-03-05 12:40:42","3","1889","<git><docker><git-worktree>","Docker with git worktree: fatal: Not a git repository","<p>I have <code>projects</code> folder that is in my <code>/home/my/</code> folder on host and mounted at <code>/home/user/projects</code> at docker container. In this folder there is git repo <code>/home/user/projects/repo</code> with additional worktree:  <code>/home/user/projects/repo-b</code> (added by <code>git worktree add</code>)</p>
+
+<p>When I am tring to do any git command in <code>/home/user/projects/repo-b</code> I recive </p>
+
+<pre><code>fatal: Not a git repository: /home/my/projects/repo/.git/worktrees/repo-b/
+</code></pre>
+
+<p>I have tried to create link at home: <code>me -&gt; user</code> without any progress.</p>
+","2","2656799",""
+"55190133","1269115","2019-03-15 20:21:15","0","58","<git><dropbox><git-worktree>","git worktree and resetting dropbox shared folder","<p>I have a project-repo that resides in my Dropbox folder. From there, I share it with my co-author, who does not use git.</p>
+
+<pre><code>home
+├── Dropbox
+    ├── project-repo
+</code></pre>
+
+<p>Co-author's dropbox account is full. Co-author erased a large file to save space, but a past commit included that file. Problem is that <code>.git</code> directory, which keeps the large file in the repo's history, remains too big.</p>
+
+<p>I wish to follow the advice <a href=""https://discuss.ropensci.org/t/peace-between-git-and-dropbox-with-git-worktree/289"" rel=""nofollow noreferrer"">here</a>, using <code>git worktree</code> to have a linked working tree project-repo-shared. This will be the new shared folder in Dropbox (it should not have a <code>.git</code> directory, and therefore be much smaller).</p>
+
+<pre><code>home
+├── Dropbox
+    ├── project-repo
+    ├── project-repo-shared
+</code></pre>
+
+<p>The question is how to not create conflicts in my co-author's files on disk. Are these the steps I should plan to take?</p>
+
+<p>(1) Un-share the project-repo folder in Dropbox (letting co-author know in advance)</p>
+
+<p>(2) Do <code>git worktree add -b shared-in-dropbox ~/Dropbox/project-repo-shared</code></p>
+
+<p>(3) In dropbox.com, share new folder project-repo-shared with co-author</p>
+
+<p>(4) after co-author's machine syncs the new project-repo-shared folder, he can delete project-repo, and voilà! (right?)</p>
+
+<p>Better ideas much welcome!</p>
+","5","1269115",""
+"52742435","1562956","2018-10-10 14:22:37","9","4720","<git><config><git-worktree>","what does ""git config core.worktree"" mean?","<p>I have seen this line in a script I am using : </p>
+
+<pre><code>git config core.worktree ..
+</code></pre>
+
+<p>I'm not sure what does git worktree do, but I definitively do not understand why to set it to <code>..</code></p>
+
+<p>Any clue ?
+Thanks</p>
+","3","1562956","0"
+"70953062","3213262","2022-02-02 09:16:53","3","586","<bash><git><shell><git-worktree>","How to run a git hook only when running git worktree add command","<p>I am wanting to run a shell script when I invoke the command <code>git worktree add</code>. Reading the <a href=""https://git-scm.com/docs/githooks#_post_checkout"" rel=""nofollow noreferrer"">docs for <code>post-checkout</code></a> seems like it would run for <code>git worktree add</code> but it would also run for other commands which I don't want to use it for, such as <code>git checkout</code>.</p>
+<p>Is there any other hook I could use? Or perhaps I could use post checkout but have the script setup so it exits if it isn't the <code>git worktree add</code> command?</p>
+<p>The reason I want to do this is to run a set of commands to set up my directory that is required when I run <code>git worktree add</code>, but I wouldn't need to do this setup for a normal git repository that is just using <code>git checkout</code> commands.</p>
+","2","3213262","0"
+"70951055","1371489","2022-02-02 05:53:45","11","3113","<git><git-worktree>","How can I rename a git worktree","<p>Given I have run</p>
+<pre><code>$ git worktree add ~/worktrees/a
+$ cd ~/worktrees/a
+$ git status
+On branch a
+</code></pre>
+<p>I would like to instead change the name of the worktree and branch from <code>a</code> to <code>b</code>.</p>
+","0","1371489",""
+"56533129","11584739","2019-06-10 20:30:31","0","52","<python><git><cmd><git-worktree>","How to generate multiple folders from git worktree command?","<p>This is my dataframe file witch contain the CommitId:</p>
+
+<pre><code>CommitId
+d38f7b334856ed4007fb3ec0f8a5f7499ee2f2b8
+d38f7b334856ed4007fb3ec0f8a5f7499ee2f2b8
+d38f7b334856ed4007fb3ec0f8a5f7499ee2f2b8
+4bb968a47ce00279d6051df95bd782650700179e
+c3d7ec38417ecff03d1cd3be0163e6ce07578eb3
+00568c9886e739d6b5dd61b4a4326d598552fb6f
+00568c9886e739d6b5dd61b4a4326d598552fb6f
+00568c9886e739d6b5dd61b4a4326d598552fb6f
+00568c9886e739d6b5dd61b4a4326d598552fb6f
+6e062098453febbfb0169cd0af56f70f2e3fc77f
+63f658918c2f4b851b0d0fffbffab4df0cfe13ca
+</code></pre>
+
+<p>I need to checkout each commit and copy the version of code on another directory so for this exemple I need 11 version of code each in a directory so 11 directory with different names</p>
+
+<p>I tried this sample code:</p>
+
+<pre><code>import os
+from distutils.dir_util import copy_tree
+path1='C:/Users/AQ42770/Desktop/RefactoringMiner/bin/Android-ContactPicker'
+os.chdir(path1)
+
+commande1='git worktree add C:/Users/AQ42770/Documents/commit d38f7b334856ed4007fb3ec0f8a5f7499ee2f2b8' 
+os.system(commande1)
+
+commande2='git worktree add C:/Users/AQ42770/Documents/commit1 
+4bb968a47ce00279d6051df95bd782650700179e'
+os.system(commande2) 
+</code></pre>
+
+<p>But it's not pratical beacause I have a lot of commits for this exemple I have 11 commits for others I have 100+ commits.So I tried this code but it return nothing :</p>
+
+<pre><code>n=1
+list=[""95fe00030ad97c998cd0b1b7df030dcda0db7baa"",""47b91018e3cb45ee0f7c3135488855554ad6617d""]
+path=""C:/Users/AQ42770/Documents/commit""
+for n in range(0,2):
+   t=path+str(n)
+   os.system('git worktree add t list[n]')
+</code></pre>
+
+<p>PS:I puted the commits in a list to test first then I will read from the dataframe</p>
+","0","11584739","0"
+"49802226","6162022","2018-04-12 17:00:18","1","2155","<git><git-branch><git-commit><git-worktree>","git worktree add [from specific commit hash]","<p>so I have a commit hash from earlier in a project. How can I create a new worktree and have it's branch start from this specific commit?</p>
+","0","6162022","0"
+"71139950","6330106","2022-02-16 10:18:53","1","68","<git><git-worktree>","Why is a suffix automatically appended to the git worktree internal directory name?","<p>When creating a new worktree by <code>git worktree add foo &lt;revision&gt;</code>, in the main worktree <code>.git/worktrees/foo/</code> is also created. I've encountered a situation several times, where it creates <code>.git/worktrees/foo1/</code> instead. I think <code>1</code> is appended because there are some naming conflicts. I'd like to know why this happens and how to replicate the case. Thanks.</p>
+<p>FYI, multiple threads may work in the same main worktree to create different worktrees, and git version 2.31.1 on Ubuntu.</p>
+","2","6330106",""
+"38525701","4506929","2016-07-22 11:48:20","1","788","<git><branch><git-branch><git-worktree>","Add and commit changes to all git's branches with one command","<p>I have a git repo in my computer and one of the directories inside this repo is a git worktree that holds the html build of the docs. So the tree goes something like this</p>
+
+<pre><code>. # &lt;--- main branches here!
+├── docs
+│   └── _build
+│       ├── doctrees
+│       ├── html # &lt;--- gh-pages branch here!
+│       │   ├── _modules
+│       │   ├── _sources
+│       │   └── _static
+│       └── latex
+├── examples
+└── mypackage
+    ├── subpackages
+    └── subpackages
+</code></pre>
+
+<p>When I work at the docs, both branches (<code>dev</code> and <code>gh-pages</code>) get updated, because I change the files in the <code>docs</code> directory and then sphinx compiles the html into the <code>html</code> directory.</p>
+
+<p>However, when I'm done with the process, I have to manually perform <code>git add . &amp;&amp; git commit</code> in both the main branch and the <code>gh-pages</code> branch, to then push all changes to git.</p>
+
+<p>This is not awfully troublesome, but it would be handy if I could issue one command for all branches. I know that <code>git push</code> can be ""defaulted"" to push all branches (which is what I do) but I found no way of doing this to add and commit such as (for example; just for the sake or clarification)</p>
+
+<pre><code>git add . --allbranches
+git commit --allbranches -m ""updated the docs""
+git push
+</code></pre>
+
+<p>or something like that. Is there a way to do it?</p>
+
+<p>Cheers!</p>
+","3","4506929","0"
+"71939709","8308563","2022-04-20 12:32:49","1","102","<git><visual-studio-code><git-worktree>","Sync ignored files between git worktrees","<p>I'm trying to start working with git work trees instead of branches. But when I create new corktree I have to manually move some files from main branch to new created folder. For example, .vscode/settings.json. So is it possible to sync files between work trees that should be ignored in git?</p>
+","2","8308563",""
+"71967134","12555423","2022-04-22 10:16:54","1","313","<git><visual-studio-code><git-worktree>","git worktrees and vsc","<p>so I've recently started using git work trees and they are magical.</p>
+<p>but when using with <code>vsc</code>, you will have the current branch name shown on the top (<code>my_branch</code>), so when you've opened more than 1 project (in my case I have 4 different projects interacting with each other) with the same branch name, you would get confused and have to browse the files to know which project you've opened.</p>
+<p>is there a way I can show 2 levels of folder names, like <code>my_project.git/my_branch</code>?</p>
+","0","12555423",""
+"54291876","2992311","2019-01-21 14:18:16","1","679","<git><go><import><git-workflow><git-worktree>","Go and `git worktree` command","<p>I guess this question also relates a little bit to how you work with forks in <code>Go</code>, which i don't think there exists a good solution for.</p>
+
+<p>I am maintaining a old version of a product, so i often fix a bug in e.g. branch <code>v0</code>, then i want to cherry pick the commit that fixes the bug into my master branch as well of course.</p>
+
+<p>This kind of workflow is much better when you have access to <code>git worktree</code> which allows me to have both <code>master</code> and <code>v0</code> checked out at the same time. My problem now is that my <code>master branch</code> worktree would be e.g. checked out at <code>~/go/src/github.com/&lt;company&gt;/wt1_server</code> while my <code>v0 branch</code> would be checked out at <code>~/go/src/github.com/company/server</code>.</p>
+
+<p>Now my problem is that the imports of the <code>master branch</code> is effectively importing code from the <code>v0 branch</code> because all of the imports is pointing to that repo, instead of being relative.</p>
+
+<p>Have anyone found a pretty fix to this?</p>
+
+<p>EDIT: A tool like <a href=""https://github.com/rogpeppe/govers"" rel=""nofollow noreferrer"">https://github.com/rogpeppe/govers</a> can for example update the paths automatically. But that is going to make it impossible make any commits before reverting it back again. A very poor fix :) </p>
+
+<p>EDIT 2: Looks like <code>Go</code> modules could be a solution because of it's relative path to the module - i don't think i can have two modules with the same name installed at the same time though. But it could be a okay solution to run a <code>go install .</code> when i have to work in some specific worktree</p>
+","6","2992311",""
+"54367011","274460","2019-01-25 14:13:40","10","8787","<git><git-branch><git-bare><git-worktree>","git bare repositories, worktrees and tracking branches","<p>I'm working with a code base where I need to be working on several branches at once for different purposes.  So I clone to a bare repository and then set up some worktrees:</p>
+
+<pre><code>git clone --bare ssh://git@git.example.com/project/repo repo.git
+cd repo.git
+git worktree add ../branch-1 branch-1
+git worktree add ../branch-2 branch-2
+... someone else creates branch-3 and pushes is ...
+git fetch origin +refs/heads/*:refs/heads/* --prune
+git worktree add ../branch-3 branch-3
+</code></pre>
+
+<p>Now the <code>branch-3</code> worktree isn't set to track the remote tree and trying to make it do so, I get into a horrible mess.</p>
+
+<pre><code>$ cd ../branch-3
+$ git branch -u origin/branch-3
+error: the requested upstream branch 'origin/refs/heads/feature/SW-5884-move-database-container-to-alpine-base-2' does not exist
+hint: ...&lt;snip&gt;
+$ git fetch +refs/heads/*:refs/remotes/origin/* --prune
+$ git branch -u origin/branch-3
+fatal: Cannot setup tracking information; starting point 'origin/feature/SW-5884-move-database-container-to-alpine-base-2' is not a branch.
+</code></pre>
+
+<p>What's the right magic to get this to work?</p>
+","3","274460","0"
+"72641951","18791843","2022-06-16 07:23:12","0","125","<git><jenkins><git-config><git-fetch><git-worktree>","Running <git worktree add> checks out older commit hash","<p>Im running a jenkins pipeline, where:</p>
+<pre><code>[Pipeline] { (Prepare)
+[Pipeline] sh
++ git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+
+[Pipeline] sh
++ git fetch origin master
+From https://github.com/&lt;company&gt;/ltlwrk-python
+ * branch            master     -&gt; FETCH_HEAD
+   94b92f5..22c1a07  master     -&gt; origin/master
+
+[Pipeline] sh
++ git fetch origin test
+From https://github.com/&lt;company&gt;/ltlwrk-python
+ * branch            test       -&gt; FETCH_HEAD
+   223cb5f..7b13d20  test       -&gt; origin/test
+
+[Pipeline] sh
++ git fetch origin production
+From https://github.com/&lt;company&gt;/ltlwrk-python
+ * branch            production -&gt; FETCH_HEAD
+   54aad77..2e8a174  production -&gt; origin/production
+</code></pre>
+<p>I run a config remote and fetch 3 branches, as seen.
+After I call on git worktree, because I want to build a single container of the 3 env., <strong>the problem is, it doesnt checks out the latest commit</strong> and when the image is build it has the old code in it:(master: 94b92f5 - old hash. 22c1a07 - new commit hash which I want to build upon)</p>
+<pre><code>git worktree add ./all/src_master master
+git worktree add ./all/src_test test
+git worktree add ./all/src_production production
+</code></pre>
+<p>I'm might be using the wrong git config, fetch, worktree command, i cant figure out which one, anyone knows what am I missing?</p>
+","0","18791843",""
+"72760015","7501158","2022-06-26 08:28:57","1","313","<git><git-worktree>","git: fatal: unknown repository extensions found: worktreeconfig","<p>I did a copy of a git repository from a Darwin host to a Linux host (ubuntu 18.04)</p>
+<p>As far as I remember, I did not use worktree in this repository, but I might be wrong.</p>
+<p>However, when typing &quot;git status&quot; on the repository &quot;at target&quot; (so Linux host), I get the following error:</p>
+<pre><code>kalou@majapatoche:~/xmp$ git status
+fatal: unknown repository extensions found:
+        worktreeconfig
+</code></pre>
+<p>So I tried to turn of any worktree related option in git config ... which fails</p>
+<pre><code>kalou@majapatoche:~/xmp$
+m1:xmp kalou$ git config --list | grep orktre
+extensions.worktreeconfig=true
+
+m1:xmp kalou$ git config  extensions.worktreeconfig=false
+error: invalid key: extensions.worktreeconfig=false
+</code></pre>
+<p>Trying to dig a little bit more, I remove any file within the .git directory related to &quot;worktree&quot; ... no success either ;</p>
+<pre><code>kalou@majapatoche:~/xmp$ find . | grep worktree
+./.git/config.worktree
+kalou@majapatoche:~/xmp$ rm .git/config.worktree
+kalou@majapatoche:~/xmp$ git status
+fatal: unknown repository extensions found:
+        worktreeconfig
+</code></pre>
+<p>I'm using the following git version on Ubuntu 18.04 host:</p>
+<pre><code>kalou@majapatoche:~/xmp$ git --version
+git version 2.17.1
+</code></pre>
+<p>Any hint on how to solve this ?</p>
+","1","7501158","0"
+"55940881","2747464","2019-05-01 18:28:09","1","78","<git><git-worktree>","Is it safe to put a linked worktree under a .gitignore'd dir of the main worktree?","<p>Is it safe to put a linked git worktree under a .gitignored subdir of the main git worktree?</p>
+
+<p>E.g. in the root of the main worktree I'd do</p>
+
+<pre><code>mkdir tmp
+echo 'tmp/**' &gt;&gt; .gitignore
+git worktree add -b tmp-branch-01 tmp/tmp-branch-01
+</code></pre>
+
+<p>The webpage at <a href=""https://spin.atomicobject.com/2016/06/26/parallelize-development-git-worktrees/"" rel=""nofollow noreferrer"">https://spin.atomicobject.com/2016/06/26/parallelize-development-git-worktrees/</a> says a linked worktree ""should be somewhere outside of your main repository directory"", but doesn't say why.  Will putting it inside the main worktree break any invariants git expects, if it's under a .gitignored dir?</p>
+
+<p>Thanks!</p>
+","0","2747464",""
+"56119844","2343847","2019-05-13 21:04:09","2","170","<git><git-submodules><git-worktree>","How could I deduplicate git submodules that are checking out the same repo?","<p>I would like to track two different branches of a large git repo as submodules in my own repo. For example, the <code>nixos-unstable</code> and <code>nixos-19.03</code> branches from <a href=""https://github.com/nixos/nixpkgs-channels"" rel=""nofollow noreferrer"">https://github.com/nixos/nixpkgs-channels</a> .</p>
+
+<p>Is there a way to add the submodules so that git would avoid fetching the repo twice and avoid storing two copies of it locally?</p>
+","0","2343847",""

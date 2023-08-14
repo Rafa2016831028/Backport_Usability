@@ -1,0 +1,880 @@
+Post Link,User Link,CreationDate,Score,ViewCount,Tags,Title,Body,CommentCount,OwnerUserId,AnswerCount,FavoriteCount
+"21738579","424632","2014-02-12 20:11:18","13","2414","<git><git-stash><git-show>","Difference between `git stash show -p stash@{N}` and `git show stash@{N}`?","<p>I thought they should be basically the same, but when I tried</p>
+
+<pre><code>$ git stash show -p stash@{N}
+</code></pre>
+
+<p>and</p>
+
+<pre><code>$ git show stash@{N}
+</code></pre>
+
+<p>the latter shows some additional commit information, but the actual diff was much, much shorter. (The former shows about a dozen files, but the latter only one.)</p>
+
+<p>So, what exactly is the difference between the two and why are they different?</p>
+
+<p>Can I also rely on things like <code>git diff stash@{M} stash@{N}</code> to be correct?</p>
+","0","424632","0","0"
+"12165190","289715","2012-08-28 18:20:09","2","2117","<git><git-branch><git-commit><git-show><git-reflog>","what happened to a commit that doesn't show up in any branches but available in ""git show""","<p>I have a commit id available in the bare repo.<br>
+<code>git show commit id</code>, shows the commit with the changes.</p>
+
+<p>But the same commit doesn't show up when using the below commands</p>
+
+<pre><code>git branch --contains &lt;commit id&gt;
+</code></pre>
+
+<p>or</p>
+
+<pre><code>git reflog show --all | grep &lt;commit id&gt;
+</code></pre>
+
+<p>What could have happened to the commit id?</p>
+","0","289715","0","0"
+"33922655","47281","2015-11-25 17:17:55","5","138","<git><git-show>","git show to view prior version of a renamed file?","<p>We renamed a file where <code>git log --follow my/new-file</code> correctly shows changes before and after the rename.  </p>
+
+<p>But this command does not work to show a prior version: <code>git show &lt;rev&gt;:my/new-file</code>.   </p>
+
+<p>We have to run <code>git show &lt;rev&gt;:my/old-file</code>.</p>
+
+<p>Is there a way you can run this command with my/<strong>new</strong>-file instead of my/<strong>old</strong>-file?</p>
+","0","47281","",""
+"34025577","248432","2015-12-01 16:47:16","3","931","<git><jgit><git-show>","Jgit: how to show changed files in merge commit","<p>I'd like to use jgit to get a list of files that were changed in a merge commit, similar to what <code>git show --name-only</code> does in git.</p>
+
+<p>There are plenty of examples on how to get changed files for normal commits with one parent, but they do not work for merge commits with multiple parents. </p>
+","0","248432","",""
+"69111788","7287412","2021-09-09 03:11:39","0","64","<git><git-show>","git show: confusing behavior when showing past version of a file","<p>I want to see a historical version of a given file: <code>.zshrc</code></p>
+<p>This will show me all commits where this file changed:</p>
+<pre><code>git log .zshrc
+...
+...
+</code></pre>
+<p>Now for given commit, I want to see the whole file. But the following actually does not show the file. It shows a diff between that commit and previous commit:</p>
+<pre><code>git show bbac89168a2fbbaaa6ef31dc50616dd236c8b5d4 .zshrc
+</code></pre>
+<p>This does not work at all:</p>
+<pre><code>git show bbac89168a2fbbaaa6ef31dc50616dd236c8b5d4:.zshrc  
+
+fatal: Path 'test/.zshrc' exists, but not '.zshrc'.
+Did you mean 'bbac89168a2fbbaaa6ef31dc50616dd236c8b5d4:test/.zshrc' aka '2c0989168a2fbbaaa6ef31dc50616dd236c8b5d4:./.zshrc'?
+</code></pre>
+<p>And finally, this behaves as expected. It will &quot;cat&quot; given version of file</p>
+<pre><code>git show bbac89168a2fbbaaa6ef31dc50616dd236c8b5d4:./.zshrc
+</code></pre>
+<p>But why is the behavior of <code>git show</code> so illogical and confusing?</p>
+<p>Why is <code>git show bbac89168a2fbbaaa6ef31dc50616dd236c8b5d4 .zshrc</code> different from <code>git show bbac89168a2fbbaaa6ef31dc50616dd236c8b5d4:.zshrc</code></p>
+<p>Also, why does <code>git show bbac89168a2fbbaaa6ef31dc50616dd236c8b5d4:.zshrc</code> not work, even though git clearly understand, and suggests, I should use: <code>bbac89168a2fbbaaa6ef31dc50616dd236c8b5d4:test/.zshrc</code> ?</p>
+<p>Why can't I use relative path <code>:.zshrc</code> and instead must use completely unnecessary construct <code>:./.zshrc</code> ?</p>
+","2","7287412","",""
+"19369925","2672807","2013-10-14 21:54:49","3","1364","<git><git-show>","git - Is git show safe to use on binary files when the output is redirected to a file?","<p>I read that it's possible to retrieve a single file from a specific revision in Git, as answered in this SO question:<br>
+<a href=""https://stackoverflow.com/questions/610208/how-to-retrieve-a-single-file-from-specific-revision-in-git"">How to retrieve a single file from specific revision in Git?</a></p>
+
+<p>So I want to know if it's safe to do that with binary files. I have some binary files in use and I don't want to check them out, really what I want to do is copy them out from a specific revision. I tried this:</p>
+
+<pre><code>git show HEAD~1:database.db &gt; copy-of-database-from-mmddyy.db
+</code></pre>
+
+<p>That seems to work, as in the output is an exact match of database.db for that commit. But I have to wonder is this an allowed use of <code>git show</code>? Does it support what I'm doing and will the result always be correct and not corrupt (ie autocrlf translation for example.. I'm in Windows msysgit). Thanks!</p>
+","0","2672807","",""
+"47584704","93212","2017-12-01 00:10:12","2","72","<git><git-reset><git-show>","How to get visual output when git reset modifies HEAD and Staging Index states?","<p>For educational purposes, I am looking for a method to visually demonstrate how a <code>git reset</code> modifies <code>HEAD</code> and the Staging index. In the case of <code>--mixed</code> and maybe <code>--hard</code> I would like to get a before and after view of the Staging Index, to show how it has been modified. The case of <code>--soft</code> should demonstrate that it remains the same.</p>
+
+<p>I had been using <code>git status</code> to demonstrate the <code>git reset</code> processes and found it confusing to say ""the staging index is unchanged"" when <code>git status</code> shows pending updates in the ""Changes to be committed"" section. I came to learn that <code>git status</code> is not representative of the state of the Staging Index, but the diff between Head and the index.</p>
+
+<p>I have been using the following example to demonstrate so far:</p>
+
+<pre><code>git init .
+touch reset_lifecycle_file
+git add reset_lifecycle_file
+git commit -am""initial commit""
+echo 'hello git reset' &gt;&gt; reset_lifecycle_file
+git commit -am""update content of reset_lifecycle_file""
+git log
+commit be4aaa98d6976531fdd28aeff52e233087066049
+Author: kevzettler &lt;kevzettler@gmail.com&gt;
+Date:   Thu Nov 30 15:31:16 2017 -0800
+
+update content of reset_lifecycle_file
+
+commit 5e2d74b369f57929673d873302eb7ebd752c2a95
+Author: kevzettler &lt;kevzettler@gmail.com&gt;
+Date:   Thu Nov 30 15:20:43 2017 -0800
+
+initial commit
+
+git status
+On branch master
+nothing to commit, working tree clean
+</code></pre>
+
+<p>At this point in the repos life if I execute a git reset to the first commit <code>5e2d74b369f57929673d873302eb7ebd752c2a95</code></p>
+
+<pre><code>git reset --soft 5e2d74b369f57929673d873302eb7ebd752c2a95
+git status
+On branch master
+Changes to be committed:
+  (use ""git reset HEAD &lt;file&gt;..."" to unstage)
+
+    modified:   reset_lifecycle_file
+</code></pre>
+
+<p>Here is where the confusion has stemmed from. I had been assuming the ""Changes to be committed"" output was reflective of the state of the index, and was then assuming the <code>--soft</code> had been modifying the Index which all Git documentation states does not happen.</p>
+
+<p>I have recently discovered the <code>git show</code> and <code>git ls-files</code> commands. I am wondering if these can be better used to visualize the process here.</p>
+
+<pre><code>git show --full-index commit 5e2d74b369f57929673d873302eb7ebd752c2a95
+Author: kevzettler &lt;kevzettler@gmail.com&gt; Date: Thu Nov 30 15:20:43
+2017 -0800
+
+initial commit
+
+diff --git a/reset_lifecycle_file b/reset_lifecycle_file new file mode
+100644 index
+0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+</code></pre>
+
+<p><code>git show --full-index</code> appears to append some index Object SHA to the end of the output. Can I use that to indicate reset changes to the index?</p>
+
+<pre><code>git ls-files -s
+100644 d7d77c1b04b5edd5acfc85de0b592449e5303770 0   reset_lifecycle_file
+</code></pre>
+
+<p><code>git lis-files-s</code> has another Object SHA Can I use that to indicate changes to the index?
+At this point in the example it differs from the SHA in the output from <code>git show</code> does that indicate the HEAD is at a new index SHA?</p>
+","0","93212","",""
+"51343765","343204","2018-07-14 22:09:32","15","22204","<git><git-show>","What does `git show` do all by itself?","<p>If I use <code>git show</code> all by itself in a git repo it shows a bunch of information such as commits, diffs, etc.</p>
+
+<p>This page (<a href=""https://git-scm.com/docs/git-show"" rel=""noreferrer"">https://git-scm.com/docs/git-show</a>) just says:</p>
+
+<p><code>Shows one or more objects (blobs, trees, tags and commits).</code></p>
+
+<p>I assume it's the latest commit. And some diffs (which aren't mentioned in the docs page).</p>
+
+<p>But what exactly is it showing?</p>
+
+<p>Here's the full, rather incomprehensible, output...</p>
+
+<pre><code>$ git show
+commit &lt;sha1 A&gt; (HEAD -&gt; A)
+Merge: &lt;sha1 B&gt; &lt;sha1 C&gt;
+Author: Snowcrash &lt;my@email&gt;
+Date:   Sat Jul 14 14:56:02 2018 -0700
+
+    with both files
+
+diff --cc 1
+index &lt;sha1 D&gt;,&lt;sha1 E&gt;..&lt;sha1 F&gt;
+--- a/1
++++ b/1
+@@@ -1,5 -1,6 +1,12 @@@
+  1
+
+++&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+ +A
+ +B
+ +C
+++=======
++ C
++ D
++ E
++
+++&gt;&gt;&gt;&gt;&gt;&gt;&gt; master
+diff --cc 2
+index 0000000,0000000..&lt;sha1 G&gt;
+new file mode 100644
+--- /dev/null
++++ b/2
+@@@ -1,0 -1,0 +1,1 @@@
+++2
+</code></pre>
+","1","343204","0","0"
+"56841571","865910","2019-07-01 19:43:21","3","293","<bash><git><git-show>","git show truncates output only when piped","<p>If I execute <code>git show f12345a --stat</code> I get the following output:</p>
+
+<pre><code>commit f12345a
+Author: This Guy &lt;this.guy@email.com&gt;
+Date:   Mon Jul 1 14:00:59 2019 -0500
+
+    A commit
+
+ hola/mundo/hola/mundo/hola/mundo/hola/mundo/hola/mundo/hola/mundo/imaginary-very-long-file-name.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre>
+
+<p>But if instead I execute <code>git show f12345a --stat | grep -E ""*""</code> (basically echoing everything) I get:</p>
+
+<pre><code>commit f12345a
+Author: This Guy &lt;this.guy@email.com&gt;
+Date:   Mon Jul 1 14:00:59 2019 -0500
+
+    A commit
+
+ .../hola/mundo/hola/mundo/hola/mundo/imaginary-very-long-file-name.txt  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre>
+
+<p>so the question itself is why is my file name getting truncated? (how can I avoid it)?</p>
+
+<p>This truncate is also applied when performing <code>git show f12345a --stat &gt; exit.txt</code>, when I see the file contents the file name is trucated</p>
+","4","865910","0","0"
+"57210267","8469598","2019-07-25 21:19:56","5","215","<git><git-show>","Why does git show filename display a diff?","<p><code>git show filename</code> diplays a diff, while
+<code>git show branch:path/to/filename</code> displays the content of the file.</p>
+
+<p>I look in the help (<code>git show --help</code>) and what I understood is that it should
+default to HEAD, i.e. <code>git show HEAD:filename</code>.</p>
+
+<p>But that produces the content of the file as I expected. Does anyone have any insight?</p>
+","2","8469598","0","0"
+"74654682","3719845","2022-12-02 10:59:44","1","199","<git><git-checkout><git-log><git-show><git-switch>","git checkout commit with specific trailer","<p>I have an orphan branch (let's call it output) which contains the documents generated by templates stored on my main branch. I would like to checkout the commit on output that correspond to a specific commit on main.</p>
+<p>I settled on using <code>git commit --trailer 'Source: xxxxx'</code> when committing on output where <code>xxxxx</code> is the corresponding commit on main.</p>
+<p>Is it possible to checkout a commit on output knowing only the value of its trailer?</p>
+","1","3719845","",""
+"76114610","3923896","2023-04-26 19:55:58","0","24","<git><git-diff><git-show>","confused about 'git diff' and 'git show' on branch","<p>Background: I'm on a feature branch which has diverged pretty significantly from master.  I believe there are five files which have been modified on this branch.  I've discovered that one of them should not have been modified at all, so I want to revert it to the state it had as of the time this branch was branched from master.  But I can't just copy the file from master, because the same file has accreted other changes on master.</p>
+<p>I believe a good way way to recover the file should be</p>
+<pre><code>git show 123abc:file5 &gt; file5
+</code></pre>
+<p>where <code>123abc</code> is the commit hash for the spot at which the branch I'm on branched off of master.  And that seems to work.</p>
+<p>But I'd like to double-check this.  So rather than overwriting <code>file5</code> right away, I instead do</p>
+<pre><code>git show 123abc:file5 &gt; file5.old
+</code></pre>
+<p>Now I can do</p>
+<pre><code>diff file5.old file5
+</code></pre>
+<p>to confirm that I've got the right, older version of <code>file5</code>, with the differences I expect between that base version and the about-to-be-discarded branch version.</p>
+<p>But to <em>really</em> confirm things, I want to double-check with <code>git diff</code>.  I believe that if I invoke</p>
+<pre><code>git diff master...
+</code></pre>
+<p>I should get differences between the spot at which my branch branched off from master, and my branch.  And those diffs (at least the ones on <code>file5</code>) should exactly correspond to the diffs I got when I ran <code>diff file5.old file5</code>.</p>
+<p>But they don't!  It's not even close!  (And, I lied, because I'm not actually sure which &quot;differences I expect between that base version&quot;, because there's some work by others involved, and this is part of why I've decided to exclude this branch's changes to <code>file5</code> from what I'm getting ready to merge back into master.  But the point is that I'm not even sure which of the two diffs is more correct.)</p>
+<p>So either</p>
+<ul>
+<li><code>git show 123abc:file5</code> didn't actually get me the base version I thought it did, or</li>
+<li><code>git diff master...</code> isn't actually diffing against the base version (the &quot;common ancestor&quot;) like I think it does.</li>
+</ul>
+<p>Where have I gone wrong?</p>
+","0","3923896","",""
+"25608809","3997651","2014-09-01 15:13:54","41","17304","<git><git-diff><git-log><git-show>","git log -p vs. git show vs. git diff","<p>How are the commands <code>git log -p</code>, <code>git show</code>, and <code>git diff</code> related and why would one be used over another? </p>
+
+<p>Given a repo with the following 4 commits:</p>
+
+<blockquote>
+  <p>commitd - last commit<br>
+  commitc<br>
+  commitb<br>
+  coomita - initial commit</p>
+</blockquote>
+
+<p>What are the differences between the following git commands?:</p>
+
+<pre><code>git log -p commitb commitd  
+git show commitb commitd  
+git diff commitb commitd  
+
+git log -p commitd commitb  
+git show commitd commitb  
+git diff commitd commitb  
+
+git log -p commitb..commitd  
+git show commitb..commitd  
+git diff commitb..commitd
+
+git log -p commitd..commitb  
+git show commitd..commitb  
+git diff commitd..commitb
+
+git log -p commitb...commitd  
+git show commitb...commitd  
+git diff commitb...commitd
+
+git log -p commitd...commitb  
+git show commitd...commitb  
+git diff commitd...commitb
+</code></pre>
+","3","3997651","0","0"
+"63103839","1778275","2020-07-26 18:04:28","2","91","<git><formatting><git-show>","git show: formatting is changed after redirection to file","<p>I run <code>git show --stat 2a340b71b280d60bbc29f8d8fe00b7da5760e2bb</code>.
+I get:</p>
+<pre><code>commit 2a340b71b280d60bbc29f8d8fe00b7da5760e2bb
+Author: xxx &lt;xxx@xxx.com&gt;
+Date:   Thu Apr 30 13:40:54 2020 +0200
+
+    xxx
+
+ xxx.c                                |    1 +
+</code></pre>
+<p>I run <code>git show --stat 2a340b71b280d60bbc29f8d8fe00b7da5760e2bb &gt; git_show.txt</code>.
+I get:</p>
+<pre><code>$ cat git_show.txt
+commit 2a340b71b280d60bbc29f8d8fe00b7da5760e2bb
+Author: xxx &lt;xxx@xxx.com&gt;
+Date:   Thu Apr 30 13:40:54 2020 +0200
+
+    xxx
+
+ xxx.c       |    1 +
+</code></pre>
+<p>I.e. the formatting (spacing) is different! Very unexpected.</p>
+<p>The problem is that in the <code>git_show.txt</code> there are also <code>.../xxx/xxx.c  |    1 +</code> entries with clipped filenames, which prevents to see the full filename.</p>
+<p>Why the formatting change happens and how to preserve the formatting?</p>
+<p>P.S. <code>git version 2.8.0</code></p>
+","0","1778275","0","0"
+"29416378","878514","2015-04-02 15:10:45","2","1555","<git><git-log><git-show>","Difference between git show and git log when displaying commit ids","<p>I need to get list of commit ids between two known commits. I used the following command:</p>
+
+<pre><code>git show --format=format:%H --quiet commitA...commitB
+</code></pre>
+
+<p>It works flawlessly until there is a merge commit. I.e.:</p>
+
+<pre><code>*   c36a37b
+|\
+| * 92187d9
+* | e24d2c4
+|/
+* eef755e
+</code></pre>
+
+<p>The output is as follows:</p>
+
+<pre><code>$ git show --format=format:%H --quiet c36a37b...eef755e
+c36a37b80caf2bae7b4833617443f4dfea8d8816
+
+e24d2c4292baef4106976373ff3d01341834648d
+92187d9a1002027c7d99824f2561467692bfd6b3
+</code></pre>
+
+<p>When I change the <code>show</code> command and use <code>log</code> instead:</p>
+
+<pre><code>$ git log --format=format:%H --quiet c36a37b...eef755e
+c36a37b80caf2bae7b4833617443f4dfea8d8816
+e24d2c4292baef4106976373ff3d01341834648d
+92187d9a1002027c7d99824f2561467692bfd6b3
+</code></pre>
+
+<p>Notice there is no empty line after the first commit. I'm not fanatic about using <code>git show</code> over <code>git log</code> - I event don't remember where I got this idea from. But this extra empty line caused my program failure and I wonder if it has any special meaning.</p>
+
+<p>Git version 1.9.5.</p>
+","2","878514","0","0"
+"63442882","12483346","2020-08-16 23:33:54","0","104","<git><version-control><git-show>","What does HEAD~n^k does on git?","<p>I notice that one can specify ancestors of actual commit by using the <code>^</code> or the <code>~</code> character. For example, if I have the following log of commits</p>
+<pre><code>* 1990f31 Somme third commit message 
+* k135145 Somme second commit message 
+* 2c13521 Somme first commit message 
+</code></pre>
+<p>then I can know which is the parent commit of <code>1990f31</code> with <code>HEAD^1</code> (or equivalently with <code>HEAD~1</code>), which is <code>k135145</code>.</p>
+<p>Now, I also <a href=""https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection#Ancestry-References"" rel=""nofollow noreferrer"">read</a> that one can combine <code>^</code> or <code>~ </code> when it is a merge commit. Therefore, could someone provide an example to illustrate commit references when typing <code>git show HEAD~n^k</code> or alternatively by commuting this operators like <code>git show HEAD^k~n</code>?, where I'm considering <code>n</code> and <code>k</code> as abstractions to represent a positive integer.</p>
+","2","12483346","",""
+"20388829","777586","2013-12-05 00:07:54","3","312","<image><git><git-show>","In git, how do I view a previous version of an image file?","<p>I know I can <a href=""https://stackoverflow.com/questions/338436/is-there-a-quick-git-command-to-see-an-old-version-of-a-file"">git-show the previous version of a file</a>, but I've got <strong>images</strong> in my repository! When I <code>git show &lt;revision&gt;:&lt;path-to-image&gt;</code>, it unhelpfully opens them in a pager...</p>
+
+<p>It seems <code>git show</code> doesn't consider environment variables for this: I've tried setting <code>EDITOR=gimp</code> and <code>PAGER=gimp</code>, even <code>VISUAL=gimp</code> to no effect. I can't find anything in <code>man git show</code> about changing the pager application either.</p>
+
+<p>As a workaround, I can <code>git stash save</code> my current changes, <code>git checkout</code> the revision, open the file, <code>checkout</code> back to where I was and <code>git stash apply</code>, but that's a lot of effort that shouldn't be.</p>
+
+<p>How do I do this properly?</p>
+","0","777586","",""
+"57948370","4820101","2019-09-15 21:42:27","0","39","<git><git-log><git-show>","Different time values from different git commands","<p>I am seeing that for a particular commit, git is giving different time stamp values for different commands.   </p>
+
+<pre><code>$ git show -s --format=""%ci"" ee9bb
+2019-09-09 17:50:43 +0530
+</code></pre>
+
+<p>The above command shows time value as <strong>17:50:43</strong></p>
+
+<p>While the below commands show time value as <strong>17:24:01</strong></p>
+
+<pre><code>$ git show -s  ee9bb
+commit ee9bb706c8fcc329fac4acf69ad6b684f1069170
+Author: itsvamshers &lt;itsvamshers@gmail.com&gt;
+Date:   Mon Sep 9 17:24:01 2019 +0530
+
+    fixed country null issue
+
+
+$ git log ee9bb
+commit ee9bb706c8fcc329fac4acf69ad6b684f1069170
+Author: itsvamshers &lt;itsvamshers@gmail.com&gt;
+Date:   Mon Sep 9 17:24:01 2019 +0530
+</code></pre>
+
+<p>Could anyone explain why this is the case. And which one should I consider.</p>
+","0","4820101","0","0"
+"12964823","1229747","2012-10-18 22:36:45","0","289","<git><git-show><opendiff>","have ""git show"" use opendiff on osx to show commits","<p>I found ways to use opendiff for ""git diff"" but ""git show"" doesn't have quite the same options.</p>
+","1","1229747","",""
+"40274675","4980643","2016-10-27 01:28:33","1","58","<git><git-show>","""git show"" command showing previous commit","<p>I'm trying to show the contents of a file in a specific commit,
+this is the command I'm using:</p>
+
+<pre><code>git show ($commit)^:($filename)
+</code></pre>
+
+<p>However, it's showing contents of the previous commit.
+I'm not sure if this command is supposed to get the contents ""before"" the commit,
+or if it's because the commit I specified was for reverting the previous commit.</p>
+","2","4980643","",""
+"11952071","871434","2012-08-14 12:14:32","0","107","<git><git-show>","git show printing unwanted tag info","<p>When using this command:</p>
+
+<pre><code>$ git show -s --pretty=format:%H --all
+</code></pre>
+
+<p>it prints this:</p>
+
+<pre><code>41b253549d86db3432743c1c8a9f75511779073c
+83cfbe4b5a128ab06733fdde24f67171a1cf945c
+
+20c18bee751e681856ee4587bb513400b472f941
+ba73e741f3ccf7b719a67436cf8b953a1bdeeb89
+
+tag 1.0
+Tagger: &lt;snip&gt;
+
+
+129cba44e34066bfee7ad19a278ead94c2edece9
+tag 1.0.1
+Tagger: &lt;snip&gt;
+
+
+6fcdc763265454e602b746e4d81942a1f0597f2e
+tag 1.0.2
+Tagger: &lt;snip&gt;
+
+
+36e56a8bc0d568661fa61cdb0a4e4c69c4c30efb
+tag 1.0beta1
+Tagger: &lt;snip&gt;
+</code></pre>
+
+<p>I only want commit hashes to be printed, not tag names and taggers. What should I do to fix this?</p>
+","2","871434","",""
+"31680889","2639801","2015-07-28 15:31:12","1","2183","<git><git-log><git-show><git-diff-tree>","git show -- output only displays summary","<p>I'm having trouble with all git commands that display the log/history of a repository. This issue is ONLY limitied to one of my repositories. I have several others that work just fine. </p>
+
+<p>For the repo with issues, I only see the summary of the commit, where as the default behavior is to display the diff as well. </p>
+
+<pre><code>$ git show
+  commit bc8865f8b16ccf9eerrt678df99a4b89e73c0545
+  Merge: 677f483 3e8617d
+  Author: Some Author
+  Date:   Thu Jul 23 07:56:28 2015 -0400
+
+  Merge branch 'Some_branch' ....
+</code></pre>
+
+<p>Similarly, the <em>git diff-tree</em> command works fine with all repos except for this one. </p>
+
+<p>Normal Repo:</p>
+
+<pre><code>git diff-tree --pretty=format:%an %cn 5cff917e
+Joe Black Joe Black
+:040000 040000 98c97ee8929b487ae14ada67c1932205a80cfc3f 719f1764f123d462b20707f5f7740e4f473b2b47 M  oracle
+</code></pre>
+
+<p>Repo with issues:</p>
+
+<pre><code>$ git diff-tree --pretty=format:%an 39ebdeb8f29
+
+jblack@DFX1 ~/repositories/RepoName(master)
+</code></pre>
+","3","2639801","",""
+"59943206","3865284","2020-01-28 06:27:50","1","186","<gitlab><git-log><git-show>","How to find deleted files in a single commit in gitlab","<pre><code>git show -m -1 --name-only --pretty=format: --stat --relative --first-parent commit_id
+</code></pre>
+
+<p>I am using above command to list all the files in a commit. It is listing all the deleted files as well.  </p>
+
+<p>I want to remove deleted files from my list. </p>
+
+<p>Is there a way to exclude deleted files from git show command?<br>
+Or is there a way to list deleted files from a commit id?</p>
+","1","3865284","0","0"
+"12868131","817950","2012-10-12 22:47:44","19","24347","<git><diff><patch><git-show>","Using `git show` to create and apply patches spanning multiple commits","<p>Lately I've been using <code>git show &lt;hash&gt;</code> to create diffs for later reference because it's easier to type than <code>git diff &lt;hash&gt;~ &lt;hash&gt;</code> and it shows the commit information (timestamp, user, hash, comment). You can then use <code>git apply &lt;filename&gt;</code> to apply the patch.</p>
+
+<p>I discovered that <code>git show -3</code> will show the last three commits along with the same extra information. However, <code>git apply</code> will squash it all into the working directory as unstaged changes, and loses all the commit information.</p>
+
+<p>Is there something in git that will apply all that information? It would be a lot simpler to just pass in a flag than breaking the patch up into three files, applying them severally, and creating new commits.</p>
+","0","817950","0","0"
+"13660292","1796891","2012-12-01 14:16:24","5","1515","<git><git-checkout><core.autocrlf><git-show>","How can I preserve line endings when I check out a single file to a different location with git?","<p>I want to checkout a single file from a git repository to a different location (other than working dir) and leave my current working dir as it is. And I want git to checkout my file with correct line endings.</p>
+
+<p>I work on Windows but I have the same problem in Linux too.</p>
+
+<p>Here is my scenario (Win7 64-Bit):</p>
+
+<p>First I make sure that git converts CRLF to LF on commit and LF to CRLF on checkout: </p>
+
+<pre><code>git config --local core.autocrlf true
+</code></pre>
+
+<p>Then I create a file called crlf.txt with CRLF line endings and commit it:</p>
+
+<pre><code>git add crlf.txt
+git commit -m ""File with crlf""
+</code></pre>
+
+<p>I change something in crlf.txt and commit it:</p>
+
+<pre><code>git add crlf.txt
+git commit -m ""Change in crlf.txt""
+</code></pre>
+
+<p>Now I want to get crlf.txt like it was on first commit:</p>
+
+<pre><code>git show HEAD~1:crlf.txt &gt; ""/home/user/crlf_like_in_head-1.txt""
+</code></pre>
+
+<p>The file ""crlf_like_in_head-1.txt"" contains no CRLF but LF. I think git show is correct because it shows file content like it is in the repository (core.autocrlf=true converts CRLF to LF). I know that from documentation and I tried the same with core.autocrlf=false. With core.autocrlf=false ""crlf_like_in_head-1.txt"" contains CRLF. I know that I can easily convert LF to CRLF but I have to make sure that the result file is the same like it was checked out with git.</p>
+
+<p>I know I can also checkout a single file with git checkout:</p>
+
+<pre><code>git checkout HEAD~1 crlf.txt
+</code></pre>
+
+<p>But it overwrites the current content of crlf.txt in the working dir (also if crlf.txt was in a dirty state) and I can't checkout it to a different folder with git checkout. </p>
+","0","1796891","0","0"
+"48058524","4444561","2018-01-02 09:34:46","0","480","<git><git-show>","How to show only java files diffs with 'git show' command?","<p>I am working on a java project but some output saved as csv file also tracked in the git. Sometimes the csv file changed completely so that the diff was very large. How to show java files diffs when using <code>git show</code>?</p>
+","0","4444561","",""
+"41285540","2378484","2016-12-22 14:35:33","0","135","<git><diff><git-diff><git-show>","git diff: many patches with three '@' symbol","<p>I am writing an automatic tool based on <code>git show</code>, which relies on <code>git diff</code> command. I wrote a small parser which takes the output of git show as the text to parse, and in most situations in the result the lines start with '@@' indicates which lines it will compare. </p>
+
+<p>However, I met an situation like this:</p>
+
+<pre><code>@@@ -460,22 -415,8 +460,22 @@@
+</code></pre>
+
+<p>What does that mean? Is it possible that there will be even more (4 or more) '@' symbols with even more subtle meanings?</p>
+","0","2378484","",""
+"60121617","2891724","2020-02-07 21:55:33","0","79","<git><git-svn><git-log><git-show>","Switching from svn to git: Can searching logs for svn commit and showing commit in git be done in a one-liner?","<p>I know that you can search for an <code>svn commit</code> after running <code>git svn</code> using the <code>git log</code> command.</p>
+
+<p>Example searching for svn commit r88843:</p>
+
+<pre><code>git log --grep=git-svn-id:.*@88843
+</code></pre>
+
+<p>Then you can use the git commit hash  to pass into <code>git show</code></p>
+
+<p>Can this be done in a one-liner?</p>
+
+<p>Similar to (in Linux):</p>
+
+<pre><code>git show &lt; git log --grep=git-svn-id:.*@88843 --pretty=format:%H
+</code></pre>
+","2","2891724","",""
+"67028735","6539631","2021-04-09 21:51:53","0","157","<git><git-log><git-show>","How to print commit dates in %Y%m%d format in git log?","<p>I am trying to print the commit date in 2021April09 format using --date=format:'%Y%b%d' but it gives me segmentation fault. Neither of below works for me even for standard formats.</p>
+<p><code>git log --pretty=format:%cd --date=format:%Y%m%d -5</code></p>
+<p><code>git log --pretty=format:%cd --date=format:'%Y-%m-%d' -5</code></p>
+<p>I know I can use <code>git log --pretty=format:%cd --date=short</code> to get the shorter version but I want to use strftime format to print the abbreviated month etc</p>
+","9","6539631","0","0"
+"32703953","742173","2015-09-21 20:24:06","0","1237","<python><git><subprocess><git-show>","git show not working with python check_output","<p>I am writing a python script in which I have to read the output of the <code>git show</code> command from the script. I decided to use python's <code>subprocess.check_output</code> function.</p>
+
+<p>But its giving me <code>No such file or directory</code> error.</p>
+
+<p><em>Running from python</em>:</p>
+
+<pre><code>&gt;&gt;&gt; import subprocess
+&gt;&gt;&gt; subprocess.check_output(['pwd'])
+'/Users/aapa/Projects/supertext\n'
+&gt;&gt;&gt; subprocess.check_output(['git show', 'c9a89aa:supertext/src/com/stxt/supercenter/rest/api/bootstrap/BootstrapDTO.java'])
+Traceback (most recent call last):
+  File ""&lt;stdin&gt;"", line 1, in &lt;module&gt;
+  File ""/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/subprocess.py"", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File ""/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/subprocess.py"", line 709, in __init__
+    errread, errwrite)
+  File ""/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/subprocess.py"", line 1326, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+&gt;&gt;&gt;
+</code></pre>
+
+<p><em>Running directly</em>:</p>
+
+<pre><code>$ pwd
+/Users/aapa/Projects/supertext
+$ git show c9a89aa:supertext/src/com/stxt/supercenter/rest/api/bootstrap/BootstrapDTO.java
+package com.stxt.supercenter.rest.api.bootstrap;
+
+import com.google.common.collect.Maps;
+import com.stxt.base.rolepermission.enums.Role;
+import com.stxt.superbase.profile.agent.bean.Agent;
+import com.stxt.supercenter.rest.api.profile.agnet.AgentDTO;
+
+import java.util.Arrays;
+import java.util.Map;
+.
+.
+.
+</code></pre>
+
+<p>One thing to point out <code>git show</code> outputs in <code>vi</code> style i.e. not the complete file is getting printed directly but the part of file is printed to cover the complete scree with a <code>:</code> in the end to print next line or to quit.</p>
+
+<p>Why I am getting error using <code>check_output</code>? </p>
+","0","742173","",""
+"69040986","1905491","2021-09-03 07:24:21","2","646","<git><git-diff><git-show>","Why does git diff and git show seem to replace tabs with spaces?","<p>When looking at changes in a code base containing tabs for indentation with <code>git diff</code> the tab characters are replaced by a number of spaces. The same happens when looking at patches with <code>git show</code>. When I use <code>git format-patch</code> and look at the resulting file with <code>cat</code> everything seems fine.</p>
+<p>As these commands display machine-readable patches that are broken by replacing characters, I wonder what is going on and how to stop this from happening.</p>
+","0","1905491","",""
+"41978721","55075","2017-02-01 11:31:49","1","115","<git><git-fetch><git-show>","How to invoke `git show` only for the latest fetched branches?","<p>I've repository with hundreds of branches and I'd like to run <code>git show</code> only for these which have been recently fetched or updated as shown by <code>git fetch</code>, e.g.</p>
+
+<pre><code>$ git fetch tester
+From repo:Foo/Bar
+ * [new branch]      Foo -&gt; origin/Foo
+   a7e70a8..a9d7805  Bar -&gt; origin/Bar
+ + b673629...293dc64 Baz -&gt; origin/Baz (forced update)
+ + 345850e...b3646a3 Qux -&gt; origin/Qux (forced update)
+</code></pre>
+
+<p>So I'd like to end up with the command like:</p>
+
+<pre><code>git show origin/Foo origin/Bar origin/Baz origin/Qux
+</code></pre>
+
+<p>which will show me the differences between these recent fetched branches and their parents commit(s).</p>
+
+<p>How this can be achieved?</p>
+
+<hr>
+
+<p>I've tried <code>git show FETCH_HEAD</code>, but it shows me only one branch along with the warning that refname 'FETCH_HEAD' is ambiguous.</p>
+
+<p>And <code>git show $(git branch -r --sort=authordate | head)</code> shows me much older branches, secondly the command breaks on lines with <code>-&gt;</code>, so it doesn't work either.</p>
+","2","55075","",""
+"42239993","3022952","2017-02-15 03:07:03","1","454","<git><git-diff><git-show>","How do I get file blob SHA1s in git show (diffstat)?","<p>Is there a way to get the SHA1 of a file blob (note: <strong>not</strong> the SHA1 of the commit) in a diffstat like format?</p>
+
+<p>What I would like to do is do something like <code>git show --stat ${commit}</code> but instead of showing just the filename and the number of lines added/removed for that commit, I'd like to be able to see the SHA1 of the blob which corresponds to the final contents of the file. </p>
+
+<p>I'm actually looking for this in the context of a larger script, where I would like to accumulate the blob SHA1s of the files which have been changed by a set of commits, so an easily parsable ""plumbing"" type command would be ideal.
+I'd also like a command that would work with either a ""normal"" and a merge commit (so needing a comparison reference like ""HEAD^"" is non-ideal). </p>
+","0","3022952","0","0"
+"60568380","13020019","2020-03-06 16:49:56","0","406","<git><github><git-log><git-show>","How can I extract filepaths and changes from a commit or pull request using git?","<p>I'm trying to get a consolidated list of changes (file paths and new/modified/deleted changes) from a commit/pull request in Github.</p>
+
+<p>This is the format I'm trying to aim for:</p>
+
+<p><code>filepath/to/some/file.properties:thisIsAKey=This is the string for this key.</code></p>
+
+<p>I'm able to grab filepaths relatively easily using:</p>
+
+<p><code>git show --pretty=""format:"" --name-only commitID</code></p>
+
+<p>I also tried this but it includes a lot of noise:</p>
+
+<p><code>git log -p commitID</code></p>
+
+<p>Here's what I have from using the above, but I only need the b/+ changes:</p>
+
+<pre><code>diff --git a/locales/ES/es/forms/dispute-options.properties b/locales/ES/es/forms/dispute-options.properties
+index 490457e9e0..569921196a 100644
+--- a/locales/ES/es/forms/dispute-options.properties
++++ b/locales/ES/es/forms/dispute-options.properties
+@@ -60,4 +60,5 @@ fraudSeller.info=Para cancelar este pedido tendrá que comunicarse directamente
+ fraudSeller.errorHeadingMessage = Lo sentimos, pero no puede reportar este tipo de problema para la transacción seleccionada.
+ fraudSeller.backButtonText = Atrás
+
+-modal.cancel=Cancel
+\ No newline at end of file
++modal.cancel=Cancel
++disputeOptions.creditTransactionInfo=Si presenta un caso para esta compra, aún tendrá que continuar pagando cualquier saldo importe dejado en su plan de {data.pageStore.value.creditProductDescriptor} junto con la comisiones tardía (si corresponde).
+</code></pre>
+
+<p>I've been reading the documentation on how to use <code>diff-filter</code>, but haven't seen anything that matches what I need yet.</p>
+
+<p>Edit:
+Thanks for everyone's comments! It led me to the answer I was looking for: <code>git diff -U0 --ignore-all-space commitID1 commitID2 | grep '^[+]' | grep -Ev '^(--- a/)' &gt; test.txt</code></p>
+","1","13020019","",""
+"7348698","232452","2011-09-08 13:19:42","62","36562","<git><git-show><git-rev-list>","How to list ALL git objects in the database?","<p>Is there a better way of getting a raw list of SHA1s for ALL objects in a repository than:<br />
+<code>ls .git/objects/??/\*</code><br />
+and<br />
+<code>cat .git/objects/pack/*.idx | git show-index</code></p>
+<p>I know about <code>git rev-list --all</code> but that only lists commit objects that are referenced by <code>.git/refs</code>, and I'm looking for <em>everything</em>, including unreferenced objects that are created by <code>git-hash-object</code>, <code>git-mktree</code> etc.</p>
+","4","232452","0","0"
+"7912254","247243","2011-10-27 06:07:00","1","304","<git><git-show>","What is the difference between ""git show test.rb"" and ""git show HEAD:test.rb""?","<p>Could you explain the difference between <code>git show test.rb</code> and <code>git show HEAD:test.rb</code>?</p>
+
+<p>The command <code>git show HEAD:test.rb</code> returns:</p>
+
+<pre><code>test file contents
+</code></pre>
+
+<p>while <code>git show test.rb</code> returns:</p>
+
+<pre><code>commit a8e90b3dbf4eed03cdbb3cd3b99f98e9153c7219 
+Author: Misha Moroshko &lt;michael.moroshko@gmail.com&gt; 
+Date:   Thu Oct 27 17:03:04 2011
++1100
+
+    asd
+
+diff --git a/test.rb b/test.rb new file mode 100644 index
+0000000..b48e119
+--- /dev/null
++++ b/test.rb @@ -0,0 +1 @@
++test file contents
+</code></pre>
+","0","247243","",""
+"22928589","638893","2014-04-08 05:52:23","0","148","<git><merge><tortoisegit><git-show>","git show for merges in TortoiseGit","<p>If I call <code>git show XYZ</code> on a merge in the console, I only see the diff of the conflicting files. gitg, and I guess also many other graphical tools, are showing the same diff on selecting a commit. TortoiseGit is showing a diff to each parent instead.</p>
+
+<p><strong>How do I get the output of <code>git show</code> for a merge in TortoiseGit?</strong></p>
+
+<p>Edit:
+By default <code>git</code> uses the <code>--combined</code> option on <code>diff</code> and <code>show</code>. Tortoise is using <code>-m</code> as default to display a diff to each parent.</p>
+","0","638893","0","0"
+"16795512","44124","2013-05-28 15:10:56","0","763","<git><git-show>","Making git show to show information in a machine parseable format","<p>I have read <a href=""https://stackoverflow.com/questions/6327276/parsing-git-log-output-preferably-as-xml"">parsing git log output, preferably as xml</a> but that does not help. I am trying to get the following information about a Git tag.</p>
+<ol>
+<li>User that created the tag</li>
+<li>Message associated with tag creation if any</li>
+<li>The name of the tag (I know this as I already pass this) but I want them in the output so that I can just pass the whole output back to my caller</li>
+<li>The latest commit id on that tag</li>
+</ol>
+<p>I would prefer them as CSV or space/tab separated values so I was trying to use the --format option. I was trying things like</p>
+<pre><code> git show my_label_name --pretty=format:&quot;%an, %cn&quot; --quiet
+</code></pre>
+<p>but this does not produce what I want. What can I try next?</p>
+","0","44124","0","0"
+"60853992","2644016","2020-03-25 17:18:41","6","2711","<git><git-stage><git-show>","How to git show a staged file?","<p>I can do <code>git show &lt;some-commit&gt;:path/to/some/file</code> but what do I replace <code>&lt;some-commit&gt;</code> to get the currently staged version of the file?</p>
+<p>Context: I'm writing a pre-commit hook and I want to run a check on the staged files without resorting to stashing unstaged changes. Is there a better way?</p>
+","0","2644016","0","0"
+"24990488","2750910","2014-07-28 07:35:05","-1","791","<git><git-branch><git-commit><git-show>","Search specific git commit by commit message and exlude branches","<p>I am currently working on a program to filter slow db queries that are stored in a database on the command line. </p>
+
+<p>I would like to search all the commits in all the branches except the one specified and return  all the commits that match. </p>
+
+<p>My filter conditions are stored in a database (which is provided for me). </p>
+
+<p>Example: </p>
+
+<p>I have the following entry in the database:</p>
+
+<pre><code>ID key       Query
+1  ABCDEF    select * from example
+2  0ABCDE    select * from another_example
+3  1ABCDE    select * from you_get_the_picture
+</code></pre>
+
+<p>I am now interested in the queries that haven't been fixed in the code yet. So I need to search through the branches with the <strong>key</strong> as a search filter. </p>
+
+<p>If the key is found in a commit, skip and look up the next. If no match is found, print it to stdout. All the code works fine but I'm having trouble finding the correct git command. </p>
+
+<p>I have the following: </p>
+
+<pre><code>git grep 'ABCDEF' $(git rev-list ^origin/master) | xargs git show -s --format=%N%s
+</code></pre>
+
+<p>Which should return all commits containing ""ABCDEF"" in the commit message in all the branches except origin/master. </p>
+
+<p>However, the git command doesn't return anything which is not possible since I know that these commits are there. </p>
+
+<p>Is my git command not correct? Thanks in advance for any pointers. </p>
+","2","2750910","",""
+"26389696","4146877","2014-10-15 18:35:07","2","224","<git><timestamp><git-show>","Why is 'git show' coming back empty?","<p>I am trying to get (statistical) commit information from a repo.
+I therefore did:<p>
+<code>$ git clone remote/path/to/repo localrepo &amp;&amp; cd localrepo</code><br>
+<code>$ git pull</code><br>
+<code>$ git show --since 'Oct-03-2014' --until 'Oct-13-2014' --shortstat</code><br></p>
+
+<p>Generally, if there are commits during that period on the <code>origin/master</code> branch (which I'm currently on), the last line of the above command will produce the nice summary output I want.</p>
+
+<p>The problem is if the time period contains merges from a different branch. For those, git doesn't produce any kind of output (apparently merges don't contain diffs that can be shown).</p>
+
+<p>So how can I get the nice <code>--shortstat</code> summary that includes information about the merge diffs?</p>
+","0","4146877","0","0"
+"27857967","1636300","2015-01-09 09:57:40","5","1936","<git><git-show>","How can I get ""git show"" to show diffs with full context?","<p>I am reviewing a very old commit. I want to see the changes a particular commit made but I want to see that in full context, i.e. I want to see whole file and the changes that person had made. The following command,</p>
+
+<pre><code>git show -w &lt;commit-id&gt;
+</code></pre>
+
+<p>is not showing me full context. Any suggestion?</p>
+","7","1636300","0","0"
+"64688438","1487102","2020-11-04 22:09:47","0","164","<git><git-log><git-show>","How to show a git message body (not just the title)?","<p>I've been doing a fair amount of research and can't find this trivial functionality:</p>
+<p><code>git log</code> and <code>git show</code> are only showing the headline/title of the commit message, but I'd like to see the rest of the body.</p>
+<p>By body, I mean the section where 'conflicts' and 'squashed commits' are usually listed.</p>
+<p>How can I view this information?</p>
+<p>Thanks</p>
+","2","1487102","",""
+"72469594","875915","2022-06-02 01:14:16","-3","36","<git><git-show>","How to tell ""git show"" not to show any diffs?","<p>How do I do a <code>git show</code> and show the default <code>git show</code> output, but <strong>without</strong> showing any diffs?</p>
+<p>e.g.,</p>
+<pre><code>$ git show
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+commit 2668e3608e (HEAD -&gt; master, origin/master, origin/main, origin/HEAD)
+Author: Junio C Hamano &lt;gitster@pobox.com&gt;
+Date:   Tue May 31 19:10:00 2022 -0700
+
+    Fast-tracking GitHub CI Windows build fixes.
+</code></pre>
+<p><em>(note: I don't want a diff shown here after the commit comment)</em></p>
+","0","875915","0","0"
+"37898232","3986708","2016-06-18 14:47:10","2","184","<git><content-management-system><git-log><git-config><git-show>","Make different `pretty` settings for git-log and git-show","<p>I have this setting in my <code>.gitconfig</code>:</p>
+
+<pre><code>[format]
+    pretty = oneline
+</code></pre>
+
+<p>Which nicely formats my output of <code>git-log</code>. However it also changes the output of <code>git-show</code> (and <code>git-status</code>), which annoys me, because when I use <code>git-show</code>, I usually want to see more detailed output than when I'm using <code>git-log</code>.</p>
+
+<p>Basically I want the default <code>pretty</code> setting of <code>git-show</code> to be different than the default <code>pretty</code> setting of <code>git-log</code>. Is this somehow possibly?</p>
+","0","3986708","0","0"
+"37915009","38765","2016-06-20 05:14:36","1","174","<git><merge><git-show>","How to specify path when doing git show on a merge commit","<p>I've got a merge commit, and I can show the entirety of it using <code>git show -m</code>. However, if I want to only show the change for a subfolder or a path, how do I do it? I tried doing <code>git show -m -- app/</code> but it didn't show anything, even though <code>git show --stat</code> indicates that there were merges going on in that part of the repository.</p>
+","3","38765","",""
+"38159304","889075","2016-07-02 10:52:02","6","1792","<git><git-show>","how to read git show command output","<p>I am just getting into VC and in particular git. I am aware of basic commands like <code>git add/commit/remote</code> but having a hard time understanding the output:</p>
+
+<pre><code>$ git show f27d852
+
+commit f27d852fc750a9c3f71eaf0acf586164b76faddf
+Author: myusername &lt;myemail@gmail.com&gt;
+Date:   Tue Jun 28 22:59:35 2016 +0530
+
+    changed color to a different color
+
+diff --git a/css/business-casual.css b/css/business-casual.css
+index bbd44d7..ee1765e 100644
+--- a/css/business-casual.css
++++ b/css/business-casual.css
+@@ -194,5 +194,5 @@ footer p {
+ /* CUSTOM CSS - BY ME */
+
+ .brand {
+-       color: #ff0000;
+-       }
+\ No newline at end of file
++       color: #ffdd000;
++       }
+</code></pre>
+
+<p>What does each line mean? How to read it. can anyone explain?</p>
+
+<p>Thanks
+dk</p>
+","3","889075","0","0"
+"67922095","297115","2021-06-10 13:24:53","-1","302","<git><gerrit><git-diff><git-log><git-show>","What is the git command to get only the newly added/modified lines in a commit?","<p>I want to write shell script to parse java source files and find-out the common violations in source code based on some rule. This script should run on new code which is added/modified , this shouldn't get the old code. My code repository is git.</p>
+<p>How to get the newly added/modified lines from git. I can then execute my script on top this.</p>
+","1","297115","",""
+"37311494","281545","2016-05-18 23:08:52","130","85858","<git><git-show>","How to get git to show commits in a specified date range for author date?","<p>Apparently <a href=""https://stackoverflow.com/a/11189286/281545"">this</a>:</p>
+
+<pre><code>git log --all --after=""&lt;date&gt; 00:00"" --before=""&lt;date&gt; 23:59"" --author=""&lt;author&gt;""
+</code></pre>
+
+<p>filters commits based on the <em>committer date</em>. How can I make it show commits for a specified author date range ?</p>
+","1","281545","0","0"
+"54110302","1387346","2019-01-09 12:34:13","4","1231","<git><git-diff><git-config><git-show>","Different git pager options for diff and show","<p>I like my tabs displayed as 4 spaces, and for that I have the preference <code>core.pager = 'less -x4'</code>.</p>
+
+<p>I know that at this point I'm nitpicking, but I'd love for the leading tab to be 4 spaces even in diff mode, which is obviously the most commonly used -- however it displays as only 3 due to the leading <code>+</code>, <code>-</code>, or <code></code>. This is slightly annoying due to aligned lines, if some have no leading tabs they are shifted by 1 column compared to the others.</p>
+
+<p>I can correct the display for diffs with <code>less -x1,5</code> to get 4-space tabs, aligned on the column 1 modulo 4. However this option then causes the leading tab to be displayed as 1 column in non-diff mode, which in turn is highly disturbing.</p>
+
+<p>So for two concrete examples, how can I set git options such that I use:</p>
+
+<ul>
+<li><code>less -x1,5</code> for a diff (or really patch-displaying) command such as <code>git diff</code> or <code>git show HEAD</code></li>
+<li><code>less -x4</code> for a command that does not display a diff such as <code>git show HEAD~1:package.json</code></li>
+</ul>
+
+<p>I'm sure there has to be a different renderer for what are basically <code>diff</code> and <code>cat</code> operations, but I haven't been able to find specific options for those (though they might exist, there's a lot of noise on git topics). I don't want to write a whole lot of aliases either, that's a little too dirty. So is this even possible?</p>
+","2","1387346","",""
+"55804281","1445015","2019-04-23 04:22:14","1","200","<git><git-show>","get the full filepath before and after file renaming in git log","<p>Suppose I know that a file has been renamed (rename can happen by renaming the filename or moving the file into another directory) into a specific commit. <code>git show --summary &lt;sha&gt;</code> shows all instances of such renaming in the commit. However, git only marks out the difference between the old and new filepath. Below are two examples -</p>
+
+<pre><code>rename xbmc/interfaces/{ =&gt; builtins}/Builtins.cpp (100%)
+rename xbmc/cores/AudioEngine/Engines/ActiveAE/{ActiveAEResample.cpp =&gt; ActiveAEResampleFFMPEG.cpp} (100%)
+</code></pre>
+
+<p>How to efficiently parse the full filepath before and after the renaming here as it can be done in many ways? Or is there another git command that shows this information in a simpler way?</p>
+","2","1445015","0","0"
+"72748619","2416601","2022-06-24 19:30:04","0","89","<git><non-ascii-characters><git-show>","git show name only with filename containing special char interpret the character","<p>I have a commit number , and I want to get all the file from the commit number and then display them in a text file, where latter on, I will loop in the file and checkout each of them.</p>
+<p>I have manage to do it with the following command :</p>
+<pre><code>git show --pretty=&quot;&quot; --name-only  commit_no &gt;&gt; cpath.txt
+</code></pre>
+<p>The problem is that If a filename contains special char like in the picture:
+<a href=""https://i.stack.imgur.com/LmouB.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/LmouB.png"" alt=""enter image description here"" /></a></p>
+<p>The filename is interpreted wrongly in the text file , thus when checking it out will failed. Here is how it is showing :</p>
+<p>&quot;force-app/main/default/layouts/Campaign-DM Campagne Locale M\303\250re.layout-meta.xml&quot;
+force-app/main/default/layouts/Campaign-DM Sous-Campagne Locale.layout-meta.xml
+&quot;force-app/main/default/layouts/Campaign-Validation Campagne m\303\250re.layout-meta.xml&quot;</p>
+<p>Is there a parameter I need to use whe using the git show command to inteprete the filename with special as it is originally ?</p>
+<p>If not then how to replace the special char in there automatically ?</p>
+","0","2416601","",""
+"56356680","5452773","2019-05-29 08:55:22","1","75","<git><patch><git-commit><git-show>","Can I apply a whole commit from a file created with git show?","<p>Is there a way to create a new commit in Git, using a file which provides both the changes and the commit message, like the output from git show does?</p>
+
+<p>It would be nice when the other metadata fields, like Author, AuthorDate and so on would also be taken into account.</p>
+","0","5452773","",""

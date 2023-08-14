@@ -1,0 +1,1498 @@
+Post Link,User Link,CreationDate,Score,ViewCount,Tags,Title,Body,CommentCount,AnswerCount,FavoriteCount
+"76447186","19719806","2023-06-10 16:45:28","0","8","<git><github><gitkraken>","How to use gitKraken to update backend and front end at the same time","<p>Right now I have two repos on github: one for the front end and one for the backend. I also have to seperate gitkraken repos that update each one when a change is made to to the backend or the frontend. This is the only way I could get Gitkraken to work with my project currently. Is it possible however to keep the front end and backend together in the same gitkraken file? I would like to do that so I can also have the frontend and backend together in the same repo on Github.</p>
+","0","19719806",""
+"76502824","8011888","2023-06-18 23:05:03","0","11","<atlassian-sourcetree><gitkraken>","Use password instead of ssh key for gitkraken or sourcetree","<p>I'm using GitKraken (and Sourcetree) to manage git repositories, and it keeps asking me to configure ssh keys to pull code for a Pantheon repo. Pantheon doesn't use SSH keys for authentication, it uses passphrases for the repo, yet the git clients still expect an SSH key for a nonexistent task.</p>
+<p>How do I configure these clients to default to a password for repos that only require passwords?</p>
+<p>I tried to pull a repository with a password and it keeps asking me for a ssh key that doesn't exist.</p>
+","0","8011888",""
+"76517277","22104238","2023-06-20 17:50:30","0","31","<git><gitlab><winsock2><gitkraken><wsastartup>","Gitkraken - gitlab pull failed (WSAStartup)","<p><a href=""https://i.stack.imgur.com/sWyF7.png"" rel=""nofollow noreferrer"">gitkraken</a></p>
+<p>I have encountered an issue with GitKraken or GitLab. It appeared suddenly. The problem is that I am unable to use any of the built-in GitKraken features, such as pull or push. However, when I open the terminal, everything works fine.</p>
+<p>First I tried to fix winsock using cmd : <em>netsh winsock reset.</em>
+Then I did following steps: <a href=""https://stackoverflow.com/questions/40427498/getting-permission-denied-public-key-on-gitlab"">Getting permission denied (public key) on gitlab</a> that was the point when terminal starts working (I mean git pull/push).
+I also changed gitlab token, added new ssh key, reinstall git and reintegrated gitlab account with gitkraken</p>
+","0","22104238",""
+"66852435","14203319","2021-03-29 10:19:47","3","1219","<git><macos><path><git-lfs><gitkraken>","Gitkraken error when pull with git-lfs on macOS","<p>I have an error during the LFS pull with Gitkraken on macOS. I get the following error message:</p>
+<blockquote>
+<p>Error on LFS Pull git: 'lfs' is not a git command. See 'git --help'. The most similar command is log</p>
+</blockquote>
+<p>In the Gitkraken documentation (<a href=""https://support.gitkraken.com/git-workflows-and-extensions/intro-and-requirements/#git-lfs-requirements"" rel=""nofollow noreferrer"">here</a>) we find the following explanation:</p>
+<blockquote>
+<p>Note: If GitKraken still cannot find Git or Git LFS, the terminal or CMD may be using a different path than the system or user path. For example, on OSX applications launched from the GUI have a different path than those launched from the terminal.</p>
+</blockquote>
+<p>To check this, we can do the following command: <code>which git-lfs</code> and <code>which git</code></p>
+<p>Indeed, I get the following result:</p>
+<pre><code>which git     /usr/bin/git \
+which git-lfs /opt/homebrew/bin/git-lfs
+</code></pre>
+<p>Then, the documentation says that you have to add an environment variable in the path, the example is given for windows, but I can't reproduce the equivalent for macOS</p>
+<p>In my .zshrc I have this: <code>export PATH=$HOME/bin:/usr/local/bin:$PATH</code></p>
+<p>I tried it with: <code>export PATH=$HOME/bin:/usr/local/bin:/opt/homebrew/bin/git-lfs:$PATH</code> but it doesn't work</p>
+<p>It's possible that the error is absolutely obvious but I don't know much about environment variables etc.</p>
+","0","14203319",""
+"57507778","8628851","2019-08-15 09:44:08","5","1703","<git><gitkraken>","GitKraken where is the .gitconfiguration file to enable Long Paths","<p>To now I have used Git from the Command Line Runner and from GitHub Desktop.</p>
+
+<p>I tried to use GitKraken ,but there is one really big issue with it. I have repository, which has really nested folders, which exceed the 256 length.This problem is easy resolvable with Git and GitHub Desktop, because you go to <code>.gitconfig</code> and add under the core section - <code>longpaths = true</code>.</p>
+
+<p>The problem is I cant find the <code>.gitconfig</code> file that GitKraken is using and so I cant disable the longpaths and clone my repository via GitKraken.</p>
+
+<p>I have two questions:</p>
+
+<ol>
+<li>How to enable long paths for GitKraken so I can clone my repository?</li>
+<li>Where is the .gitconfig file that GitKraken is using?</li>
+</ol>
+","2","8628851","0"
+"57622305","11966054","2019-08-23 08:19:36","1","142","<git><atlassian-sourcetree><gitkraken>","What's the equivalent command of Eclipse EGit's “Synchronize Workspace”, for git-shell, or GUI like GitKraken?","<p>I have been using Eclipse EGit to manage my git repositories.</p>
+
+<p>First I use the ""Synchronize Workspace"" function and make sure is there any conflicts, then I can decide whether I should pull the newer codes from remote or not.
+<a href=""https://i.stack.imgur.com/NcpeZ.jpg"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/NcpeZ.jpg"" alt=""This picture shows the &quot;Synchronize Workspace&quot;""></a></p>
+
+<p>Recently I am learning to use Git-shell or GUI like GitKraken to manage my git repositories. I know I can use Git Pull command to pull the newer codes, but I cannot find the equivalent command like ""Synchronize Workspace"", to peek that is there any difference between my local and remote repositories.</p>
+
+<p>Is there any equivalent command of Eclipse EGit's ""Synchronize Workspace"", for git-shell, or GUI like GitKraken?</p>
+","0","11966054",""
+"50845919","5670078","2018-06-13 20:38:52","3","547","<git><atlassian-sourcetree><git-subtree><gitkraken><github-desktop>","Trying to use git subtree but getting an errors","<p>I want to use a few repositories as a sub-directory in my project. I chose to use git subtree, but unfortunately, I can't get it work. I use Github Desktop, SourceTree, and GitKraken - but only for SourceTree, I see an option to use git subtree properly.</p>
+
+<p>I added a new repository to as a git subtree, but when I try to pull this remote repository with squash commits option or without it, it gives me an errors no matter what:</p>
+
+<p>1) When squash commits enabled it says - ""Can't squash-merge: 'my-project\Project.Application\Examples\Projects' was never added."".</p>
+
+<p>2) When squash commits disabled it says: ""fatal: refusing to merge unrelated histories"".</p>
+
+<p>My current branch is a new branch (not a master branch).</p>
+
+<p>I have no ideas what's wrong here, someone can see a problem here? Maybe have I to use another git client?</p>
+
+<p>Thank you very much for reading this.</p>
+","0","5670078","0"
+"51275491","7458944","2018-07-11 00:11:04","1","340","<git><gitkraken>","Lost data that I didn't commit after git pull","<p>I work in a small group , so I wanted to make a new commit (for the new classes I did ) and then push but before that I did pull all the work of my friends , once it worked after many attempts (at first i got a error message but I don't know what I did but it worked), Now I wanted to commit and push but I couldn't found my classes.</p>
+
+<p>Check <a href=""https://i.stack.imgur.com/6OrH1.png"" rel=""nofollow noreferrer"">here</a> </p>
+
+<p>I work with gitKraken .So I did the pull from ""Tex datei nur mit dem wichtigsten"" (2 days ago)</p>
+
+<p>How can I get my classes back? Is there any way to do it?</p>
+","9","7458944",""
+"51340988","9688643","2018-07-14 15:48:23","2","963","<git><push><commit><gitkraken>","how to I push a specific commit using gitkraken UI","<p>I have done a feat,but I commit it for four times,some logic package,html...</p>
+
+<p>but now I want to push the third commit (all the html).</p>
+
+<p>how do I do in gitkraken?</p>
+
+<p>May be I can use Cherry pick ?</p>
+
+<p>can anyone tell me how to push just one commit when you have a lot of commit in
+local repo.</p>
+","0","9688643",""
+"51385330","8044022","2018-07-17 15:34:57","0","59","<git><gitkraken>","Is stashing panel in gitkraken only for local stashes?","<p>I'm new to gitkraken (and git in general) and I don't understand if in the stash panel only local stashes are shown or if I can see remote stashes too (I heard they are a thing but I'm still confused about that). Sorry for the question and thanks in advance!</p>
+","3","8044022",""
+"51391295","10096353","2018-07-17 23:00:17","3","4425","<git><merge><gitlab><gitkraken>","gitkraken 'refs/heads/master' is behind 'refs/remotes/origin/master'","<p>I made a new repo and tried to commit a react.js project but I got this error ""'refs/heads/master' is behind 'refs/remotes/origin/master'"" and when I try to pull it says ""no merge base found"".
+Im really new to this stuff so I dont know what im doing wrong it might be something stupid.</p>
+
+<p>btw im using gitlab and gitkraken.</p>
+","3","10096353","0"
+"52665069","9405868","2018-10-05 11:53:09","0","2783","<gitlab><gitkraken>","gitkraken failed to connect to gitlab invalid argument","<p>I want to connect to my school gitlab (self-hosted) with gitkraken.
+It create the repo when i try to init but a few second later i get this error :</p>
+
+<blockquote>
+  <p>failed to connect to (school.gitlab.url) invalid argument</p>
+</blockquote>
+
+<p>I'm on win7 x64</p>
+
+<p>gitkraken v4.0.5</p>
+
+<ul>
+<li><p>I'm connected to the gitlab on gitkraken and my SSH key is good.</p></li>
+<li><p>I also try to desactivate my firewall but no change.</p></li>
+</ul>
+
+<p>Can someone help me please?</p>
+","0","9405868","0"
+"73734162","1634753","2022-09-15 15:55:58","0","17","<git><gitkraken>","git finding submodule commit message","<p>I update a submodule, then I open the parent repo in my git editor (gitkraken) and I see this update image. Where is the actual file with this value? When I right click and look at file path it just takes me to the submodule: <code>C:\Users\aaa\PARENT_REPO\SUBMODULE_NAME</code>.</p>
+<p>My end goal is to sync a specific version of the parent to a specific version of the submodule</p>
+<p><a href=""https://i.stack.imgur.com/cedkv.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/cedkv.png"" alt=""enter image description here"" /></a></p>
+","0","1634753",""
+"57081402","8092799","2019-07-17 17:32:33","1","834","<git><proxy><gitkraken>","Problem to login proxy with gitkraken and git","<p>When I perform a push / pull / fetch operation, gitkraken with the classic configuration <a href=""http://[user]:[password]@[proxyaddr]:[port]"" rel=""nofollow noreferrer"">http://[user]:[password]@[proxyaddr]:[port]</a> returns the error:</p>
+
+<pre><code>Pull Failed: failed to get server certificate: The handle is in the 
+wrong state for the requested operation
+</code></pre>
+
+<p>while setting the proxy with user and domain as <a href=""http://[domain]%5C[user]:[password]@[proxyaddr]:[port]"" rel=""nofollow noreferrer"">http://[domain]\[user]:[password]@[proxyaddr]:[port]</a> gitkraken returns the error:</p>
+
+<pre><code>Pull Failed: malformed URL http://[domain]\\[user]:   
+[password]@[proxyaddr]:[port] 
+</code></pre>
+
+<p>With git client from the command line I have no problem. How can I solve it?</p>
+
+<p>I tried also without proxy because both the PC and the login user are in the domain</p>
+
+<p>OS Windows Server 2012 R2
+Gitkraken version: 6.0.1</p>
+
+<p>thank you so much
+regards</p>
+","5","8092799","0"
+"57414500","11902556","2019-08-08 14:04:58","2","161","<gitkraken><plasticscm>","Does Plastic SCM work with (play nice) gitKracken?","<p>evaluating if PSCM is right for my team. Team is concerned about changing how they work with code and are understandably reluctant to stop using GitKracken, artists want PLSCM and Gluon.</p>
+
+<p>nothing. asking before buying.</p>
+
+<p>na</p>
+
+<p>na</p>
+","0","11902556",""
+"74570139","16502257","2022-11-25 08:41:40","0","300","<ubuntu><debian><gitkraken><arch>","Install old gitkraken version (5.0.4 from Antergos `pkg.tar.gz` file) on Ubuntu mate 22.04","<p>I had the 4.2 version of gitkraken on my ubuntu mate 18.04. Yesterday I switched to ubuntu mate 22.04 and I couldn't be able to install the 4.2 version from the old .deb package I had.</p>
+<p>I found this discussion <a href=""https://stackoverflow.com/questions/62129237/how-to-install-the-old-gitkraken-using-pkg-tar-gz-file"">How to install the old Gitkraken using <code>pkg.tar.gz</code> file?</a> .
+I downloaded the file (gitkraken-5.0.4-1-x86_64.pkg.tar.xz) and I followed the instructions (install gconf2). But when I try to start gitkraken I get the start screen (with the kraken) but the software doesn't start. Starting it using the shell I get this message in the terminal : <em>state:  update-not-available</em>.
+Is there a way to install this arch package on ubuntu or to convert it to a debian package??
+Unfortunately this link <a href=""https://release.axocdn.com/linux/GitKraken-v5.0.4.deb"" rel=""nofollow noreferrer"">https://release.axocdn.com/linux/GitKraken-v5.0.4.deb</a> doesn't work anymore.
+Thank you in advance.</p>
+","2","16502257",""
+"75608287","16142084","2023-03-01 19:48:07","1","88","<git><github><ssh><ssh-keys><gitkraken>","Why is Gitkraken client failing pull changes from remote repository on github?","<p>Im using gitkraken desktop client on macOS for a few respositories, I have two ssh keys associated with 2 different github accounts. From the termnial I am able to pull and push changes to repositories with the specific keys associated with the accounts, but when I pull the changes using gitkraken it throwns me an error when using either of the ssh keys</p>
+<p><a href=""https://i.stack.imgur.com/WbKyb.jpg"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/WbKyb.jpg"" alt=""enter image description here"" /></a></p>
+<p><a href=""https://i.stack.imgur.com/zxjlW.jpg"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/zxjlW.jpg"" alt=""enter image description here"" /></a></p>
+<p>I have my ssh keys stored in <code>~/.ssh/</code> and I made sure both keys are added to ssh-agent. My ssh config files looks like:</p>
+<pre><code>Host github.com-vib1240n
+  HostName github.com
+  AddKeysToAgent yes
+  User git
+  IdentityFile ~/.ssh/id_ed25519
+Host github.com-lprather
+  HostName github.com
+  AddKeysToAgent yes
+  User git
+  IdentityFile ~/.ssh/github
+</code></pre>
+<p>I am unable to figure out why Gitkraken client is throwing me this error and unable to pull the changes using the client. I can pull the change through terminal and the changes and branches show up on the Gitkraken client.</p>
+","0","16142084",""
+"44138203","4565367","2017-05-23 14:51:21","1","862","<android><android-studio><gitkraken>","How to configure .gitignore to ignore content folders from Android Studio on GitKraken?","<p>I am trying to create my <code>.gitignore</code> file to avoid that my GitKraken detects those files. I was able to avoid some of them but not all that I would like to ignore.</p>
+
+<p>These are the files that I am not able to ignore:</p>
+
+<ul>
+<li>Files inside <code>.gradle/2.14.1/...</code> folder.</li>
+<li>File <code>.idea/workspace.xml</code></li>
+<li>File <code>app/src/main/res/values/strings.xml</code></li>
+</ul>
+
+<p>Here is my <code>.gitignore</code> file:</p>
+
+<pre><code>.*
+!/.gitignore
+*.iml
+
+#Gradle files
+.gradle
+.gradle/
+build/
+
+local.properties
+/local.properties
+/*/local.properties
+
+/.idea/workspace.xml
+.idea/workspace.xml
+/.idea/libraries
+
+.DS_Store
+.DS_Store?
+
+/build
+/*/build/
+/*/*/build
+
+/captures
+captures/
+
+.externalNativeBuild
+</code></pre>
+
+<p>How can I make that GitKraken ignores those files?</p>
+
+<p>Thanks in advance!</p>
+","3","4565367",""
+"44187659","8066771","2017-05-25 18:40:11","1","135","<kerberos><fedora-25><gitkraken>","gitkraken push failure to a kerberos-authenticated server","<p>I'm trying to use GitKraken 2.6.0 on a Fedora 25 client. The remote  repository is located on a remote server with Kerberos authentication. The local repository was cloned over ssh. I can successfully execute all git commands from the command line, also with the SmartGit GUI. GitKraken is configured to use the local ssh client. The local repository is one commit ahead of the remote. On an attempt to push, GitKraken GUI first prompts for the user name to use and then generates the following error diagnostics : ""Push failed. Unrecognized Allowed Types: 0"". Any insight on what that means would be much appreciated.  Thanks!</p>
+","0","8066771",""
+"44417774","715548","2017-06-07 16:08:01","8","1124","<gitkraken>","in GitKraken, git environment variable not set in commit hooks","<p>I'm trying to use a commit hook that runs eslint. To hook uses <code>GIT_DIR</code> to find the package local eslint and related eslint configs. Like this:</p>
+
+<pre><code>ESLINT_PATH=""${GIT_DIR}/../node_modules/.bin/eslint""
+</code></pre>
+
+<p>From the command line, this works fine. <code>GIT_DIR</code> is set and everybody is happy. In GitKraken though, <code>GIT_DIR</code> is missing. In fact, no git environment vars are set. I ran <code>env</code> in the hook and looked at the output.</p>
+
+<p>Is this normal behavior for GitKraken? Is there some hidden config that I'm missing? </p>
+
+<p>I can mod the script, so if there's a more ""proper"" way to do this, I'm all ears. </p>
+","0","715548",""
+"63357090","14081695","2020-08-11 11:19:45","0","108","<git><github><branch><gitkraken>","Gitkraken / Github / git: creating new branch from a non parent branch","<p>In my remote repository I have:</p>
+<pre><code>Origin
+feature
+abc 
+20200801_branch_1
+20200802_branch_2
+.
+.
+abc 
+develop
+</code></pre>
+<p>I want to create a new branch feature/abc/20200811_mybranch with the data from feature/abc/develop. How can I do that??</p>
+<p>Thanks!!</p>
+","0","14081695",""
+"63549628","14096239","2020-08-23 16:50:54","2","554","<react-native><expo><gitkraken>","Can't upload expo react native app to github repo: ""Updating file content failed. EISDIR: illegal operation on a directory .read""","<p>Following is my error</p>
+<p><a href=""https://i.stack.imgur.com/AV7oq.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/AV7oq.png"" alt=""enter image description here"" /></a></p>
+<p>I have an entire expo react native app inside /mobile folder, but i can't push it.</p>
+","0","14096239",""
+"45244076","2307240","2017-07-21 18:05:58","55","16538","<git><phpstorm><webstorm><gitkraken>","How to view the git history of a specific file using GitKraken similar to PhpStorm/WebStorm","<p>I DON'T care about looking at the git history of a file that has been marked as ""modified"". </p>
+
+<p>What I want is something akin to what WebStorm/PhpStorm have where you can select any file in your project (modified or NOT) and inspect it's git history and all the changes to that file.</p>
+
+<p>I also DON'T want to have to look down the list of the git tree, and click on each one to see which files were commited.</p>
+","0","2307240","0"
+"63691374","13494233","2020-09-01 16:03:36","1","537","<windows><git><unicode><git-lfs><gitkraken>","git lfs checkout fails on windows with unicode path ""Error: CreateFile""","<p>I have git for windows installed properly. Calling</p>
+<pre><code>git lfs checkout
+</code></pre>
+<p>using bash.exe on a path that contains special characters (C:\Users\myUser\öäü) fails with an error:</p>
+<pre><code>Error: CreateFile C:\Users\myUser\���: The system cannot find the file specified.
+</code></pre>
+<p>I've tried checking out LFS files with GitKraken to the very same directory and it fails with the same error (I see that GitKraken invokes bash.exe as well). When using git-bash.exe I cannot reproduce the error. Both terminals are MINGW64, the locale of the bash.exe prints</p>
+<pre><code>$ locale
+LANG=
+LC_CTYPE=&quot;C.UTF-8&quot;
+LC_NUMERIC=&quot;C.UTF-8&quot;
+LC_TIME=&quot;C.UTF-8&quot;
+LC_COLLATE=&quot;C.UTF-8&quot;
+LC_MONETARY=&quot;C.UTF-8&quot;
+LC_MESSAGES=&quot;C.UTF-8&quot;
+LC_ALL=
+</code></pre>
+<p>whereas git-bash.exe prints en_GB.UTF-8 instead. I've also tried so set</p>
+<pre><code>MSYSTEM=MINGW64
+</code></pre>
+<p>but that didn't help at all, unfortunately.
+Using /usr/bin/mintty in Mingw-w64 mode fires up a functioning bash where I cannot reproduce the issue either. Hence I am wondering how I can configure bash.exe to function correctly, I feel that there must be some way to achieve that.</p>
+<p>Edit:
+git lfs version prints</p>
+<pre><code>git-lfs/2.12.0 (GitHub; windows amd64; go 1.15.1)
+</code></pre>
+<p>Calling git lfs checkout with GIT_TRACE=1 prints:</p>
+<pre><code>$ GIT_TRACE=1 git lfs checkout
+14:12:20.043934 exec-cmd.c:237          trace: resolved executable dir: C:/Program Files/Git/mingw64/bin
+14:12:20.059555 git.c:704               trace: exec: git-lfs checkout
+14:12:20.059555 run-command.c:663       trace: run_command: git-lfs checkout
+14:12:20.079718 trace git-lfs: exec: git 'version'
+14:12:20.109504 trace git-lfs: exec: git '-c' 'filter.lfs.smudge=' '-c' 'filter.lfs.clean=' '-c' 'filter.lfs.process=' '-c' 'filter.lfs.required=false' 'rev-parse' '--git-dir' '--show-toplevel'
+14:12:20.132914 trace git-lfs: exec: uname
+14:12:20.189343 trace git-lfs: exec: cygpath '-w' '.git'
+14:12:20.208415 trace git-lfs: exec: cygpath '-w' 'C:/Users/myUser/äöü'
+14:12:20.243879 trace git-lfs: Error running 'git rev-parse': CreateFile C:\Users\myUser\���: The system cannot find the file specified.
+Error: CreateFile C:\Users\myUser\���: The system cannot find the file specified.
+...
+</code></pre>
+","5","13494233",""
+"63803518","10050942","2020-09-09 01:22:50","3","247","<git><git-lfs><libgit2><gitkraken>","How to use Git LFS+ with nodegit?","<p>I use <a href=""https://github.com/nodegit/nodegit"" rel=""nofollow noreferrer"">nodegit</a> for my NodeJS project and would like to use Git LFS support (<code>nodegit</code> uses <a href=""https://libgit2.org/"" rel=""nofollow noreferrer"">libgit2</a> under the hood). I found <a href=""https://github.com/Axosoft/nodegit-lfs"" rel=""nofollow noreferrer"">nodegit-lfs</a> - also from Axosoft - whose description states:</p>
+<blockquote>
+<p>Nodegit LFS is an extension library used to augment NodeGit with the capability to use git lfs via the command line.
+To use this package, you must have git and git lfs installed.</p>
+</blockquote>
+<p>So it seems the standard Git installation is required for this &quot;add-on&quot; but due to license restrictions I can't use that (The reference Git implementation has a slightly different license as nodegit/libgit2 <strong>and</strong> Git LFS)</p>
+<p>Does anyone know how if there is another way to use Git LFS with nodegit?</p>
+<p>P.S. I attempted to add the hooks for Git LFS to my test repo but it seems libgit2 doesn't execute them, so no success on this.</p>
+","2","10050942","0"
+"57787253","10815204","2019-09-04 11:16:12","0","84","<git-diff><gitkraken>","How to show the whole file in diffview in gitkraken","<p>Right now, when I go to the diffview of a file in gitkraken, it more or less exactly shows only the changed lines. Is it somehow possible to see the whole file with the changes highlighted? Seems like a really basic requirement to me.</p>
+","0","10815204",""
+"58969353","6813433","2019-11-21 07:23:18","1","64","<git><gitkraken>","How to view all the project files and its history that were manipulated inside git","<p>How do I find all the history of the files that were tracked inside a git project including the deleted ones, I mean like the bIrds eye view of the project files because right now with the current status of the project, I think I have to just move all these into a new project folder.</p>
+","0","6813433",""
+"58971326","6813433","2019-11-21 09:23:26","-2","916","<git><gitkraken>","what does revert commit mean in gitkraken?","<p>What does revert commit mean in git? Cause I pressed it when I right click on that specific highlighted commit. 
+<a href=""https://i.stack.imgur.com/xbNsP.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/xbNsP.png"" alt=""enter image description here""></a></p>
+","1","6813433",""
+"58987213","9787887","2019-11-22 03:48:47","5","2958","<git><github><gitkraken>","""failed to open '/etc/gitconfig' - permission denied"" when clone a repo with GitKraken","<p>I tried to clone a repo using GitKraken on Ubuntu, but it threw me an error <strong>""failed to open '/etc/gitconfig' - permission denied""</strong>.</p>
+
+<p>So I think GitKraken software <strong>needs to access a gitconfig file</strong> to get things work, and it somehow <strong>tried to access the one at <code>/etc/gitconfig</code> first</strong> (which is locked - <em>I don't even know what ""lock"" mean</em>), so it threw the error. After googling, I found a solution sounds rational is to type <code>chmod 777 /etc/gitconfig</code> to give everyone (includes GitKraken) <strong>the permission</strong> to read/write to that config file. But after doing that, it still not work (permission denied), even after a reboot. <strong>First attemption failed</strong>. Maybe <strong>it's not about permission</strong>?</p>
+
+<p>I then kept googling, then I knew that there are 3 types of config files for git, which are <strong>local</strong> (located in <code>.git/gitconfig</code>), <strong>global</strong> (in <code>~/.gitconfig</code>) and <strong>system</strong> (in <code>/etc/gitconfig</code>). Then I thought <strong><em>""aha, I could just delete the <code>/etc/gitconfig</code>, then Kraken will use <code>~/.gitconfig</code>""</em></strong>. And yet after deleting <code>/etc/gitconfig</code>, it works <em>(I can clone my repo as expected)</em>. But I think it's just a <strong>workaround</strong>, I don't know what's the consequence of doing this (deleting system gitconfig). As I read in the <a href=""https://git-scm.com/docs/git-config"" rel=""nofollow noreferrer"">document</a>, it should <strong>first read the local one, then global, then system</strong> in order, so it should <strong>only read <code>/etc/gitconfig</code> if only can't find one in <code>~/.gitconfig</code></strong>, am I right? Why it isn't the case here? Or does GitKraken deliberately setting to read the config file from <code>/etc/gitconfig</code> first instead of the above order? </p>
+
+<p>Conclude, I deleted the system gitconfig <code>/etc/gitconfig</code> (by renaming it to <code>/etc/.gitconfig</code> btw). My question is what should I do now, did I solve my problem? If yet then now I don't fully understand what's going on, please can someone explain to me? </p>
+
+<p>Thanks in advance.</p>
+
+<p><strong>Error capture:</strong>
+<a href=""https://i.stack.imgur.com/uwIIY.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/uwIIY.png"" alt=""capture""></a></p>
+","0","9787887","0"
+"59069411","12445341","2019-11-27 11:40:57","0","112","<git><gitkraken>","how to make git merge using console command line to see branches in gitkraken software?","<p>Hello I'm using <strong>gitkraken</strong> to analyze my git local repository
+I don't see my branch in <strong>gitkraken</strong> using this code in my last operation with ""task2"" folder:</p>
+
+<pre><code>git init
+git checkout -b task2 // create new branch
+mkdir task2 // create folder
+//create file main.java
+git checkout master // return to master branch
+git merge task2 // get changes from task2 to master
+</code></pre>
+
+<p><strong>p.s.</strong> operation <strong>Merge branch task1</strong> in screenshot was made in gitKraken software and its work all I expected - draw me new branch</p>
+
+<p><img src=""https://i.stack.imgur.com/IrLva.jpg"" alt=""GitKraken screen""></p>
+","1","12445341",""
+"39741761","420409","2016-09-28 08:18:16","5","242","<gitkraken>","Can tab-width in gitkraken be configured?","<p>I have a piece of code where tabs and spaces are mixed. Gitkraken seems to put a default width of 2 spaces to the tab, while the code is formatted with 4 spaces. 
+Is there a way to adjust the tab-width in the gitkraken configuration? </p>
+","0","420409",""
+"58948855","6813433","2019-11-20 07:24:44","-1","684","<git><git-stash><gitkraken>","After git stashing my project contents are not updated anymore how do I get back all my files","<p>Please, take it easy on me guys, I don't really understand stashing w/git, I only understand git add, status and basic stuff about git, Hope you'd be really understanding with me about this</p>
+
+<p>I stashed all my project files since that current changes is not yet finished so I did git stash and when I moved to another branch by <code>git checkout ...</code></p>
+
+<p>I commited my updated changes to the master branch and pushed it to its github repo but when I run my updated project with its local server, I found out that I don't have my updated project files. like all my updated contents were now gone, how do I get back to those.</p>
+
+<p><a href=""https://i.stack.imgur.com/HwuiB.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/HwuiB.png"" alt=""enter image description here""></a></p>
+","6","6813433",""
+"45563212","5864438","2017-08-08 08:30:55","4","493","<gitkraken>","why gitkraken did not picking up .config","<p>I have a config in <code>~/.ssh/config</code> for git with:</p>
+
+<blockquote>
+  <p><strong>Host:</strong> gitlab.test.com</p>
+  
+  <p><strong>Port:</strong> 2224</p>
+</blockquote>
+
+<p>And it is throwing the <code>connection refused</code> error.</p>
+
+<p>Why <code>gitkraken</code> doesn't picking up it automatically ? If it's cannot be done, how to make <code>gitkraken</code> connect that git?</p>
+","0","5864438",""
+"46636011","5922222","2017-10-08 20:59:33","1","1595","<installation><gitkraken><dnf><fedora-26>","Installing gitkraken on fedora 26","<p>I'm trying to install gitkraken on my Fedora 26 since few hours I installed it from but the dependecies looks to don't be resolved</p>
+
+<pre><code>Node started time: 1507496118430
+libcurl-gnutls.so.4: cannot open shared object file: No such file or directory
+Error: libcurl-gnutls.so.4: cannot open shared object file: No such file or directory
+    at process.module.(anonymous function) [as dlopen] (ELECTRON_ASAR.js:173:20)
+    at Object.Module._extensions..node (module.js:598:18)
+    at Object.module.(anonymous function) [as .node] (ELECTRON_ASAR.js:187:18)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+</code></pre>
+
+<p>And I already have installed <code>libcurl</code> and <code>gnutls</code> packages</p>
+","0","5922222",""
+"46651244","8747281","2017-10-09 16:42:29","5","3019","<ssh><version-control><gitkraken>","gitkraken push failed because of ssh","<p>I'm getting this error:</p>
+
+<pre><code>Push Failed: SSH could not write data: Unable to send channel data
+</code></pre>
+
+<p>I think my <code>ssh bitbucket key</code> is fine because it works with other repos.</p>
+
+<p>Please help.</p>
+","3","8747281","0"
+"65941743","1305530","2021-01-28 16:58:11","2","552","<ssh><gitkraken><malformed>","Gitkraken malformed url - on pull Gitkraken edits the remote url and puts "".git"" on the end","<h2>Gitkraken malformed url on pull</h2>
+<p>Gitkraken creates a malformed url when doing a pull edits to remote urls by adding a username and also appends &quot;.git&quot; to the end of the url making it malformed.  Our remote repository urls don't have a &quot;.git&quot; on the end.</p>
+<h2>Example (no username or .git on the url for our Azure DevOps repos):</h2>
+<pre><code>git remote -v
+origin ssh://example.company.net/CollectionName/AppName/_git/repository.name (fetch)
+origin ssh://example.company.net/CollectionName/AppName/_git/repository.name (push)
+</code></pre>
+<p>The moment any developer does a pull in Gitkraken it then asks for a username with a &quot;Submit&quot; button.  Once that is done on the first one it says successful.  Then after that, the next pull gives the error:</p>
+<pre><code>Pull Failed
+malformed URL
+</code></pre>
+<p>If we look at the remote list again.  Now it has been edited and adds a username and &quot;.git&quot; to the end making it invalid</p>
+<pre><code>git remote -v
+origin ssh://username@example.company.net/CollectionName/AppName/_git/repository.name.git (fetch)
+origin ssh://username@example.company.net/CollectionName/AppName/_git/repository.name.git (push)
+</code></pre>
+","1","1305530","0"
+"48519483","1430632","2018-01-30 10:44:22","5","2819","<git><bitbucket><bitbucket-api><gitkraken>","git push tag only and commit difference","<p>I have small problem. Recently started using gitKraken to test how it works (thinking of moving from sourcetree). From what I understood it is more like ""raw"" git command. SourceTree does things for me like auto tag pushing (ok, found that it allows for not recommended <code>--tags</code> option)</p>
+
+<p>My problem are tags. I tested it on console and it seems to be related to pushing tags.</p>
+
+<p><code>git push origin</code> - pushes changes<br>
+<code>git push origin 1.0.0</code> - pushes tag<br>
+Here, everything is OK. My coworkers see changes and can pull it.</p>
+
+<p><code>git push origin 1.0.0</code> - I push tag only, <strong>without commit (How is this possible?)</strong><br>
+It is visible on Repository (on BitBucket site) like a normal commit - with comment and ID. However commit cannot be downloaded from bitbutcket via git pull since it states it is up-to-date</p>
+
+<p>I have a <em>feeling</em> that it looks like<br>
+<code>git push origin</code> = <code>git push origin</code><br>
+<code>git push origin 1.0.0</code> = <code>git push some-special-place</code></p>
+
+<p>How exactly does it work? I can see all changes on BitBucket site.</p>
+
+<p>Moreover I can download commited tag without commiting chnages and result I get is latest normally commited. Which can lead to problems in case I use API/Site to download repo copy, as it is not aligned with real changes</p>
+
+<p><strong>EDIT</strong> <em>If My local commits are <code>A-B-C-D(tag)</code> and remote are <code>A-B-C</code> then BitBucket Interface shows me (after commiting a tag only) <code>A-B-C-D</code> and does not state that <code>HEAD</code> is on <code>C</code> Instead of <code>D</code>. That's what I thought I downlaod latest commit, but in reality What I was downloading was HEAD<br>
+Also, to note: Removing tag from remote removie</em> <strong><em>uncommited</em></strong> <em>commits - like they were never there in first place.</em></p>
+
+<p>GitKraken nor source tree does not inform about changes not being commited.</p>
+
+<p>Edit: Commiting only tag shows real changes (<em>patch summary</em>) in web interface. Commit looks exactly as real one.</p>
+","0","1430632",""
+"48564511","992366","2018-02-01 13:59:14","7","1284","<git><gitkraken>","Does GitKraken ignore the git exclude file?","<p>I use GitKraken for my version control needs and for the most part I enjoy it. Every now and then I do run across something that I can do the UI and have to use the commandline.</p>
+
+<p>One thing I am attempting to do right now is to add some file patterns into my git repo's <strong>.git/info/exclude</strong> file (NOTE: This is not git ignore; I'm just trying to exlcude changes in my local repo since the files in question are not relevant to what needs to be committed.) </p>
+
+<p>GitKraken seems to be ignoring the changes I've made to this file, or I'm simply not doing it correctly. Does anyone know if GitKraken does anything with this file? I can't seem to find any documentation on their website regarding it.</p>
+","5","992366",""
+"48656445","1508147","2018-02-07 05:14:06","0","756","<linux-mint><gitkraken>","gitkraken not showing screen after installation","<p>I have installed GitKraken 3.3.4 on my LinuxMint 18.1-64 bit machine. I When I click on GitKraken it shows loading, but display is not showing up in the screen. Anyone can help me to solve this issue?. </p>
+
+<p>No issues in installation using command line or package installer.</p>
+","0","1508147",""
+"48662536","7205542","2018-02-07 11:20:56","0","1145","<linux><git><gitkraken>","cloning a repository in gitkraken from url ssh invalid","<p><br>
+I'm quite new to Linux and I have some trouble using GitKraken (in Windows I use SourceTree). I want to clone a repository that is on my NAS. Unfortunately, when I try to clone it says: ""Configured SSH key is invalid. Please confirm that it is properly associated with your Git provider"". In Preferences>Authentication I have checked (default) Use Local SHH agent.<br>
+If I clone the rep from the terminal with git clone command it asks for the password and everything is ok.<br>
+Any suggestion?<br>
+Alex</p>
+","1","7205542","0"
+"51883135","7023816","2018-08-16 18:17:34","0","223","<gitkraken>","How to delete git commits and merges to desired point in history","<p>I'm using GitKraken. The current history for my repo looks like this:</p>
+
+<p><a href=""https://i.stack.imgur.com/3gl2y.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/3gl2y.png"" alt=""Current repo history""></a></p>
+
+<p>However, I want to remove the most recent commit and merge,</p>
+
+<p><a href=""https://i.stack.imgur.com/k9LBn.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/k9LBn.png"" alt=""enter image description here""></a></p>
+
+<p>so that my history looks like this:</p>
+
+<p><a href=""https://i.stack.imgur.com/o9IW0.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/o9IW0.png"" alt=""enter image description here""></a></p>
+
+<p>I want to do this through GitKraken alone, without using the command line.</p>
+
+<p>I have already tried <code>reset &lt;branch&gt; to this commit - hard</code>, with the <code>Master</code> branch checked out and with the <code>Authentication</code> branch checked out, but the history does not change at all.</p>
+
+<p>Thank you for your help.</p>
+","0","7023816",""
+"60005102","11051128","2020-01-31 13:44:01","4","4101","<githooks><git-extensions><gitkraken><husky>","How to disable git hooks in gitkraken?","<p>I'm working with a project that has git hooks configured. Unfortunately. It was added to prevent juniors or headless developers to commit CI-check-failing code to their branch.</p>
+
+<p>I am one of these, who ignore git hooks with <code>HUSKY_SKIP_HOOKS</code> env variable, but for me it doesn't work in GitKraken.</p>
+
+<p>Do you know how to ignore git hooks in GitKraken?</p>
+","0","11051128","0"
+"48072655","7975480","2018-01-03 07:00:50","11","8891","<python><django><git><pycharm><gitkraken>","Django settings.cpython-36.pyc not ignored by gitignore","<p>The file in my application <code>settings.cpython-36.pyc</code> is not being ignored even though I have added it to the <code>.gitignore</code> file.</p>
+
+<p>My gitignore code:</p>
+
+<pre><code>*.log
+*.pot
+*.pyc
+.idea
+LearnDjango/__pycache__/
+venv/
+/LearnDjango/settings.py
+LearnDjango/__pycache__/settings.cpython-36.pyc
+</code></pre>
+
+<p><a href=""https://i.stack.imgur.com/ibtp1.png"" rel=""noreferrer"">Gitkraken view, you can see it still picks it up</a></p>
+
+<p>This line <code>LearnDjango/__pycache__/</code> in the gitignore file ignores the other <code>.cpython-36.pyc</code> files but not <code>settings.cpython-36.pyc</code></p>
+
+<p><a href=""https://i.stack.imgur.com/nBLD7.png"" rel=""noreferrer"">View of <code>__pycache__</code> folder, the 1st and 3rd files are ignored but not the 2nd</a></p>
+
+<p>P.S 
+I am new to Django and git.</p>
+","1","7975480","0"
+"59663348","3030870","2020-01-09 11:49:51","2","109","<github><gitkraken>","Make GitKraken commit graph more like githubs network","<p>I like GitKraken apart from the commit graph which I personally find really hard to read what's happening. Compare that to what I think is a really intuitive commit graph, <a href=""https://github.com/OmniSharp/omnisharp-vscode/network"" rel=""nofollow noreferrer"">githubs network</a>. Is there any way to get it to look more like githubs? At the very least display the graph horizontally?</p>
+","1","3030870",""
+"48340238","2469152","2018-01-19 11:37:50","2","2121","<gitkraken>","How to expand the diff view in gitkraken","<p>My case looks like this. There is a very large feature branch that adds, removes and modifies a lot (almost 400) files.</p>
+
+<p>My task is to review all of the changes, mainly to make sure that all of the changes are reflected in appropriate tests.</p>
+
+<p>Gitkraken has this neat feature that allows to show diff between two commits of any branch. So a natural thing to do is to click on two commits (tip of my feature branch and master). Nice, but given the context I'd like to show only this diff window since I don't need any of the swimlane/commit view. And all I can to is to expand the right pane to 1/3 of the window width.</p>
+
+<p>I am using the tree view so the 1/3 is not enough BTW</p>
+
+<p>Any ideas how to display it as a separate window/maximize the pane to 100% of the window width?</p>
+
+<p>UPDATE: I can get 50% of screen witdh by tiling the window to half of a screen: swimlane/diff layout switches then to horizontal and I expand the diff to 100% of height</p>
+
+<p>UPDATE 2: I can get 66% of screen width
+<a href=""https://i.stack.imgur.com/P41ZI.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/P41ZI.png"" alt=""enter image description here""></a></p>
+","0","2469152",""
+"49365422","8068675","2018-03-19 14:31:45","2","584","<git><ubuntu><file-permissions><gitkraken>","gitkraken fails to access www-data files","<p>This a fresh ubuntu setup, maybe I miss something.
+I cloned a project I was working on with Laravel and did the permissions folders.</p>
+
+<pre><code>$ cp .env.example .env
+$ composer install
+$ sudo chown -R www-data:www-data ~/Projects/my-project/storage
+$ sudo chown -R www-data:www-data ~/Projects/my-project/vendor
+$ sudo chown -R www-data:www-data ~/Projects/my-project/boostrap/cache
+</code></pre>
+
+<p>A this point, everything works, except git for theses 3 folders.
+Since git is not a www-data user, I have added my user ""clement"" to the www-data group</p>
+
+<pre><code>$ sudo usermod -aG www-data clement
+$ groups clement
+clement : clement adm cdrom sudo dip www-data plugdev lpadmin sambashare
+</code></pre>
+
+<p>Now, I can work without any problem with git in <strong>command line</strong></p>
+
+<pre><code>clement@clement-ubuntu:~/Projects/my-project$ touch storage/test
+clement@clement-ubuntu:~/Projects/my-project$ git status
+On branch develop
+Your branch is up-to-date with 'origin/develop'.
+Untracked files:
+  (use ""git add &lt;file&gt;..."" to include in what will be committed)
+
+        storage/test
+
+nothing added to commit but untracked files present (use ""git add"" to track)
+</code></pre>
+
+<p>However, Gitkraken which's also running under ""clement"" still act like the user is not a part of the www-data group.</p>
+
+<p>It doesn't see the file <code>storage/test</code> and try to delete all the <code>.gitignore</code> under storage and bootstrap/cache since it doesn't see them</p>
+
+<p>I have already reinstalled gitkraken and re-cloned the project but the problem still occure.</p>
+","0","8068675",""
+"49378270","8187926","2018-03-20 07:12:59","4","3669","<ubuntu><gitkraken>","ubuntu gitkraken unable to access var","<p>I am trying to use ubuntu for php laravel project, I have setup all the requirements but now I am facing problem with gitkraken. I am trying to clone repo on var/www/html but I cant even enter in var folder please help
+<a href=""https://i.stack.imgur.com/wh5Wb.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/wh5Wb.png"" alt=""enter image description here""></a></p>
+","2","8187926","0"
+"50138701","3711357","2018-05-02 15:50:46","0","837","<git><version-control><repository><gitkraken>","files shows as changed even just pull the new git branch","<p>In git kraken, pull origin and checkout the branch.
+Immediately, it come with couple of files changes even not done any modification.
+When seen changes and ""Ignore white space"" to true in viewer then it shows as below:
+""File contents are unchanged. Uncheck ""Ignore white space"" to see potential white space changes.""</p>
+
+<p>when try to discard those files then its unable to discard, try to stash those files then it stash and immediately unstash.</p>
+
+<p>How to solve this issue so, git kraken work correctly and does not show me files are changed even its not change, (it just pull the new branch).</p>
+
+<p>Thanks</p>
+","0","3711357",""
+"68492210","11151389","2021-07-22 22:39:24","0","22","<git><gitignore><gitkraken>","Why doesn't my .gitignore file work in gitkraken?","<p>When I was testing my repo, I run npm run build, and it generates a ton of files, so suddenly my gitkraken has a lot of unstaged files, and it makes Gitkraken so laggy that I even stuck at opening repo.</p>
+<p>I find a way to resolve it, but right now it still has a lot of unstaged files. Here's my .gitignore file and how Gitkraken looks like.</p>
+<pre><code>node_modules/
+client/node_modules
+</code></pre>
+<p><a href=""https://i.stack.imgur.com/vjwJC.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/vjwJC.png"" alt=""enter image description here"" /></a></p>
+<p>As you can see I even used <code>**/</code>, but it didn't work, but when I pushed my file to travisCI, it built without <code>node_modules</code>, so I am really confused here.</p>
+","3","11151389",""
+"60232568","7797498","2020-02-14 19:42:51","0","245","<git><diff><gitkraken>","Is it possible to revise the resolution to a merge conflict in git?","<p>I am working on a tex file together with a collaborator using git (using gitkraken).
+We work on the same branch, and at some point there were some merge conflicts when one of us pushed our latest work onto that branch.
+Since then we have continued working on this file, but we have realized that we would like to ""redo"" resolving the merge conflicts from a couple of commits back.</p>
+
+<p>Is there a clean way to do this?</p>
+
+<p>One thing I though of was to copy the version of the file in question (there is only one file of interest) and then just overwrite the current version of the file and then push that file onto the current branch, but I'm afraid this will overwrite some of the changes (that we'd like to keep) since the original conflict in question.
+Another way could be to copy the old version that has some of the changes we'd like to keep and then use a diff tool to merge in selectively the things we'd like to change.</p>
+
+<p>This last option is the best thing I could come up with. Is there a better way?</p>
+","1","7797498",""
+"41856485","2642226","2017-01-25 16:16:58","0","69","<git><version-control><repository><atlassian-sourcetree><gitkraken>","Local git repo is 45GB, but the remote on bitbucket is only 380MB","<p>The title pretty much describes my whole problem. I tried doing <code>git gc</code>, but that didn't help at all. I also verified that it is indeed the hidden .git folder that's 45GB in size.</p>
+
+<p>I'm not familiar with the command line at all, I've mostly just used SourceTree/Gitkraken as my git client. </p>
+
+<p>What can I do to solve the problem with my local rep? Is the easiest thing just to delete it and clone it again from remote?</p>
+","6","2642226",""
+"60830054","9931604","2020-03-24 11:22:21","5","2055","<git><version-control><gitkraken>","how to rebase branch from git kraken","<p>So I have a branch that was created from develop called feature/123</p>
+
+<p>I have done some work on it, but in the meanwhile develop was worked on and now my branch is behind. I need to rebase but not sure how to in in git kraken. </p>
+
+<p>in my merge request in gitlab i have this message </p>
+
+<p><code>Fast-forward merge is not possible. To merge this request, first rebase locally.</code></p>
+
+<p>So, in order to do this, do I have to:</p>
+
+<p>check in develop, right click feature/123 and select 'Rebase develop onto feature/123' </p>
+
+<p>or </p>
+
+<p>check in feature/123, right click develop and select 'Rebase feature/123 into develop' </p>
+
+<p>i remember the wording being confusing here, as well as which brach to be checked into at the time. </p>
+","0","9931604",""
+"62000111","6093271","2020-05-25 10:03:51","1","458","<git><gitkraken>","Is there a gitkraken feature which shows how much commits behind | ahead a branch is compared to another branch?","<p>I am a noob at gitkraken (not at git) and I am searching for a feature which compares a branch regarding ""number of commits behind | ahead"". Is there any way to do this:
+The similar git command is:</p>
+
+<pre><code>git rev-list --left-right --count branchA...branchB
+</code></pre>
+
+<p>Microsoft's Azure DevOps also supports this feature in the WebUI (always compares it to master):</p>
+
+<p><a href=""https://i.stack.imgur.com/hEXIr.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/hEXIr.png"" alt=""enter image description here""></a></p>
+","2","6093271",""
+"43564640","4886416","2017-04-22 21:07:57","13","5285","<git><git-push><git-gui><gitkraken>","How to use git kraken for a force push","<p>I'm using git kraken client gui and I need to perform a force push on a repository. It would be really grateful if someone can guide me the steps to perform a force push on git kraken.</p>
+","2","4886416","0"
+"68744215","5550507","2021-08-11 14:45:05","5","2705","<git><visual-studio-code><azure-devops><gitkraken><git-gui>","fatal: bad boolean config value 'null' for 'commit.gpgsign' gitkraken and gitclients","<p>I am using <code>GitKraken</code> as my git client and it was always working fine, but for a few days I am getting the error <code>fatal: bad boolean config value 'null' for 'commit.gpgsign'</code> when I use any other git clients. I have tried <code>cmd</code>, <code>vscode</code>, <code>PowerShell</code> in <code>vscode</code> and <code>Git GUI</code>. I have also uninstalled the <code>GitKraken</code> and try, but I guess it somehow retains the settings. Have you ever experienced this issue?</p>
+","0","5550507","0"
+"68827359","7733399","2021-08-18 06:14:35","1","1591","<git><github><gitlab><access-token><gitkraken>","Re authenticate github in gitkraken","<p>I am trying to re-authenticate my GitKraken with GitHub with my access token, since I used to be authenticated with user/password before, but now it is required to use personal access token. Can someone help me with that, I already have authenticated with the token in the terminal and I can do all git manipulations, however in gitkraken pull/push fails saying it cannot connect to origin and I am not asked to re-auth my github account</p>
+","1","7733399",""
+"41879687","5463493","2017-01-26 17:44:56","1","244","<gitkraken>","Stop gitkraken from scanning my disk for git repositories","<p>I am using gitkraken V2.0.1 and it is auto scanning my disks for git repos, even those in my backup folders. How can I stop gitkraken from doing this?</p>
+","0","5463493","0"
+"61867075","6093604","2020-05-18 10:02:50","0","307","<git><gitkraken>","GitKraken - Cannot redirect from www.gitlab.com to gitlab.com","<p>I started to get that issue a couple of days ago but can't find out what's the real issue... Any idea?</p>
+
+<p><code>Cannot redirect from 'www.gitlab.com' to 'gitlab.com'</code></p>
+
+<p>Thanks for any help!</p>
+
+<p><a href=""https://i.stack.imgur.com/kqzEH.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/kqzEH.png"" alt=""enter image description here""></a></p>
+","1","6093604",""
+"61898793","2521295","2020-05-19 19:04:00","0","39","<git><version-control><gitkraken>","How to remove an unpushed git commit while keeping other good commits after it?","<p>Just discovered a commit was made to the wrong branch, but not pushed to origin. That same branch has had a lot of commits after it that have been pushed (by another developer).</p>
+
+<p>How do I bring over just that one un-pushed commit to another branch (or get rid of it altogether)? I know I can cherry pick it over to somewhere else, but what is the best way to delete it afterwards without deleting all of the changes after it?</p>
+
+<p>Using Gitkraken, but whatever will get the job done.</p>
+","0","2521295",""
+"43908657","7893127","2017-05-11 07:04:24","0","1140","<git><ubuntu-14.04><apt><gitkraken>","Cannot install anything in Ubuntu14.04. Error:The package gitkraken needs to be reinstalled, but I can't find an archive for it","<p>Recently, I try to use my ubuntu 14.04 to unzip 7Z files. So I need to install p7zip-full. But when I tried to install it , I get a error like this:
+```</p>
+
+<pre><code>emma@emma-AMAX:~$ sudo apt-get install p7zip-full
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+E: The package gitkraken needs to be reinstalled, but I can't find an archive for it.
+</code></pre>
+
+<p>```
+And my ubuntu software center cannot open too.
+I donnot know how to uninstall Gitkraken.
+I used Gitkraken to git push some files to mu github repo.
+But I don't what happend exactly.</p>
+
+<p>other command output same error:
+```</p>
+
+<pre><code>emma@emma-AMAX:~$ sudo apt-get update
+Hit http://storage.googleapis.com stable InRelease
+Get:1 http://archive.ubuntukylin.com:10006 xenial InRelease [18.1 kB]          
+Ign http://mirrors.aliyun.com trusty InRelease                                 
+Get:2 http://mirrors.aliyun.com trusty-security InRelease [65.9 kB]            
+Hit http://storage.googleapis.com stable/jdk1.8 amd64 Packages                 
+Hit http://archive.ubuntukylin.com:10006 xenial/main amd64 Packages            
+Hit http://archive.ubuntukylin.com:10006 xenial/main i386 Packages             
+Ign http://ppa.launchpad.net trusty InRelease                                  
+Get:3 http://ppa.launchpad.net trusty InRelease [15.5 kB]                      
+Get:4 http://mirrors.aliyun.com trusty-updates InRelease [65.9 kB]             
+Hit http://ppa.launchpad.net trusty Release.gpg                                
+Get:5 http://mirrors.aliyun.com trusty-proposed InRelease [65.9 kB]            
+Get:6 http://ppa.launchpad.net trusty/main amd64 Packages [3,383 B]            
+Hit http://mirrors.aliyun.com trusty-backports InRelease                       
+Get:7 http://ppa.launchpad.net trusty/main i386 Packages [3,383 B]             
+Hit http://mirrors.aliyun.com trusty Release.gpg                               
+Get:8 http://mirrors.aliyun.com trusty-security/main Sources [130 kB] 
+Hit http://ppa.launchpad.net trusty Release                                  
+Hit http://ppa.launchpad.net trusty/main amd64 Packages                        
+Get:9 http://mirrors.aliyun.com trusty-security/restricted Sources [4,941 B]   
+Get:10 http://mirrors.aliyun.com trusty-security/universe Sources [52.5 kB]    
+Hit http://ppa.launchpad.net trusty/main i386 Packages                         
+Get:11 http://mirrors.aliyun.com trusty-security/multiverse Sources [3,206 B]  
+Get:12 http://mirrors.aliyun.com trusty-security/main amd64 Packages [611 kB]
+Hit https://packagecloud.io trusty/main Sources          
+Ign http://storage.googleapis.com stable/jdk1.8 Translation-en_US              
+Ign http://storage.googleapis.com stable/jdk1.8 Translation-en
+Get:13 http://mirrors.aliyun.com trusty-security/restricted amd64 Packages [14.0 kB]
+Get:14 http://mirrors.aliyun.com trusty-security/universe amd64 Packages [157 kB]
+Get:15 http://mirrors.aliyun.com trusty-security/multiverse amd64 Packages [4,133 B]
+Get:16 http://mirrors.aliyun.com trusty-security/main i386 Packages [569 kB]   
+Get:17 http://mirrors.aliyun.com trusty-security/restricted i386 Packages [13.8 kB]
+Get:18 http://mirrors.aliyun.com trusty-security/universe i386 Packages [157 kB]
+Get:19 http://mirrors.aliyun.com trusty-security/multiverse i386 Packages [4,289 B]
+Get:20 http://mirrors.aliyun.com trusty-updates/main Sources [398 kB]          
+Get:21 http://mirrors.aliyun.com trusty-updates/restricted Sources [6,327 B]   
+Get:22 http://mirrors.aliyun.com trusty-updates/universe Sources [178 kB]      
+Get:23 http://mirrors.aliyun.com trusty-updates/multiverse Sources [7,767 B]   
+Get:24 http://mirrors.aliyun.com trusty-updates/main amd64 Packages [978 kB]   
+Get:25 http://mirrors.aliyun.com trusty-updates/restricted amd64 Packages [17.1 kB]
+Get:26 http://mirrors.aliyun.com trusty-updates/universe amd64 Packages [405 kB]
+Get:27 http://mirrors.aliyun.com trusty-updates/multiverse amd64 Packages [14.3 kB]
+Get:28 http://mirrors.aliyun.com trusty-updates/main i386 Packages [937 kB]    
+Get:29 http://mirrors.aliyun.com trusty-updates/restricted i386 Packages [16.9 kB]
+Get:30 http://mirrors.aliyun.com trusty-updates/universe i386 Packages [406 kB]
+Get:31 http://mirrors.aliyun.com trusty-updates/multiverse i386 Packages [14.6 kB]
+Get:32 http://mirrors.aliyun.com trusty-proposed/main Sources [111 kB]         
+Get:33 http://mirrors.aliyun.com trusty-proposed/restricted Sources [782 B]    
+Get:34 http://mirrors.aliyun.com trusty-proposed/universe Sources [16.4 kB]    
+Get:35 http://mirrors.aliyun.com trusty-proposed/multiverse Sources [832 B]    
+Get:36 http://mirrors.aliyun.com trusty-proposed/main amd64 Packages [86.9 kB] 
+Get:37 http://mirrors.aliyun.com trusty-proposed/restricted amd64 Packages [769 B]
+Get:38 http://mirrors.aliyun.com trusty-proposed/universe amd64 Packages [10.3 kB]
+Get:39 http://mirrors.aliyun.com trusty-proposed/multiverse amd64 Packages [28 B]
+Get:40 http://mirrors.aliyun.com trusty-proposed/main i386 Packages [84.3 kB]  
+Get:41 http://mirrors.aliyun.com trusty-proposed/restricted i386 Packages [772 B]
+Get:42 http://mirrors.aliyun.com trusty-proposed/universe i386 Packages [10.3 kB]
+Get:43 http://mirrors.aliyun.com trusty-proposed/multiverse i386 Packages [729 B]
+Hit http://mirrors.aliyun.com trusty-backports/main Sources                    
+Hit http://mirrors.aliyun.com trusty-backports/restricted Sources              
+Hit http://mirrors.aliyun.com trusty-backports/universe Sources                
+Hit http://mirrors.aliyun.com trusty-backports/multiverse Sources              
+Hit http://mirrors.aliyun.com trusty-backports/main amd64 Packages             
+Hit http://mirrors.aliyun.com trusty-backports/restricted amd64 Packages       
+Hit http://mirrors.aliyun.com trusty-backports/universe amd64 Packages         
+Hit http://mirrors.aliyun.com trusty-backports/multiverse amd64 Packages       
+Hit http://mirrors.aliyun.com trusty-backports/main i386 Packages              
+Hit http://mirrors.aliyun.com trusty-backports/restricted i386 Packages        
+Hit http://mirrors.aliyun.com trusty-backports/universe i386 Packages          
+Hit http://mirrors.aliyun.com trusty-backports/multiverse i386 Packages        
+Hit http://mirrors.aliyun.com trusty Release                                   
+Hit http://mirrors.aliyun.com trusty/main Sources                              
+Hit http://mirrors.aliyun.com trusty/restricted Sources                        
+Hit http://mirrors.aliyun.com trusty/universe Sources                          
+Hit http://mirrors.aliyun.com trusty/multiverse Sources                        
+Hit http://mirrors.aliyun.com trusty/main amd64 Packages                       
+Hit http://mirrors.aliyun.com trusty/restricted amd64 Packages                 
+Hit http://mirrors.aliyun.com trusty/universe amd64 Packages                   
+Hit http://mirrors.aliyun.com trusty/multiverse amd64 Packages                 
+Hit http://mirrors.aliyun.com trusty/main i386 Packages                        
+Hit http://mirrors.aliyun.com trusty/restricted i386 Packages                  
+Hit http://mirrors.aliyun.com trusty/universe i386 Packages                    
+Hit http://mirrors.aliyun.com trusty/multiverse i386 Packages                  
+Fetched 5,694 kB in 37s (151 kB/s)                                             
+W: Failed to fetch http://mirrors.aliyun.com/ubuntu/dists/trusty-security/InRelease  Unable to find expected entry 'main/binary-i386sudo/Packages' in Release file (Wrong sources.list entry or malformed file)
+
+W: Failed to fetch http://mirrors.aliyun.com/ubuntu/dists/trusty-updates/InRelease  Unable to find expected entry 'main/binary-i386sudo/Packages' in Release file (Wrong sources.list entry or malformed file)
+
+W: Failed to fetch http://mirrors.aliyun.com/ubuntu/dists/trusty-proposed/InRelease  Unable to find expected entry 'main/binary-i386sudo/Packages' in Release file (Wrong sources.list entry or malformed file)
+
+W: Failed to fetch http://mirrors.aliyun.com/ubuntu/dists/trusty-backports/InRelease  Unable to find expected entry 'main/binary-i386sudo/Packages' in Release file (Wrong sources.list entry or malformed file)
+
+W: Failed to fetch https://packagecloud.io/github/git-lfs/ubuntu/dists/trusty/InRelease  Unable to find expected entry 'main/binary-i386sudo/Packages' in Release file (Wrong sources.list entry or malformed file)
+
+W: Failed to fetch http://archive.ubuntukylin.com:10006/ubuntukylin/dists/xenial/InRelease  Unable to find expected entry 'main/binary-i386sudo/Packages' in Release file (Wrong sources.list entry or malformed file)
+
+W: Failed to fetch http://ppa.launchpad.net/webupd8team/java/ubuntu/dists/trusty/InRelease  Unable to find expected entry 'main/binary-i386sudo/Packages' in Release file (Wrong sources.list entry or malformed file)
+
+W: Failed to fetch http://ppa.launchpad.net/jtaylor/ipython/ubuntu/dists/trusty/Release  Unable to find expected entry 'main/binary-i386sudo/Packages' in Release file (Wrong sources.list entry or malformed file)
+
+W: Failed to fetch http://mirrors.aliyun.com/ubuntu/dists/trusty/Release  Unable to find expected entry 'main/binary-i386sudo/Packages' in Release file (Wrong sources.list entry or malformed file)
+
+E: Some index files failed to download. They have been ignored, or old ones used instead.
+emma@emma-AMAX:~$ sudo apt-get dist-upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+E: The package gitkraken needs to be reinstalled, but I can't find an archive for it.
+emma@emma-AMAX:~$ sudo apt-get install --reinstall software-center
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+E: The package gitkraken needs to be reinstalled, but I can't find an archive for it.
+</code></pre>
+
+<p>```</p>
+","0","7893127",""
+"62943314","1575673","2020-07-16 20:53:36","2","3153","<gitkraken>","Force disable application autoupdate by blocking network call (in this case, gitkraken)","<p>Gitkraken autoupdates, and this cannot be turned off in the UI.  This would not be a problem, were it not that I am using it on a managed device that does not trust Gitkraken's code signing.  As a result of this, Gitkraken randomly stops working when restarted until I set aside time to sideload it again.</p>
+<p>Is there a way that I can discover how Gitkraken is phoning home to look for updates, so I can block that from happening (e.g., blocking a host in my firewall)?</p>
+<p>Working on macOS, if that helps.</p>
+","2","1575673",""
+"42355523","1526493","2017-02-20 22:42:08","4","2737","<git><gitkraken>","Use Windows git with Git Kraken","<p>Just wondering if anyone has managed to point Git Kraken at their global git installation? I'd like to use global git config and so on with my installation but I can't seem to find where/how that's done?</p>
+
+<p>It asks me for auth every time I perform an action and I'd like it to just read it from my config as other git clients do..</p>
+","1","1526493",""
+"42562222","2234770","2017-03-02 17:38:38","7","3009","<git><git-flow><gitkraken>","gitkraken doesn't automatically delete remote feature branches","<p>Using gitkraken with a gitflow-enabled repository and trying to figure out how to finish a feature branch in such a way so as to also delete from remote that feature branch if it exists. When you use the git-flow scripts this happens for you automatically. with gitkraken there doesn't seem to be any mentions on this in the manual. Am I missing something or is there no way to do this automatically with gitkraken? </p>
+","2","2234770","0"
+"51089705","2726331","2018-06-28 19:01:24","2","4342","<git><gitkraken>","GitKraken is not ignoring cache files in .gitignore","<p>The following is a snippet from my local .gitignore file:</p>
+
+<pre><code># files ending in .cache can be ignored
+*.[Cc]ache
+# but keep track of directories ending in .cache
+!*.[Cc]ache/
+</code></pre>
+
+<p>Despite this, GitKraken detects hundreds of StyleCop cache files of the form:</p>
+
+<pre><code>a/b/c.d/StyleCop.Cache
+</code></pre>
+
+<p>as unstaged, new files in my project directory. Other Git tools like Git Bash and Visual Studio's built-in Git support are correctly ignoring the cache files and not ignoring directories that end in .Cache.</p>
+
+<p>I've tried adding the line:</p>
+
+<pre><code>*.Cache
+</code></pre>
+
+<p>to the projects .git/info/exclude file and even added a global ignore file that my .gitconfig points to using the key core.excludesfile with the exclusion, but GitKraken still detects the StyleCop cache files. If I add the *.Cache pattern to the end of my local .gitignore file, then GitKraken ignores the files, but I am not in charge of the contents of the .gitignore file for this project and would need to make an argument for modifying it for a specific tool that only I am using.</p>
+
+<p>How can I get GitKraken to ignore the .Cache files without modifying my local .gitignore file?</p>
+","1","2726331",""
+"69441733","6014384","2021-10-04 19:58:00","1","38","<git><gitignore><gitkraken>","Contents of gitignore duplicated on pull","<p>When one particular user pulls a repo (using GitKraken), the gitignore file immediately is added as a work in progress. When he opens the file, the contents are duplicated. This:</p>
+<pre><code># Placing a # in front of any of the items listed below (e.g., #analyzer) will  #
+# allow these items to be pushed to your Git repository. Keep in mind the more  #
+# files you push to your repository, the more your performance may be affected. #
+#################################################################################
+
+/Output
+/Analyzer
+/FileSync
+/Project/Users
+/.svn
+**/Thumbs.db
+
+#################################################################################
+# Add items to be ignored below                                                 #
+#################################################################################
+
+**/Corel Auto-Preserve
+*.bak
+/.ini
+</code></pre>
+<p>turns into this:</p>
+<pre><code># Placing a # in front of any of the items listed below (e.g., #analyzer) will #
+# allow these items to be pushed to your Git repository. Keep in mind the more #
+# files you push to your repository, the more your performance may be affected. #
+#################################################################################
+
+/Output
+/Analyzer
+/FileSync
+/Project/Users
+/.svn
+**/Thumbs.db
+
+#################################################################################
+# Add items to be ignored below #
+#################################################################################
+
+#################################################################################
+# Placing a # in front of any of the items listed below (e.g., #analyzer) will #
+# allow these items to be pushed to your Git repository. Keep in mind the more #
+# files you push to your repository, the more your performance may be affected. #
+#################################################################################
+
+
+
+/Output
+/Analyzer
+/FileSync
+/Project/Users
+/.svn
+**/Thumbs.db
+
+
+
+#################################################################################
+# Add items to be ignored below #
+#################################################################################
+
+
+
+**/Corel Auto-Preserve
+*.bak
+/.ini
+</code></pre>
+<p>My current solution to him is to simply discard the change and keep going with the rest of his work.</p>
+<p>Any ideas as to why this is happening and how to prevent it?</p>
+","2","6014384","0"
+"42626456","277067","2017-03-06 13:07:29","5","2621","<git><gitkraken>","What does this git graph mean?","<p>Our team is new to git (we are more an svn shop). We are trying to figure out the concepts, but sometimes we see odd results.</p>
+
+<p>For example, here is a screenshot from GitKraken :</p>
+
+<p><a href=""https://i.stack.imgur.com/WJDSj.png"" rel=""noreferrer""><img src=""https://i.stack.imgur.com/WJDSj.png"" alt=""Git Kraken Screenshot""></a></p>
+
+<p>The blue line is the master branch, why is there a gap here? Which git command could reproduce this and is there any problem doing this?</p>
+","2","277067",""
+"61698791","11508914","2020-05-09 15:00:45","0","401","<git><gitkraken>","fatal: not a git repository - GitKraken: could not find a compatible repo","<p>I moved my whole git project from on pc to another. and now my when i try to open it with gitKraken i get the erro ""could't find a compatible repository"". The folder has inside an .git file. when i run git -status i get the error ""fatal:not a git repository"". Inside the .git file it has these 2 folders ""objects  refs"". Also inside refs it has ""heads  remotes    tags"". 
+I don't know if that info helps but some problem must be with the .git folder.Also another info is that i was making local commits in that project folders,if that helps somehow. 
+If someone could help it would be much appreciated. </p>
+","1","11508914",""
+"43037936","5117585","2017-03-27 04:25:47","4","3267","<repo><gitkraken>","Open repo using gitkraken got stuck in a loop","<p>I have cloned a repo using gitkraken successfully but unable to open that repo. It is in a loop. Please let me know what need to be done to open repo.</p>
+
+<p>Thank you</p>
+","1","5117585",""
+"61243381","3007714","2020-04-16 05:36:33","1","136","<git><git-flow><git-config><gitkraken>","What is Gitkraken's default git-config esp. for gitflow","<p>Gitkraken does not follow the default Git settings. When I use <em>git</em> and <em>git flow</em> from the command line, the operations taken are different from what Gitkraken performs.  On the command line, doing <code>git merge</code> by default does a fast forward.  Gitkraken does not fast-forward when merging.  When using <em>git flow</em> from the command line, finishing a feature also does a fast forward by default.  When finishing a hotfix, if <em>nobackmerge</em> is false and <em>notag</em> is true, gitflow will merge master into develop, which seems at odds with the git flow workflow.  This does not happen in Gitkraken when a hotfix is not tagged.  I looked through Gitkran's <em>.gitkraken</em> directory and could not find any git settings.  I also looked in the <em>.gitconfig</em> directories where I used Gitkraken, hoping to find what settings it uses.  It appears Gitkraken passes built-in default arguments to the git commands that it runs without disclosing it, and ignoring any user Git settings. So far, by using <em>git flow</em> on the command line and Gitkraken in separate directories, and then looking at the <em>git reflog</em>, I've been able to find that these settings are being emulated:</p>
+
+<pre><code>[merge]
+    ff = false
+[pull]
+    ff = true
+[gitflow]
+    multi-hotfix = true
+[gitflow ""hotfix.finish""]
+    nobackmerge = true
+    no-ff = true
+[gitflow ""feature.finish""]
+    no-ff = true
+</code></pre>
+
+<p>These options are selected interactively</p>
+
+<pre><code>[gitflow ""hotfix.finish""]
+    notag = true|false
+    keep = true|false
+[gitflow ""feature.finish""]
+    notag = true|false
+    keep = true|false
+</code></pre>
+
+<p>I am trying to set up .gitconfig so that command line Git's default behavior approximates Gitkraken's behavior.</p>
+","0","3007714",""
+"44485013","4971352","2017-06-11 14:35:26","1","164","<git><github><commit><gitkraken>","GitKraken commit to github with userrname","<p>Recently switched to GitKraken and everything is great except that it commits to github not with my account username but with my real name. Wondering how to switch it to the username from github.
+Here is a screenshot from when I used Github's client and GitKraken now.</p>
+
+<p><a href=""https://i.stack.imgur.com/QbA9r.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/QbA9r.png"" alt=""enter image description here""></a></p>
+","0","4971352",""
+"63004635","185478","2020-07-20 22:20:07","1","362","<git><gitkraken>","GitKraken refuses to open local repository if directory is named <something>.git -- any workaround?","<p>I name my local repository folders <code>project_name.git</code>.</p>
+<p>GitKraken does not like this convention.
+Local repositories stored in directory with <code>.git</code> suffix fail to open (the same repo works if i drop the <code>.git</code> suffix).</p>
+<p>I have dozens of repositories locally, I'm not gonna rename them all.
+But i would love to keep using GitKraken, it's great.</p>
+<p>Did anyone bump into this issue and find a workaround?</p>
+<p>(I created a support ticket with them weeks ago, and never got an answer)</p>
+","0","185478","0"
+"52637679","5665986","2018-10-04 01:23:02","1","281","<git><macos><github><gitkraken>","After git pull using GitKraken, my local unstaged file disappeared","<p>I modified a file locally but I didn't stage or commit it. After I did a git pull, that file got replaced by a version created by my teammate. How can I recovery the version that I created?</p>
+","0","5665986","0"
+"52646641","5289209","2018-10-04 12:23:50","0","1116","<git><gitkraken>","How to show whole gitkraken branch tree?","<p>I cloned huge repository from github. I want to examine it in gitkraken, but unfortunately I am able to see only the branch tree from the last half a year. Is it possible to make whole branch tree visible?</p>
+","0","5289209",""
+"53515085","5574096","2018-11-28 08:27:19","2","1034","<git><version-control><gitignore><gitkraken>","Gitkraken doesn't understand gitignore","<p>I have generated a Laravel project with all the .gitignore files.<br>
+I put some images in the <code>storage\app\public</code> folder which I don't want to push.<br>
+Gitkraken offers the option to stage this files, but they are in the .gitignore like this:  </p>
+
+<pre><code>*
+!public/
+!.gitignore
+</code></pre>
+
+<p>(This is in the <code>storage\app\public</code> folder)</p>
+
+<p><code>VSCode</code> sees this, and doesn't offer the option to stage which is fine, but Gitkraken does.<br>
+If I right click on the folder and select <code>Ignore all files in \storage</code> is not an option because that way adds a new line to my top-level gitignore file for ignoring the <code>\storage</code> folder which I don't want.</p>
+","2","5574096","0"
+"70450036","2490877","2021-12-22 13:44:05","0","996","<git><ssh><gitkraken>","GitKraken: Configured SSH key is invalid for self-hoster git repository","<p>I'm trying use GitKraken with my existing git repository hosted on a Synology NAS (web-managed, if this can make a difference).</p>
+<p>I could clone and push elements via command prompt, no problem with</p>
+<pre><code>git clone ssh://user@myServervolume1/path/myGit
+</code></pre>
+<p>I can clone/commit/pull via command prompt but when I do it via GitKraken, I get a &quot;Configured SSH key is invalid&quot; error.</p>
+<p>So I tried by generating a new key via GitKraken and installing it as described <a href=""https://gist.github.com/walkerjeffd/374750c366605cd5123d"" rel=""nofollow noreferrer"">here</a>, but nothing changed. Event <a href=""https://stackoverflow.com/questions/41145054/invalid-ssh-keys-on-gitkraken/46460522"">this post</a> was no help - what am I doing wrong here?</p>
+<p><strong>EDIT</strong></p>
+<p>YES I <em><strong>CAN</strong></em> <code>git clone, push, pull</code> with users from command line, and I can also <code>ssh</code> to the server, although only with admin users (seems to be Synology's new standard). So I made absolutely sure that I use the admin user in the remote URL - same problem.</p>
+<p>Here is the output for <code>ssh -vvv</code>:</p>
+<pre><code>    OpenSSH_8.2p1 Ubuntu-4ubuntu0.3, OpenSSL 1.1.1f  31 Mar 2020
+    debug1: Reading configuration data /etc/ssh/ssh_config
+    debug1: /etc/ssh/ssh_config line 19: include /etc/ssh/ssh_config.d/*.conf matched no files
+    debug1: /etc/ssh/ssh_config line 21: Applying options for *
+    debug2: resolving &quot;my.server.com&quot; port 22
+    debug2: ssh_connect_direct
+    debug1: Connecting to my.server.com [I.HIDE.THE.IP] port 22.
+    debug1: Connection established.
+    debug1: identity file /home/user/.ssh/id_rsa type -1
+    debug1: identity file /home/user/.ssh/id_rsa-cert type -1
+    debug1: identity file /home/user/.ssh/id_dsa type -1
+    debug1: identity file /home/user/.ssh/id_dsa-cert type -1
+    debug1: identity file /home/user/.ssh/id_ecdsa type -1
+    debug1: identity file /home/user/.ssh/id_ecdsa-cert type -1
+    debug1: identity file /home/user/.ssh/id_ecdsa_sk type -1
+    debug1: identity file /home/user/.ssh/id_ecdsa_sk-cert type -1
+    debug1: identity file /home/user/.ssh/id_ed25519 type -1
+    debug1: identity file /home/user/.ssh/id_ed25519-cert type -1
+    debug1: identity file /home/user/.ssh/id_ed25519_sk type -1
+    debug1: identity file /home/user/.ssh/id_ed25519_sk-cert type -1
+    debug1: identity file /home/user/.ssh/id_xmss type -1
+    debug1: identity file /home/user/.ssh/id_xmss-cert type -1
+    debug1: Local version string SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.3
+    debug1: Remote protocol version 2.0, remote software version OpenSSH_7.4
+    debug1: match: OpenSSH_7.4 pat OpenSSH_7.0*,OpenSSH_7.1*,OpenSSH_7.2*,OpenSSH_7.3*,OpenSSH_7.4*,OpenSSH_7.5*,OpenSSH_7.6*,OpenSSH_7.7* compat 0x04000002
+    debug2: fd 3 setting O_NONBLOCK
+    debug1: Authenticating to my.server.com:22 as 'admin_user'
+    debug3: hostkeys_foreach: reading file &quot;/home/user/.ssh/known_hosts&quot;
+    debug3: record_hostkey: found key type ECDSA in file /home/user/.ssh/known_hosts:1
+    debug3: load_hostkeys: loaded 1 keys from my.server.com
+    debug3: order_hostkeyalgs: prefer hostkeyalgs: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521
+    debug3: send packet: type 20
+    debug1: SSH2_MSG_KEXINIT sent
+    debug3: receive packet: type 20
+    debug1: SSH2_MSG_KEXINIT received
+    debug2: local client KEXINIT proposal
+    debug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-c
+    debug2: host key algorithms: ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,ssh-ed25519,sk-ssh-ed25519@openssh.com,rsa-sha2-512,rsa-sha2-256,ssh-rsa
+    debug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+    debug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+    debug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+    debug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+    debug2: compression ctos: none,zlib@openssh.com,zlib
+    debug2: compression stoc: none,zlib@openssh.com,zlib
+    debug2: languages ctos: 
+    debug2: languages stoc: 
+    debug2: first_kex_follows 0 
+    debug2: reserved 0 
+    debug2: peer server KEXINIT proposal
+    debug2: KEX algorithms: curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,diffie-hellman-group14-sha1
+    debug2: host key algorithms: ssh-rsa,rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+    debug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+    debug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+    debug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+    debug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+    debug2: compression ctos: none,zlib@openssh.com
+    debug2: compression stoc: none,zlib@openssh.com
+    debug2: languages ctos: 
+    debug2: languages stoc: 
+    debug2: first_kex_follows 0 
+    debug2: reserved 0 
+    debug1: kex: algorithm: curve25519-sha256
+    debug1: kex: host key algorithm: ecdsa-sha2-nistp256
+    debug1: kex: server-&gt;client cipher: chacha20-poly1305@openssh.com MAC: &lt;implicit&gt; compression: none
+    debug1: kex: client-&gt;server cipher: chacha20-poly1305@openssh.com MAC: &lt;implicit&gt; compression: none
+    debug3: send packet: type 30
+    debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+    debug3: receive packet: type 31
+    debug1: Server host key: ecdsa-sha2-nistp256 SHA256:xrbGE5Me8Wy3z4vLPtZmq88w7uX0MnKUT/SxLiTxwR4
+    debug3: hostkeys_foreach: reading file &quot;/home/user/.ssh/known_hosts&quot;
+    debug3: record_hostkey: found key type ECDSA in file /home/user/.ssh/known_hosts:1
+    debug3: load_hostkeys: loaded 1 keys from my.server.com
+    debug3: hostkeys_foreach: reading file &quot;/home/user/.ssh/known_hosts&quot;
+    debug3: record_hostkey: found key type ECDSA in file /home/user/.ssh/known_hosts:2
+    debug3: load_hostkeys: loaded 1 keys from I.HIDE.THE.IP
+    debug1: Host 'my.server.com' is known and matches the ECDSA host key.
+    debug1: Found key in /home/user/.ssh/known_hosts:1
+    debug3: send packet: type 21
+    debug2: set_newkeys: mode 1
+    debug1: rekey out after 134217728 blocks
+    debug1: SSH2_MSG_NEWKEYS sent
+    debug1: expecting SSH2_MSG_NEWKEYS
+    debug3: receive packet: type 21
+    debug1: SSH2_MSG_NEWKEYS received
+    debug2: set_newkeys: mode 0
+    debug1: rekey in after 134217728 blocks
+    debug1: Will attempt key:  RSA SHA256:mxkdZTWy2TZ48/Sww9rjP7GWwLPhyH43RGZouRgodtM agent
+    debug1: Will attempt key: /home/user/.ssh/id_rsa 
+    debug1: Will attempt key: /home/user/.ssh/id_dsa 
+    debug1: Will attempt key: /home/user/.ssh/id_ecdsa 
+    debug1: Will attempt key: /home/user/.ssh/id_ecdsa_sk 
+    debug1: Will attempt key: /home/user/.ssh/id_ed25519 
+    debug1: Will attempt key: /home/user/.ssh/id_ed25519_sk 
+    debug1: Will attempt key: /home/user/.ssh/id_xmss 
+    debug2: pubkey_prepare: done
+    debug3: send packet: type 5
+    debug3: receive packet: type 7
+    debug1: SSH2_MSG_EXT_INFO received
+    debug1: kex_input_ext_info: server-sig-algs=&lt;ssh-ed25519,ssh-rsa,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521&gt;
+    debug3: receive packet: type 6
+    debug2: service_accept: ssh-userauth
+    debug1: SSH2_MSG_SERVICE_ACCEPT received
+    debug3: send packet: type 50
+    debug3: receive packet: type 51
+    debug1: Authentications that can continue: publickey,password
+    debug3: start over, passed a different list publickey,password
+    debug3: preferred gssapi-with-mic,publickey,keyboard-interactive,password
+    debug3: authmethod_lookup publickey
+    debug3: remaining preferred: keyboard-interactive,password
+    debug3: authmethod_is_enabled publickey
+    debug1: Next authentication method: publickey
+    debug1: Offering public key:  RSA SHA256:mxkdZTWy2TZ48/Sww9rjP7GWwLPhyH43RGZouRgodtM agent
+    debug3: send packet: type 50
+    debug2: we sent a publickey packet, wait for reply
+    debug3: receive packet: type 51
+    debug1: Authentications that can continue: publickey,password
+    debug1: Trying private key: /home/user/.ssh/id_rsa
+    debug3: no such identity: /home/user/.ssh/id_rsa: No such file or directory
+    debug1: Trying private key: /home/user/.ssh/id_dsa
+    debug3: no such identity: /home/user/.ssh/id_dsa: No such file or directory
+    debug1: Trying private key: /home/user/.ssh/id_ecdsa
+    debug3: no such identity: /home/user/.ssh/id_ecdsa: No such file or directory
+    debug1: Trying private key: /home/user/.ssh/id_ecdsa_sk
+    debug3: no such identity: /home/user/.ssh/id_ecdsa_sk: No such file or directory
+    debug1: Trying private key: /home/user/.ssh/id_ed25519
+    debug3: no such identity: /home/user/.ssh/id_ed25519: No such file or directory
+    debug1: Trying private key: /home/user/.ssh/id_ed25519_sk
+    debug3: no such identity: /home/user/.ssh/id_ed25519_sk: No such file or directory
+    debug1: Trying private key: /home/user/.ssh/id_xmss
+    debug3: no such identity: /home/user/.ssh/id_xmss: No such file or directory
+    debug2: we did not send a packet, disable method
+    debug3: authmethod_lookup password
+    debug3: remaining preferred: ,password
+    debug3: authmethod_is_enabled password
+    debug1: Next authentication method: password
+    admin_user@my.server.com's password: 
+    debug3: send packet: type 50
+    debug2: we sent a password packet, wait for reply
+    debug3: receive packet: type 52
+    debug1: Authentication succeeded (password).
+    Authenticated to my.server.com ([I.HIDE.THE.IP]:22).
+    debug1: channel 0: new [client-session]
+    debug3: ssh_session2_open: channel_new: 0
+    debug2: channel 0: send open
+    debug3: send packet: type 90
+    debug1: Requesting no-more-sessions@openssh.com
+    debug3: send packet: type 80
+    debug1: Entering interactive session.
+    debug1: pledge: network
+    debug3: receive packet: type 80
+    debug1: client_input_global_request: rtype hostkeys-00@openssh.com want_reply 0
+    debug3: receive packet: type 91
+    debug2: channel_input_open_confirmation: channel 0: callback start
+    debug2: fd 3 setting TCP_NODELAY
+    debug3: ssh_packet_set_tos: set IP_TOS 0x10
+    debug2: client_session2_setup: id 0
+    debug2: channel 0: request pty-req confirm 1
+    debug3: send packet: type 98
+    debug1: Sending environment.
+    debug3: Ignored env SHELL
+    debug3: Ignored env SESSION_MANAGER
+    debug3: Ignored env QT_ACCESSIBILITY
+    debug3: Ignored env COLORTERM
+    debug3: Ignored env XDG_CONFIG_DIRS
+    debug3: Ignored env XDG_MENU_PREFIX
+    debug3: Ignored env GNOME_DESKTOP_SESSION_ID
+    debug1: Sending env LC_ADDRESS = de_CH.UTF-8
+    debug2: channel 0: request env confirm 0
+    debug3: send packet: type 98
+    debug3: Ignored env GNOME_SHELL_SESSION_MODE
+    debug1: Sending env LC_NAME = de_CH.UTF-8
+    debug2: channel 0: request env confirm 0
+    debug3: send packet: type 98
+    debug3: Ignored env SSH_AUTH_SOCK
+    debug3: Ignored env XMODIFIERS
+    debug3: Ignored env DESKTOP_SESSION
+    debug1: Sending env LC_MONETARY = de_CH.UTF-8
+    debug2: channel 0: request env confirm 0
+    debug3: send packet: type 98
+    debug3: Ignored env SSH_AGENT_PID
+    debug3: Ignored env GTK_MODULES
+    debug3: Ignored env PWD
+    debug3: Ignored env LOGNAME
+    debug3: Ignored env XDG_SESSION_DESKTOP
+    debug3: Ignored env XDG_SESSION_TYPE
+    debug3: Ignored env GPG_AGENT_INFO
+    debug3: Ignored env XAUTHORITY
+    debug3: Ignored env GJS_DEBUG_TOPICS
+    debug3: Ignored env WINDOWPATH
+    debug3: Ignored env HOME
+    debug3: Ignored env USERNAME
+    debug3: Ignored env IM_CONFIG_PHASE
+    debug1: Sending env LC_PAPER = de_CH.UTF-8
+    debug2: channel 0: request env confirm 0
+    debug3: send packet: type 98
+    debug1: Sending env LANG = en_US.UTF-8
+    debug2: channel 0: request env confirm 0
+    debug3: send packet: type 98
+    debug3: Ignored env LS_COLORS
+    debug3: Ignored env XDG_CURRENT_DESKTOP
+    debug3: Ignored env VTE_VERSION
+    debug3: Ignored env GNOME_TERMINAL_SCREEN
+    debug3: Ignored env INVOCATION_ID
+    debug3: Ignored env MANAGERPID
+    debug3: Ignored env GJS_DEBUG_OUTPUT
+    debug3: Ignored env LESSCLOSE
+    debug3: Ignored env XDG_SESSION_CLASS
+    debug3: Ignored env TERM
+    debug1: Sending env LC_IDENTIFICATION = de_CH.UTF-8
+    debug2: channel 0: request env confirm 0
+    debug3: send packet: type 98
+    debug3: Ignored env LESSOPEN
+    debug3: Ignored env USER
+    debug3: Ignored env GNOME_TERMINAL_SERVICE
+    debug3: Ignored env DISPLAY
+    debug3: Ignored env SHLVL
+    debug1: Sending env LC_TELEPHONE = de_CH.UTF-8
+    debug2: channel 0: request env confirm 0
+    debug3: send packet: type 98
+    debug3: Ignored env QT_IM_MODULE
+    debug1: Sending env LC_MEASUREMENT = de_CH.UTF-8
+    debug2: channel 0: request env confirm 0
+    debug3: send packet: type 98
+    debug3: Ignored env XDG_RUNTIME_DIR
+    debug1: Sending env LC_TIME = de_CH.UTF-8
+    debug2: channel 0: request env confirm 0
+    debug3: send packet: type 98
+    debug3: Ignored env JOURNAL_STREAM
+    debug3: Ignored env XDG_DATA_DIRS
+    debug3: Ignored env PATH
+    debug3: Ignored env GDMSESSION
+    debug3: Ignored env DBUS_SESSION_BUS_ADDRESS
+    debug1: Sending env LC_NUMERIC = de_CH.UTF-8
+    debug2: channel 0: request env confirm 0
+    debug3: send packet: type 98
+    debug3: Ignored env _
+    debug2: channel 0: request shell confirm 1
+    debug3: send packet: type 98
+    debug2: channel_input_open_confirmation: channel 0: callback done
+    debug2: channel 0: open confirm rwindow 0 rmax 32768
+    debug3: receive packet: type 99
+    debug2: channel_input_status_confirm: type 99 id 0
+    debug2: PTY allocation request accepted on channel 0
+    debug2: channel 0: rcvd adjust 2097152
+    debug3: receive packet: type 99
+    debug2: channel_input_status_confirm: type 99 id 0
+    debug2: shell request accepted on channel 0
+</code></pre>
+","4","2490877",""
+"46801140","2035296","2017-10-18 00:37:21","0","214","<git><push><gitkraken>","Push to github and gitlab erros","<p>I'm trying to push to my GitHub repository (i have also tried pushing to a GitLab repository) and it isn't working. I have been using GitKraken, and i get an error ""malformed URL"" then lists the URL I am trying to push to. I have also tried pushing through git commands and i get the error ""fatal: Unable to look up https (port 9418) (No such host is known. )""</p>
+
+<p>I can't find much online about this, what is the error?</p>
+
+<p>Edit:
+It's a private repository. The URL is <a href=""https://github.com/egroeg121/App-Budgey.git"" rel=""nofollow noreferrer"">https://github.com/egroeg121/App-Budgey.git</a>
+On GitKraken I am just trying to push a previous commit that hasn't gone up yet. It says malformed url</p>
+
+<p>On git I have committed the changes. I then use ""git remote add origin <a href=""https://github.com/egroeg121/App-Budgey.git"" rel=""nofollow noreferrer"">https://github.com/egroeg121/App-Budgey.git</a>"" to try to set that as the working url. It gives me the error fatal:remote origin already exists. Then if I try to push i get the error i previously talked to.</p>
+","3","2035296",""
+"46826918","8542377","2017-10-19 09:36:13","0","528","<githooks><gitkraken>","GitKraken make message with git hook","<p><strong>Is it possible to make a message in GitKraken so the developer sees if the git hook manipulated his commit ?</strong></p>
+
+<p>I write git hooks where some files are not allowed to be send to the server and reset them in the commit. How can I make this visible to the developer in GitKraken ? It would be very bad if he does not see that a file which he commited was not commited.</p>
+","0","8542377",""
+"70604408","15391706","2022-01-06 08:34:09","0","259","<visual-studio-code><gitkraken>","gitkraken abruply closes while opening a repo","<p>I just installed gitkraken(8.2.1) in grauda arch linux and as soon as i click open a repo button it abruptly closes without any warning or error.</p>
+<p>I have found some solutions like this:</p>
+<ol>
+<li>tried deleting .gitkraken dir</li>
+<li>reinstalling gitkraken</li>
+<li>didn't run vscode concurrently with gitkraken</li>
+</ol>
+<p>But nothing seems to work. If anyone can solve this issue i highly appreciate it.</p>
+","0","15391706",""
+"64741421","14601341","2020-11-08 18:03:54","1","317","<git><github><gitkraken>","Do you have any idea why my contributions using gitKraken won't show up on my gitHub account?","<p>so I'm logged in to gitKraken using my github account.</p>
+<p>I have 2 email addresses associated to my github account and I'm connected to gitKraken using my github account (using eventually my primary email address).</p>
+<p>I've just discovered recently that my contributions using gitKraken didn't show up neither in the github projects nor in my github profile. It's like a non-existent user as you can see in this picture showing the network graph of one of the projects: <a href=""https://i.stack.imgur.com/mjWy4.png"" rel=""nofollow noreferrer"">network graph showing non-existent user profile</a></p>
+<p>I'm working with 2 friends and I'm not even being recognized as a contributor: <a href=""https://i.stack.imgur.com/uZMtu.png"" rel=""nofollow noreferrer"">contributors</a> which is weird since I was invited and I can see in my profile that I'm a contributor <a href=""https://i.stack.imgur.com/WvyMc.png"" rel=""nofollow noreferrer"">repositories tab in profile settings</a></p>
+<p>Even when I commit from gitKraken It's displayed as I'm not the same guy when I tested it doing a commit using the command line then doing another one using gitKraken as shown here: <a href=""https://i.stack.imgur.com/rLNK9.png"" rel=""nofollow noreferrer"">different profiles shown in gitKraken</a></p>
+<p>I'm really confused on how is this even possible? since my gitKraken account is linked to my github account and I'm using the same email address.</p>
+","2","14601341",""
+"46365433","4425138","2017-09-22 12:59:07","0","108","<git><github><gitkraken>","Making non-linear commits as linear in git","<p>I'm trying to learn git by trying different commands.</p>
+
+<p>I'm using ""GitKraken"" to visualize how the git commit ""graph"" changes as and when I try different commands.</p>
+
+<p>At one point , I used ""git reset --hard HEAD~2"" to go back to the previous 2 commits. </p>
+
+<p>Till that time the graph was linear. When I made changes to my file, staged them and committed them, the new commit became non-linear somehow. </p>
+
+<p>I wish to make that particular commit linear along with the other commits. Please refer to the image link mentioned </p>
+
+<p><a href=""https://i.stack.imgur.com/FHVWU.png"" rel=""nofollow noreferrer"">Git Non-Linear state</a></p>
+","2","4425138","0"
+"65626858","3034268","2021-01-08 09:58:57","1","74","<git><rebase><githooks><gitkraken>","How to highlight files that were also modified in commits after the common ancestor during a git rebase?","<p>While doing a <code>rebase</code>, git is doing its &quot;magic&quot; by doing an auto-merge.</p>
+<p>Even if there is no conflict, I would like to be warned on the files that were also modified in the other branch.</p>
+<p>In another words, if I am working on a file, I would like to know if others of my team had worked on the same file in the meantime. It could reveal a lack of communication while working on the project.
+Therefore, I would like a kind of report or a warning.</p>
+<p>I would say that the worst case scenario is when there is no conflict because git is rebasing silently my modifications on files that require my attention.</p>
+<p>I do not know if it is possible to do it with <code>pre-rebase hook</code> but I would like the solution to be integrated with git client like <code>Gitkraken</code>.</p>
+<p>On some git client, I could see the list of files for '<code>AHEAD</code>' and '<code>BEHIND</code>', I would like the intersection of both.</p>
+<p>I am pretty sure that I am not the first one asking that question but I could not find any answer on this specific topic.</p>
+<p>I hope I was clear enough, thanks</p>
+","0","3034268",""
+"47487500","4475172","2017-11-25 15:20:41","6","3374","<git><version-control><git-commit><gitkraken>","How to git checkout such a particular commit using GitKraken?","<p>I am using GitKraken, a gui client of git vcs.
+GitKraken is also a single place for all my Git repositories.
+But i didn't find any option where i can go such a particular commit that i have already used in my git bash using 
+""git checkout "" command.</p>
+","1","4475172","0"
+"66047819","11574750","2021-02-04 14:39:56","10","2318","<git><gitkraken>","gitKraken throw ""failed to retrieve list of ssh authentication methods error waiting on socket""","<p>I use gitKraken and I get an error when I'm trying to pull from master.</p>
+<p>&quot;failed to retrieve list of ssh authentication methods error waiting on socket&quot;</p>
+<p>I tried to generate a new ssh key and put it in my bitBucket repository but it didn't help.</p>
+<ul>
+<li>I can't use the integration feature in gitKraken.</li>
+</ul>
+<p>Any help will be great,
+Thanks.</p>
+","5","11574750","0"
+"55187887","10558264","2019-03-15 17:26:45","1","94","<git><gitkraken>","Make a pull request / reset in gitkraken","<p>I've tried to make a pull to my project in gitkraken but this message keeps showing up:<br>
+<img src=""https://i.stack.imgur.com/QG9v0.png"" alt=""pull"">     </p>
+
+<p>and also when i try disc ard all changes I get this:<br>
+<img src=""https://i.stack.imgur.com/YNFzG.png"" alt=""reset"">.<br>
+ Any advice?  </p>
+","1","10558264","0"
+"55218012","11133769","2019-03-18 09:20:04","4","3734","<gitkraken>","What will gitkraken do when I click the label ""mark all resolved""?","<p>What will git do when I click the label ""mark all resolved"" on GitKraken  which can resolve merging conflicts?</p>
+","0","11133769","0"
+"55274662","8729682","2019-03-21 06:11:00","1","1625","<git-config><gitkraken>","Unable to update git config: failed to lock file [home]/snap/gitkraken/137/.gitconfig.lock' for writing:","<p>So I installed the latest version of Gitkraken(v5.02) and wanted to try the new gpg key feature. Firstly, the documentation says that if you have an existing key, gitkraken will automatically use it, but mine doesn't. </p>
+
+<p>Also, when in the gpg settings menu, I chose the sign commits by default option,<br>
+<a href=""https://i.stack.imgur.com/ebwFz.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/ebwFz.png"" alt=""enter image description here""></a>  </p>
+
+<p>I get the following error:<br>
+<a href=""https://i.stack.imgur.com/F0vRa.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/F0vRa.png"" alt=""enter image description here""></a></p>
+
+<p>Though I tried deleting the .gitconfig.lock file and even reinstalled gitkraken, I can't get it to work. </p>
+
+<p>Am I missing something obvious?</p>
+
+<p>EDIT: I installed gitkraken using snap:</p>
+
+<pre><code>sudo snap install gitkraken
+</code></pre>
+","3","8729682","0"
+"52953868","","2018-10-23 16:31:35","1","473","<git><github><gitkraken>","how do I squash two commits from a non-master branch into one in git?","<p>Actually, I used the command git log: it showed commits made by me + commits others made to the master branch.
+I have to squash two commits made by me for a pull request into one.
+and I made commits using a non-master forked branch.
+Please guide me.</p>
+","8","",""
+"53044568","893102","2018-10-29 11:29:10","1","549","<git><diff><gitkraken>","comparing two arbitary files with the internal gitkraken diff tool?","<p>gitkraken hasn't detected a file has been moved and renamed. In any case, Is there any way to diff between two arbitary files, without using an external diff tool?</p>
+","0","893102",""
+"53095541","870599","2018-11-01 05:18:00","27","3445","<gitkraken>","Commit message with --no-verify with git kraken","<p>I want to ignore git hook in some scenario i have.</p>
+
+<p>How can i commit using <code>gitKraken</code> while specifying <code>--no-verify</code> flag.</p>
+
+<p>Thanks.</p>
+","2","870599","0"
+"53234113","913951","2018-11-09 22:32:10","49","34664","<git><gitkraken>","gitkraken - How to compare 2 branches","<p>Is there any way to compare 2 branches (branch1 and branch2) with gitkraken?</p>
+
+<p>I want a list of files that have changes</p>
+","0","913951","0"
+"37219331","5731994","2016-05-13 21:07:42","4","8339","<git><magento><atom-editor><gitkraken>","Problems with certain git repos in GitKraken and Atom, causing Atom to be unusable","<p>We have recently tried switching from Sublime to Atom, and started using GitKraken also (we've mostly just been working with git in command line)</p>
+
+<p>We have some projects with git in it that cause serious issues. One main was that we work in almost daily is a Magento 1.9 site (although, we have other Magento 1.9 sites on git repos that have no problem with Atom). What happens is we open the project in Atom and we cannot open any files. It seems to hang on initializing git info (folders stay uncolored). </p>
+
+<p>Sometimes when we open up the project in Atom it works, most of the time it doesnt. We HAVE noticed a 1:1 correlation with GitKraken when this occurs - when we try to open the repo in gitkraken we get an error that it could not find any repo - even though it actually loads the repo just fine, albeit after a long delay. Other time this does not occur, and that's when it opens fine in Atom. We could leave it sitting there for a couple of hours untouched and come back to it and all of a sudden we cannot open any files. This happens to all users in the office.</p>
+
+<p>The problem with atom is definitely related to git. If we remove the repo and open the project then it works with no issues.</p>
+
+<p>I thought, maybe repo size or history had something to do with it, so we tried initializing a fresh repo, added the files and made our first commit, and still the same problem. Our git ignore file is almost identical to the other magento sites that have no problems with Atom or Gitkraken.</p>
+
+<p>Honestly it's such a weird problem I don't even know who to submit the bug report to, and we haven't found anything in our searching.</p>
+
+<p>**** One thing that we've discovered of note, every time we have this issue, if we run Git GUI within that git repo folder (simply just open git gui) then all of the problems with Atom and GitKraken disappear for a time. Eventually the problems just come back though.</p>
+","4","5731994","0"
+"70959388","4376378","2022-02-02 16:39:42","2","69","<gitkraken>","Is it possible to increase the size of the commit message preview in gitkraken","<p>When I want to see the commit history of a repo I like to look at the commit message. A lot of open source project add a lot of information in the commit message.</p>
+<p>One of those repo uses markdown to write those message and with the size of the text box it means I can only see the first line of the message.</p>
+<p>Is it possible to make the box bigger? I know I can scroll, but I pretty much have to scroll line by line and since the scroll bar is also very short it's not very precise. It makes it very hard to just read a basic commit message.</p>
+<p>Here's an example of what I'm talking about</p>
+<p><a href=""https://i.stack.imgur.com/YB5gD.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/YB5gD.png"" alt=""enter image description here"" /></a></p>
+<p>There's plenty of text under the first line and it's unreasonably hard to read it directly in gitkraken.</p>
+<p>It's technically possible to click on the message which will open the reword view that can be expanded, but I just want to read the message without risking an unnecessary reword.</p>
+","0","4376378",""
+"38324782","5784743","2016-07-12 09:21:10","5","6010","<git><phpstorm><bitbucket><gitignore><gitkraken>",".gitignore isn't ignoring my files","<p>I'm currently using BitBucket for my repos with the git engine. I'm not using github since is a private project, so I can't set it public. </p>
+
+<p>When I create my <code>.gitignore</code> file with gitignore.io, trying to ignore PhpStorm and WebStorm, Gitkraken (which is my git client on Mac) it isn't ignoring the <code>.idea</code> folder. And each time I change my workspace layout opening or closing a sidebar or a file, then git is tracking that change. I can't figure out what's wrong, since I've also tried to set <code>.idea/</code> in <code>.gitignore</code>, but the files inside it are still tracked... </p>
+
+<p>Any ideas?</p>
+","4","5784743","0"
+"67453729","15874938","2021-05-09 02:11:58","0","120","<git><github><gitkraken>","How can I drop commits in the git log if it isn't letting me?","<p>I'm trying to delete and remove the commits highlighted in the picture. However when I do interactive rebase and drop the commits it just makes the strand more complicated. How can I have one line of commits without the ones that I highlighted? By the way, some commits might have the same message but their source code is completely different. Please suggest both gitkraken and CLI git solutions.</p>
+<p><a href=""https://i.stack.imgur.com/pNXqJ.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/pNXqJ.png"" alt=""enter image description here"" /></a></p>
+<p>This is the diagram I am sort of looking for
+<a href=""https://i.stack.imgur.com/zyr6k.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/zyr6k.png"" alt=""git log diagram"" /></a>
+EDIT
+This is the updated diagram
+<a href=""https://i.stack.imgur.com/5YsTn.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/5YsTn.png"" alt=""enter image description here"" /></a></p>
+","8","15874938",""
+"67487943","15359239","2021-05-11 13:38:14","0","386","<docker><fedora><gitkraken><x11-forwarding>","GUI program (gitkraken) won't start in fedora docker","<p>I'm having trouble starting a Gitkraken (latest) in a fedora-based docker on windows.</p>
+<pre><code> export DISPLAY=168.1.23:0.0 &amp;&amp; gitkraken  &lt;---- exits immediately with exit code 0 :-(
+</code></pre>
+<p>Which is strange, because this works fine:</p>
+<pre><code> export DISPLAY=192.168.1.10 &amp;&amp; xeyes      &lt;---- works
+</code></pre>
+<p>And in WSL (running Ubuntu) I have no problems starting gui applications like this:</p>
+<pre><code> export DISPLAY=192.168.1.10 &amp;&amp; xeyes        &lt;---- works
+ export DISPLAY=192.168.1.10 &amp;&amp; gitkraken    &lt;---- works
+</code></pre>
+<p>The host machine is Win10 running vcxserver (without problems I suspect, since xeyes and firefox etc start fine)</p>
+<p>It must be some strange incompatibility with the packages in the fedora-docker.
+How do I examine this?</p>
+<p>I tried &quot;strace gitkraken&quot; ... which obviously gives a lot of info ...</p>
+<p>What can I try?</p>
+","0","15359239",""
+"49833703","9646146","2018-04-14 16:35:09","0","412","<git><github><gitlab><gitkraken>","Deleting a repo from git in my PC's folder without affecting the synchronized files at the other PCs","<p>I am a totally noob in GIT. 
+I cloned a repo from a project in Gitkraken, which is connected to GitLab.
+My question is: 
+If I delete the repo at my PC's folder, 
+would it affect the repos at the others PC's? 
+I am little feared that I can delete the whole project from the other computers. </p>
+
+<p>Thank you very much if you can help me</p>
+","0","9646146",""
+"51698712","2155605","2018-08-05 22:29:58","2","429","<git><gitkraken>","Does Git Kraken support global git hooks","<p>The Git Kraken documentation is not clear about support for global git hooks - only project git hooks.</p>
+
+<p>I tried running global git hooks through Git Kraken and I can't seem to get it to work. I don't know if this is because Git Kraken doesn't support them or if I'm doing something wrong.</p>
+
+<p>I have set the <code>hooksPath</code> git config variable to the directory of my global git hooks. They work when I commit through the terminal but not through Git Kraken.</p>
+
+<p>Has anyone managed to get global git hooks to work with Git Kraken?</p>
+","0","2155605","0"
+"71424127","1001184","2022-03-10 12:23:35","0","1025","<github><gitkraken>","Not able to clone private repo from github using ssh","<p>I have an account with github.com for some time now.  Have my ssh key added and can clone other public as well as private (once granted) repos without any problem.</p>
+<p>Below command to confirm that github authentication is successful.</p>
+<pre><code>$ ssh -T git@github.com
+Hi naidu! You've successfully authenticated, but GitHub does not provide shell access.
+$
+</code></pre>
+<p>Lately me and my friend was given access to a private repository. My friend can clone the repo but I cannot.  When I try, I get below error:</p>
+<pre><code>$ git clone git@github.com:private_org_repo/xxxx-yyyy.git
+Cloning into 'xxxx-yyyy'...
+ERROR: Repository not found.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+$
+</code></pre>
+<p>Searched whole internet looking for a possible glitch but I could not find any solution so far.  I am able to clone using https but this is not what I want.</p>
+<p>Anyone can give some clues on what else to try?</p>
+","4","1001184",""
+"54114455","1841243","2019-01-09 16:27:04","2","1030","<windows><git><gitkraken>","is it ok to copy a git folder in windows to manage multiple branches?","<p>I'm new to git and have a git repository that I use with GitKraken.
+In this repository I have multiple branches, and can move from branch to branch in order make modifications where necessary.</p>
+
+<p>I am now in a situation where I'll be making some large modifications to 1 branch that I do not want to commit but in the meantime I would like to make some minor modifications to another branch.</p>
+
+<p>I'm used to work with TFS and there I can just checkout branch to another folder.</p>
+
+<p>I've tried to just copy the folder and my first impression is that this should work....</p>
+
+<p>But, I have seen online remarks that say that I should clone a repository instead.</p>
+
+<p>The git version is lower then 2.5 so I can't use Git-worktree.</p>
+
+<p>Is it ok to just copy the folder or can this have an unexpected effect? </p>
+","3","1841243","0"
+"72195069","18480371","2022-05-11 03:29:56","1","336","<git><gitkraken><mergetool>","set GitKraken as git mergetool","<p>Is it possible to set GitKraken as the default git mergetool?  Something like this code for p4merge, but for GitKraken?</p>
+<p><code>git config --global merge.tool p4merge</code></p>
+<p><code> git config --global mergetool.p4merge.path &quot;/Applications/p4merge.app/Contents/MacOS/p4merge&quot;</code></p>
+<p>Handling merge conflicts in GitKraken is easiest, but I am not sure if it can be opened from the command line in the same way as other mergetools.</p>
+","1","18480371","0"
+"73453009","1634753","2022-08-23 04:01:53","2","64","<git><gitkraken>","git hook after commit to origin","<p>How can I have a gitkraken hook run AFTER a change is pushed to the remote master?</p>
+<p>More details:
+I am trying to have <code>PARENT</code> repo pull the latest version of <code>PRIVATE</code> repo on my local machine every time I push a change to the master branch of <code>PRIVATE</code>. I'm trying to use a gitkraken hook to accomplish this (Win10).</p>
+<p>Right now I have a post-commit hook setup on PRIVATE which does <code>cd PARENT &amp;&amp; npm update PRIVATE</code>. This isn't quite what I want because every time I push (before I commit to the remote master) the hook runs. So the hook runs before the commit to master is complete.</p>
+","0","1634753","0"
+"72581085","15207971","2022-06-11 01:21:36","0","33","<github><gitkraken>","How do I revert my github branch to develop?","<p>my main branch gives problems but my develop branch is working just fine. how can i set my main branch back to develop? i've tried reset and rebase and everything
+<a href=""https://i.stack.imgur.com/VjCFh.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/VjCFh.png"" alt=""image of my GitKraken"" /></a></p>
+","1","15207971",""
+"55606757","2540037","2019-04-10 07:14:04","5","8314","<git><gitkraken>","""could not find a compatible repository"" error on gitkraken repo","<p>I've got a repository that I've had for years, using through GitKraken. I just used the CLI to assign a tag (using the code <code>git tag -a v0.7.1 -m ""my version 0.7.1"" ea27f3b3ab882e58cbb5995f5d8638a200676a43</code> then <code>git push --tags</code>) to the repo, and after that GitKraken will not open it. It says there's no repository there and asks if I want to initialize a new repo.</p>
+
+<p>There are no problems with any of my other repos. Also, this repo works fine from the command line. I've tried deleting the folder manually, then cloning it again from github in the same place, but it didn't help. I've also tried <code>git reset --hard</code> locally, but to no use. Some google searching shows up things like long path names on deeply nested files, but I don't have that (and I'm on MacOS not Windows).</p>
+
+<p>Any ideas?</p>
+","0","2540037",""
+"72671688","9958178","2022-06-18 18:23:52","0","179","<git><github><ssl><gitkraken>","Gitkraken not working as says loaded tried loading github and SSH seems to be not working","<p>OS: Windows 10 Home 21H2
+Software: Gitkraken, Github
+Gitkraken version: Gitkraken Version x68 8.6.0</p>
+<p>Hello, I've got a student account for github and setting up gitkraken with it the thing is I have fully set up git and gitkraken with the SSH yet the application says loading and whenever I click add to github button it says no ssh seetting detected.</p>
+<p>I have tried doing this: <a href=""https://stackoverflow.com/questions/41145054/invalid-ssh-keys-on-gitkraken"">Invalid SSH keys on GitKraken</a></p>
+","1","9958178",""
+"55986806","11453237","2019-05-04 21:08:21","2","790","<git><gitkraken><pantheon>","How can I delete git commits that have already been reseted but still show up in history?","<p>I need to get rid of commits that I have already reseted and force pushed to origin; they keep coming up whenever I pull or clone the remote repo.</p>
+
+<p>I pushed commits to Pantheon's DEV environment, deployed on both TEST and LIVE environments. Later I did a hard reset to a certain commit and forced pushed to origin. Fast forward, when I cloned the repo again, I can still see the commits that I thought I had erased from history.</p>
+
+<p>I can't see them in terminal with <code>git log</code> but I like to use GitKraken to visually see my git history, and there they appear all the time. I tried to wipe the local repo because thought it was simply a local thing— on Pantheon's DEV environment they are gone after the force push.</p>
+
+<p>Nothings seems to solve this for me. Please help! My OCD is preventing me to ignore it and continue to do work and keep adding commits. I need my history to only show the commit where HEAD is currently at, and commits ahead of that to be gone from sight.</p>
+
+<p>This is how it looks like when I open the repo using GitKraken ——» <a href=""https://drive.google.com/file/d/1FAMZGG7BxfPMnz2-1q3pkLNv07iu-evU/view?usp=sharing"" rel=""nofollow noreferrer"">Screen Shot</a></p>
+","0","11453237",""
+"56156916","5359251","2019-05-15 20:10:23","6","377","<git><gitkraken><git-crypt>","GitKraken interoperability with git-crypt","<p><a href=""https://github.com/AGWA/git-crypt"" rel=""nofollow noreferrer"">git-crypt</a> works wonderfully when using git CLI.  I have set everything up appropriately for git-crypt (<code>.gitattributes</code>).  After creating/editing a file I want encrypted I perform:</p>
+<pre><code>git add .
+</code></pre>
+<p>The files have been staged and now I perform:</p>
+<pre><code>git commit -m &quot;Commit encrypted file&quot;
+git push
+</code></pre>
+<p>But when I use GitKraken and stage a file it does not seem to duplicate the <code>git add .</code> CLI.</p>
+<p>Has anyone successfully used GitKraken and git-crypt?</p>
+","1","5359251",""
+"56270959","9168839","2019-05-23 08:21:23","0","1091","<gitlab-ci><gitkraken>","How do I prevent .gitlab-ci.yml to be deleted when I push code to GitLab with GitKraken?","<p>I am new to GitLab. I have configured .gitlab-ci.yml via the GitLab interface. So .gitlab-ci.yml is not on my local machine. When I now push the code from my local machine to the repository on GitLab, .gitlab-ci.yml is deleted. I added .gitlab-ci.yml to .gitignore on both my local machine and GitLab, but the file still gets deleted. 
+What am I doing wrong?</p>
+","0","9168839",""
+"56339505","3672883","2019-05-28 09:51:50","2","622","<angular><git><shell><angular-cli><gitkraken>","ng is called instead of git when I use rebase or another flags","<p>Hello I have a machine in my job, with angular-cli and git installed.</p>
+
+<p>The problem is that when I try to do <code>git rebase</code>, or another ""complex"" git command, this returns the following:</p>
+
+<blockquote>
+  <p>The specified command (""/home/user/project/.git/COMMIT_EDITMSG"") is invalid. For a list of available options,
+      run ""ng help"".</p>
+  
+  <p>Did you mean ""make-this-awesome""?</p>
+</blockquote>
+
+<p>I try to solve this, uninstalling npm, and ng, but doesn't work.</p>
+
+<p>The <code>$PATH</code> is the following:</p>
+
+<blockquote>
+  <p>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/user/Android/Sdk/platform-tools:/home/user/Android/Sdk/tools</p>
+</blockquote>
+
+<p>but when I use gitkraken for example this error doesn't happen</p>
+
+<p>Any idea that how to solve it?</p>
+","4","3672883","0"
+"56356992","11238608","2019-05-29 09:12:17","0","555","<git><github><gitkraken>","How to login into Gitkraken using organisation git hub","<p>I have a pro git kraken account.I am exploring Glo boards to synchronize to my organization github but it always redirects to <a href=""https://github.com"" rel=""nofollow noreferrer"">https://github.com</a> .I have added my organization account into github enterprise with personal access token in the preferences option.
+How to login into my organization's git account?</p>
+","0","11238608",""
+"73204805","11963582","2022-08-02 09:06:02","1","89","<git><visual-studio-code><merge><diff><gitkraken>","How to swap input for external diff/merge tool in gitKraken?","<p>I use Visual Studio Code as an external diff and merge tool for gitKraken. Internal gitKraken tool represents the changes correctly but if I try to open them in the external tool then all added lines are shown in red (removed) and all removed lines are shown in green (added). Does someone know how to swap the windows, so the changes have correct color?
+See images below to understand the question better:</p>
+<p><a href=""https://i.stack.imgur.com/SJWNQ.png"" rel=""nofollow noreferrer"">GitKraken example</a></p>
+<p><a href=""https://i.stack.imgur.com/Ns0Gb.png"" rel=""nofollow noreferrer"">VS Code example</a></p>
+","0","11963582",""
