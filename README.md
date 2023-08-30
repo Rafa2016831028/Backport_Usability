@@ -23,3 +23,12 @@ SELECT Id as [Post Link], owneruserid as [User Link], CreationDate,
   FROM posts
  WHERE Title Like '%backport%' or Tags like '%backport%';
  ```
+
+ ```
+SELECT Id as [Post Link], owneruserid as [User Link], CreationDate,
+       Score, ViewCount, Tags, Title,Body, CommentCount,OwnerUserId
+       AnswerCount, FavoriteCount
+  FROM posts
+ WHERE Title Like '%cherry-pick%' or Body Like '%cherry-pick%';
+
+ ```
