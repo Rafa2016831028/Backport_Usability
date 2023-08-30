@@ -1,0 +1,687 @@
+Post Link,User Link,CreationDate,Score,ViewCount,Tags,Title,Body,CommentCount,AnswerCount,FavoriteCount
+"40623644","968262","2016-11-16 03:37:00","0","52","<git>","What does ""build products"" mean in git-clean manpage?","<blockquote>
+  <p>This allows removing all untracked files, including build products.</p>
+</blockquote>
+
+<p>This is a sentence to explain <code>-x</code> option of <code>git-clean</code>. What does the ""build proudcts"" mean here? I read the text several times, and I still don't quite understand without a clear context.</p>
+","0","968262",""
+"59816592","10965755","2020-01-20 03:17:13","3","683","<git>","Git: Exclude some files when ran git clean","<p>I want to clean up files which ignored by .gitignore, but I want to exclude some files specified by excluding options.
+And then, I don't want to remove untracked files.</p>
+
+<pre><code>dist                     (ignored)
+node_modules             (ignored)
+.env                     (ignored but I want to exclude for the cleanup)
+I_do_not_want_add_yet.js (untracked, I don't want cleanup some untracked files)
+package.json             (There are many other tracked files)
+</code></pre>
+
+<p>So I looked into <a href=""https://stackoverflow.com/questions/11085795/git-exclude-a-file-with-git-clean"">some posts</a> and tried the following command:</p>
+
+<pre class=""lang-sh prettyprint-override""><code>$ git clean -ndX -e .env
+Would remove dist/
+Would remove node_modules/
+Would remove .env   # Oops!
+
+$ git clean -ndX --exclude='!.env'
+Would remove dist/
+Would remove node_modules/
+Would remove .env   # Oops!
+
+$ git clean -ndx -e .env
+Would remove dist/
+Would remove node_modules/
+Would remove I_do_not_want_add_yet.js   # Oops!
+</code></pre>
+
+<p>Do you have good ideas?</p>
+","3","10965755","0"
+"34181010","1399275","2015-12-09 14:16:08","0","595","<git><atlassian-sourcetree>","SourceTree .gitignore extensions","<p>I'm very new to git/SourceTree. (2) other devs have committed extension files, such as <code>.proj</code>, <code>.cache</code>, etc into the <em>master</em> branch. I added a .gitignore file and merged that into the <em>master</em> branch (we have a <em>develop</em> branch as well now). However, after the merge, I built the project in VS, and I'm still seeing ""ignored"" files in my ""Unstaged files"" section in SourceTree.</p>
+
+<p>I read <a href=""https://stackoverflow.com/questions/21616463/gitignore-file-in-sourcetree-not-working"">here</a> that I need to ""stop tracking"" the files. When I do this (for the <code>.suo</code> for instance), it pops it up to the ""Staged files"" and has the red icon next to it. Is this correct, as should I do this for all files?</p>
+
+<p>I've also read about <a href=""https://git-scm.com/docs/git-clean"" rel=""nofollow noreferrer"">git clean</a>. </p>
+
+<blockquote>
+  <p>Cleans the working tree by recursively removing files that are not
+  under version control, starting from the current directory.</p>
+  
+  <p>Normally, only files unknown to Git are removed, <strong>but if the -x option
+  is specified, ignored files are also removed</strong>. This can, for example,
+  be useful to remove all build products.</p>
+</blockquote>
+
+<p>Would I run against the <em>master</em> branch in bash? Otherwise how would I go about cleaning the repository up, removing ignored files.</p>
+","0","1399275",""
+"57508742","996056","2019-08-15 11:07:12","1","1717","<bash><git><makefile>","Makefile target to check for clean git diff","<p>I am trying to write a <code>Makefile</code> target that checks for no uncomitted changes in the git repository where it is ran after running another target.</p>
+
+<p>This is what I have so far:</p>
+
+<pre><code>check-git-clean: other-target
+ifneq ($(shell git diff-index --quiet HEAD; echo $$?), 0)
+    $(error ""There are uncomitted changes after running make other-target"")
+endif
+</code></pre>
+
+<p>However, what I am experiencing is that if the <code>other-target</code> causes uncommitted changes, the <code>ifneq</code> will not catch it. On the other hand, if there were already uncommitted changes <em>before</em> I run <code>make check-git-clean</code>, then the <code>ifneq</code> does catch it.</p>
+
+<p>So, in a way, it's almost as if the <code>ifneq</code> is running ""before"" the <code>make other-target</code> but the CLI output (echo) I get are in the right order.</p>
+
+<p>I'm wondering how I can do this right.</p>
+","0","996056",""
+"74821215","3633608","2022-12-16 07:13:33","0","24","<hg-git>","hg-git: `unknown revision` with one git clone, ok with another","<blockquote>
+<p><strong>Closed</strong>: I started a <code>hg clone...</code> by error in the git repository and this created an empty hg repository. So hggit checks the differences with the empty hg repo and not the git conversion.</p>
+</blockquote>
+<pre class=""lang-bash prettyprint-override""><code>$ hg incoming -r branchname_bkm G1
+comparing with /home/xxxx/src
+abort: unknown revision 'branchname_bkm'
+</code></pre>
+<p><code>_bkm</code> is the suffix I use between git branches and hg bookmarks.</p>
+<p>I have a mercurial repository for long time (named <code>HG0</code>).
+I converted it to git using the hggit extension, pushed it to gitlab.</p>
+<p>I usually develop in the git repo (named <code>G1</code>) but our official repo is still mercurial.
+When needed, I import a git branch (as bookmarks) this way:</p>
+<ul>
+<li><p>update the hg-git map:</p>
+<pre class=""lang-bash prettyprint-override""><code>cd HG0
+hg pull
+hg update main_bkm  # bookmark on default == main
+hg git-cleanup
+hg outgoing G1
+</code></pre>
+</li>
+<li><p>import git branch:</p>
+<pre class=""lang-bash prettyprint-override""><code>hg in -r &lt;branchname&gt; G1
+</code></pre>
+</li>
+</ul>
+<p>It worked perfectly during months.</p>
+<p>For about 2 weeks, <code>hg out</code> shows me all the changesets, not only the new ones and <code>hg in</code> returns <code>unknown revision</code>!</p>
+<p>I created a new git clone <code>G2</code> from gitlab. <code>hg out G2</code> is correct and only shows few revs as expected.
+I could exchange my git branch from <code>G1</code> to <code>G2</code> and get it in <code>HG0</code>, ok.</p>
+<p>How can I &quot;re-synchronize&quot; my hg repo with <code>G1</code>?</p>
+<ul>
+<li><p><code>git-cleanup</code> does not change anything.</p>
+</li>
+<li><p>I even tried to entirely rebuild the embedded <code>.hg/git</code> (~2 hours), no change.</p>
+</li>
+<li><p>If I <code>grep</code> a revision shown by <code>hg out G1</code> in <code>.hg/git-mapfile</code>, it corresponds to the related revision in <code>G1</code>...</p>
+</li>
+<li><p>May git garbage collection process &quot;hides&quot; something used to identify the repo?</p>
+</li>
+</ul>
+<p>Thanks in advance.</p>
+","0","3633608",""
+"27295961","2228325","2014-12-04 14:00:52","18","11539","<git><branch>","Remove a single merged branch from master branch","<p>In my master branch, there're following local branches that have been merged, but I would like to remove the <code>local_branch3</code> from master:</p>
+
+<pre><code>local_branch1
+local_branch2
+local_branch3
+local_branch4
+</code></pre>
+
+<p>after removing the <code>local_branch3</code> from master, I would like it to remain a local branch (only deleted from master).</p>
+
+<p>I've check <a href=""http://stevenharman.net/git-clean-delete-already-merged-branches"" rel=""noreferrer"">Steve Harman's blog</a> on this similar issue, but that seems also deleting the local branch for ever.</p>
+
+<p><strong>Edit:</strong> to clarify what I meant, as I posted in one of the below comments:</p>
+
+<blockquote>
+  <p><em>I would like the master branch to undo the changes resulting from local_branch3 merging, while leaving local_branch3 untouched.</em></p>
+</blockquote>
+
+<p>The reason being that I would like to keep the <code>master</code> branch deliverable while I tweak on <code>local_branch3</code>.</p>
+","3","2228325","0"
+"20312066","1702487","2013-12-01 12:26:38","1","964","<git><build><makefile><debian>","How I ""make"" git 1.8.2 on debian","<p>I have an problem while compiling git.</p>
+
+<p>I've tried this:
+<a href=""http://git-scm.com/book/en/Getting-Started-Installing-Git"" rel=""nofollow"">http://git-scm.com/book/en/Getting-Started-Installing-Git</a></p>
+
+<p>Error ...</p>
+
+<p>Then I've installed this:<a href=""http://packages.debian.org/de/sid/git-buildpackage"" rel=""nofollow"">http://packages.debian.org/de/sid/git-buildpackage</a></p>
+
+<p>Same error ... </p>
+
+<pre><code>            GEN perl/PM.stamp
+            SUBDIR gitweb
+            SUBDIR ../
+        make[2]: `GIT-VERSION-FILE' is up to date.
+            GEN git-instaweb
+            SUBDIR git-gui
+            SUBDIR gitk-git
+            SUBDIR perl
+            SUBDIR templates
+        install -d -m 755 '/usr/local/bin'
+        install -d -m 755 '/usr/local/libexec/git-core'
+        install   git-credential-store git-daemon git-fast-import git-http-backend git-imap-send git-sh-i18n--envsubst git-shell git-show-index git-upload-pack git-remote-testsvn git-http-fetch git-http-push git-credential-cache git-credential-cache--daemon git-remote-http git-remote-https git-remote-ftp git-remote-ftps git-am git-bisect git-difftool--helper git-filter-branch git-lost-found git-merge-octopus git-merge-one-file git-merge-resolve git-mergetool git-pull git-quiltimport git-rebase git-request-pull git-stash git-submodule git-web--browse git-add--interactive git-difftool git-archimport git-cvsexportcommit git-cvsimport git-cvsserver git-relink git-send-email git-svn git-p4 git-instaweb '/usr/local/libexec/git-core'
+        install -m 644  git-mergetool--lib git-parse-remote git-rebase--am git-rebase--interactive git-rebase--merge git-sh-setup git-sh-i18n '/usr/local/libexec/git-core'
+        install git git-upload-pack git-receive-pack git-upload-archive git-shell git-cvsserver '/usr/local/bin'
+        make -C templates DESTDIR='' install
+        make[1]: Entering directory `/home/git-1.8.5/templates'
+        install -d -m 755 '/usr/local/share/git-core/templates'
+        (cd blt &amp;&amp; tar cf - .) | \
+            (cd '/usr/local/share/git-core/templates' &amp;&amp; umask 022 &amp;&amp; tar xof -)
+        make[1]: Leaving directory `/home/git-1.8.5/templates'
+        install -d -m 755 '/usr/local/libexec/git-core/mergetools'
+        install -m 644 mergetools/* '/usr/local/libexec/git-core/mergetools'
+        install -d -m 755 '/usr/local/share/locale'
+        (cd po/build/locale &amp;&amp; tar cf - .) | \
+            (cd '/usr/local/share/locale' &amp;&amp; umask 022 &amp;&amp; tar xof -)
+        make -C perl prefix='/usr/local' DESTDIR='' install
+        make[1]: Entering directory `/home/git-1.8.5/perl'
+        make[2]: Entering directory `/home/git-1.8.5/perl'
+        Appending installation info to /usr/local/lib/perl/5.10.1/perllocal.pod
+        make[2]: Leaving directory `/home/git-1.8.5/perl'
+        make[1]: Leaving directory `/home/git-1.8.5/perl'
+        make -C gitweb install
+        make[1]: Entering directory `/home/git-1.8.5/gitweb'
+        make[2]: Entering directory `/home/git-1.8.5'
+        make[2]: `GIT-VERSION-FILE' is up to date.
+        make[2]: Leaving directory `/home/git-1.8.5'
+        install -d -m 755 '/usr/local/share/gitweb'
+        install -m 755 gitweb.cgi '/usr/local/share/gitweb'
+        install -d -m 755 '/usr/local/share/gitweb/static'
+        install -m 644 static/gitweb.js static/gitweb.css static/git-logo.png static/git-favicon.png '/usr/local/share/gitweb/static'
+        make[1]: Leaving directory `/home/git-1.8.5/gitweb'
+        make -C gitk-git install
+        make[1]: Entering directory `/home/git-1.8.5/gitk-git'
+        install -m 755 gitk-wish '/usr/local/bin'/gitk
+        install -d -m 755 '/usr/local/share/gitk/lib/msgs'
+        install -m 644 po/de.msg '/usr/local/share/gitk/lib/msgs' &amp;&amp;  install -m 644 po/es.msg '/usr/local/share/gitk/lib/msgs' &amp;&amp;  install -m 644 po/fr.msg '/usr/local/share/gitk/lib/msgs' &amp;&amp;  install -m 644 po/hu.msg '/usr/local/share/gitk/lib/msgs' &amp;&amp;  install -m 644 po/it.msg '/usr/local/share/gitk/lib/msgs' &amp;&amp;  install -m 644 po/ja.msg '/usr/local/share/gitk/lib/msgs' &amp;&amp;  install -m 644 po/pt_br.msg '/usr/local/share/gitk/lib/msgs' &amp;&amp;  install -m 644 po/ru.msg '/usr/local/share/gitk/lib/msgs' &amp;&amp;  install -m 644 po/sv.msg '/usr/local/share/gitk/lib/msgs' &amp;&amp; true
+        make[1]: Leaving directory `/home/git-1.8.5/gitk-git'
+        make -C git-gui gitexecdir='/usr/local/libexec/git-core' install
+        make[1]: Entering directory `/home/git-1.8.5/git-gui'
+          DEST /usr/local/libexec/git-core
+            INSTALL 755 git-gui
+            INSTALL 755 git-gui--askpass
+            LINK        git-citool -&gt; git-gui
+          DEST /usr/local/share/git-gui/lib
+            INSTALL 644 tclIndex
+            INSTALL 644 about.tcl
+            INSTALL 644 blame.tcl
+            INSTALL 644 branch_checkout.tcl
+            INSTALL 644 branch_create.tcl
+            INSTALL 644 branch_delete.tcl
+            INSTALL 644 branch_rename.tcl
+            INSTALL 644 branch.tcl
+            INSTALL 644 browser.tcl
+            INSTALL 644 checkout_op.tcl
+            INSTALL 644 choose_font.tcl
+            INSTALL 644 choose_repository.tcl
+            INSTALL 644 choose_rev.tcl
+            INSTALL 644 class.tcl
+            INSTALL 644 commit.tcl
+            INSTALL 644 console.tcl
+            INSTALL 644 database.tcl
+            INSTALL 644 date.tcl
+            INSTALL 644 diff.tcl
+            INSTALL 644 encoding.tcl
+            INSTALL 644 error.tcl
+            INSTALL 644 index.tcl
+            INSTALL 644 line.tcl
+            INSTALL 644 logo.tcl
+            INSTALL 644 merge.tcl
+            INSTALL 644 mergetool.tcl
+            INSTALL 644 option.tcl
+            INSTALL 644 remote_add.tcl
+            INSTALL 644 remote_branch_delete.tcl
+            INSTALL 644 remote.tcl
+            INSTALL 644 search.tcl
+            INSTALL 644 shortcut.tcl
+            INSTALL 644 spellcheck.tcl
+            INSTALL 644 sshkey.tcl
+            INSTALL 644 status_bar.tcl
+            INSTALL 644 themed.tcl
+            INSTALL 644 tools_dlg.tcl
+            INSTALL 644 tools.tcl
+            INSTALL 644 transport.tcl
+            INSTALL 644 win32.tcl
+            INSTALL 644 git-gui.ico
+            INSTALL 644 win32_shortcut.js
+          DEST /usr/local/share/git-gui/lib/msgs
+            INSTALL 644 de.msg
+            INSTALL 644 el.msg
+            INSTALL 644 fr.msg
+            INSTALL 644 hu.msg
+            INSTALL 644 it.msg
+            INSTALL 644 ja.msg
+            INSTALL 644 nb.msg
+            INSTALL 644 pt_br.msg
+            INSTALL 644 ru.msg
+            INSTALL 644 sv.msg
+            INSTALL 644 zh_cn.msg
+        make[1]: Leaving directory `/home/git-1.8.5/git-gui'
+        bindir=$(cd '/usr/local/bin' &amp;&amp; pwd) &amp;&amp; \
+            execdir=$(cd '/usr/local/libexec/git-core' &amp;&amp; pwd) &amp;&amp; \
+            { test ""$bindir/"" = ""$execdir/"" || \
+              for p in git git-shell git-upload-pack git-cvsserver; do \
+                rm -f ""$execdir/$p"" &amp;&amp; \
+                test -z """" &amp;&amp; \
+                ln ""$bindir/$p"" ""$execdir/$p"" 2&gt;/dev/null || \
+                cp ""$bindir/$p"" ""$execdir/$p"" || exit; \
+              done; \
+            } &amp;&amp; \
+            for p in git-receive-pack git-upload-archive; do \
+                rm -f ""$bindir/$p"" &amp;&amp; \
+                test -z """" &amp;&amp; \
+                ln ""$bindir/git"" ""$bindir/$p"" 2&gt;/dev/null || \
+                ln -s ""git"" ""$bindir/$p"" 2&gt;/dev/null || \
+                cp ""$bindir/git"" ""$bindir/$p"" || exit; \
+            done &amp;&amp; \
+            for p in  git-add git-annotate git-apply git-archive git-bisect--helper git-blame git-branch git-bundle git-cat-file git-check-attr git-check-ignore git-check-mailmap git-check-ref-format git-checkout-index git-checkout git-clean git-clone git-column git-commit-tree git-commit git-config git-count-objects git-credential git-describe git-diff-files git-diff-index git-diff-tree git-diff git-fast-export git-fetch-pack git-fetch git-fmt-merge-msg git-for-each-ref git-fsck git-gc git-grep git-hash-object git-help git-index-pack git-init-db git-log git-ls-files git-ls-remote git-ls-tree git-mailinfo git-mailsplit git-merge git-merge-base git-merge-file git-merge-index git-merge-ours git-merge-recursive git-merge-tree git-mktag git-mktree git-mv git-name-rev git-notes git-pack-objects git-pack-redundant git-pack-refs git-patch-id git-prune-packed git-prune git-push git-read-tree git-receive-pack git-reflog git-remote git-remote-ext git-remote-fd git-repack git-replace git-rerere git-reset git-rev-list git-rev-parse git-revert git-rm git-send-pack git-shortlog git-show-branch git-show-ref git-stripspace git-symbolic-ref git-tag git-tar-tree git-unpack-file git-unpack-objects git-update-index git-update-ref git-update-server-info git-upload-archive git-var git-verify-pack git-verify-tag git-write-tree git-cherry git-cherry-pick git-format-patch git-fsck-objects git-get-tar-commit-id git-init git-merge-subtree git-peek-remote git-repo-config git-show git-stage git-status git-whatchanged; do \
+                rm -f ""$execdir/$p"" &amp;&amp; \
+                test -z """" &amp;&amp; \
+                ln ""$execdir/git"" ""$execdir/$p"" 2&gt;/dev/null || \
+                ln -s ""git"" ""$execdir/$p"" 2&gt;/dev/null || \
+                cp ""$execdir/git"" ""$execdir/$p"" || exit; \
+            done &amp;&amp; \
+            remote_curl_aliases=""git-remote-https git-remote-ftp git-remote-ftps"" &amp;&amp; \
+            for p in $remote_curl_aliases; do \
+                rm -f ""$execdir/$p"" &amp;&amp; \
+                test -z """" &amp;&amp; \
+                ln ""$execdir/git-remote-http"" ""$execdir/$p"" 2&gt;/dev/null || \
+                ln -s ""git-remote-http"" ""$execdir/$p"" 2&gt;/dev/null || \
+                cp ""$execdir/git-remote-http"" ""$execdir/$p"" || exit; \
+            done &amp;&amp; \
+            ./check_bindir ""z$bindir"" ""z$execdir"" ""$bindir/git-add""
+</code></pre>
+","11","1702487","0"
+"39410239","","2016-09-09 11:11:08","0","53","<git><github>","Revert back all changes made via git","<p>I was trying to remove all untracked files from my Mac machine using the following line</p>
+
+<pre><code>git clean -f -d
+</code></pre>
+
+<p>After running the above code, all files in my machine got deleted. Is there any ways through which i can revert back all changes?</p>
+
+<p>I have tried ""<a href=""https://stackoverflow.com/questions/6267180/can-i-undo-a-git-clean-fdx"">Can I undo a `git clean -fdx`?</a>"" but still im unable to recover. if i run git status, it shows all deleted files in red letters though</p>
+","6","",""
+"21030189","241211","2014-01-09 20:12:33","3","6688","<git><merge><branch>","Find when a branch was merged","<p>There are lots of scripts floating around on the internet for deleting already-merged branches <a href=""http://stevenharman.net/git-clean-delete-already-merged-branches"" rel=""nofollow noreferrer"">such as</a></p>
+
+<pre><code>$ git branch --merged master | grep -v master | xargs -n 1 git branch -d
+</code></pre>
+
+<p>but I'd like to keep my branches around for a while before doing the cleanup. So:</p>
+
+<p><strong>How can I find when a particular branch was merged?</strong> I'd like to be able to get the hash and the date of the merge commit. Extra credit for the ability to pipe several branches in. I'm ultimately going for</p>
+
+<pre><code>$ git branch --merged master | [find dates for each]
+    | [compare dates to arbitrary date] | [delete old merged branches]
+</code></pre>
+
+<p>I realize that the standard practice is to tag/delete branches that you want to keep around a little longer, but if I did that, I'd still be asking this question about the hash and time of the merge commit.</p>
+
+<h3>Edit:</h3>
+
+<p>I've been looking through <a href=""https://stackoverflow.com/questions/2263674/how-do-i-find-the-next-commit-in-git"">these</a> <a href=""https://stackoverflow.com/questions/1761825/referencing-the-child-of-a-commit-in-git/5353204"">threads</a>, because it strikes me that I'm looking for the child commit of the branch reference. Unfortunately, as mentioned in <a href=""https://stackoverflow.com/questions/2263674/how-do-i-find-the-next-commit-in-git#comment2239748_2264471"">this comment</a>, <code>--children</code> only <em>adds</em> the children to the commits returned by a <code>log</code> or <code>rev-list</code>, instead of only returning children.</p>
+","1","241211","0"
+"35300323","649167","2016-02-09 19:13:03","4","1403","<linux><git><build><debian><package>","Building Debian package without upstream","<p>I'm replacing a hacky Debian package build script with <a href=""http://jenkins-debian-glue.org/"" rel=""nofollow"">http://jenkins-debian-glue.org/</a>, which uses <code>git-buildpackage</code>.</p>
+
+<p>The <code>generate-git-snapshot</code> script runs this monster of a line:</p>
+
+<pre><code>gbp buildpackage  -nc --git-force-create --git-ignore-new --git-ignore-branch -S -us -uc --git-verbose --git-builder=/bin/true --git-cleaner=/bin/true --git-export-dir=
+</code></pre>
+
+<p>This fails every time with an error: <code>gbp:error: upstream/1.0.0 is not a valid treeish</code>. 1.0.0 is the initial version string in <code>debian/changelog</code>, but the <code>upstream</code> branch doesn't exist.</p>
+
+<p>I'm not quite sure what to do about the <code>upstream</code> branch - this package is not a fork of an existing project, it's a Git repo that's only meant to build a Debian package.</p>
+
+<p>How can/should I build the package?</p>
+","0","649167",""
+"45538735","1487773","2017-08-07 02:48:39","1","536","<git>","How to keep lost+found directory in git?","<p>My git project is on a separate <code>ext4</code> partition, which contains
+<code>lost+found</code> directory.</p>
+
+<p>It is deleted by <code>git clean -d</code>.</p>
+
+<p>If I try to add it to git, it says</p>
+
+<pre><code>error: pathspec 'lost+found' did not match any file(s) known to git.
+</code></pre>
+
+<p>If I add it to <code>.gitignore</code>, it is deleted by <code>git clean -X -d</code></p>
+
+<p>So, how do I say <code>git</code> to leave it alone?</p>
+
+<p>(None of the solutions in <a href=""https://stackoverflow.com/questions/11085795/git-exclude-a-file-with-git-clean"">Git: Exclude a file with git clean</a> works here)</p>
+","4","1487773","0"
+"23104349","704616","2014-04-16 08:48:14","5","2501","<git><gitignore><git-clean>","Exclude files from git clean by default","<p>In a project I am working on I am using git and eclipse, eclipse creates a <code>.project</code> file in the project root. When I do a <code>git clean</code> I do not want to remove this file as I have to create this again.</p>
+
+<p>I do want <code>git clean</code> to remove excluded files and directories (since compiled files are excluded).</p>
+
+<p>Normally I do <code>git clean -xdf</code> which suits my needs, however I have to exclude the <code>.project</code> file each time (<code>git clean -xdf -e .project</code>).</p>
+
+<p>Simply putting the <code>.project</code> in a (global) gitignore file doesn't do the trick, prefixing it with a <code>!</code> also doesn't quite fix this as it then shows up in <code>git status</code>.</p>
+
+<p>So I'm looking to exclude instead of ignore, but I cannot find a git-clean-exclude setting. Did anyone ran into this, and if so how did they solve it?</p>
+","0","704616","0"
+"2994612","143397","2010-06-08 03:29:02","61","29585","<git><gitignore><git-status>","Is there a way to tell git-status to ignore the effects of .gitignore files?","<p>I have configured numerous <code>.gitignore</code> files to filter out many different unwanted files from a set of about 6,000 untracked files. I want to do <code>git add .</code> when I've got my filtered list looking the way I want it.</p>
+
+<p>But, then I want to disable the <code>.gitignore</code> filters temporarily to see what got left behind, and make sure there was nothing important accidentally filtered.</p>
+
+<p>I know that <code>git-clean</code> includes an option to ignore <code>.gitignore files</code>. Is there a similar option for <code>git-status</code>?</p>
+
+<p>I could go through and delete all the <code>.gitignore</code> files, do the check, then restore them, but it seems there should be an easier way?</p>
+","0","143397","0"
+"67264446","432869","2021-04-26 09:53:02","1","38","<windows><git><azure-devops>","Git processes left active after devops-agent build","<p>We recently switched from an onprem TFS server to using Azure Devops to compile and build our solution.</p>
+<p>In Azure devops we have a git repo with code, and a CI pipeline to build the development-branch.
+This works as it should.</p>
+<p>We also have two agents running on an onprem windows server with 2 virtual cores and plenty of ram and diskspace.</p>
+<p>But we are also having problems with our agents, in that they will leave git-processes alive after they have completed, which again sometimes locks certain files.</p>
+<p>After a couple of days running the agents, several processes are still alive, resulting in
+<a href=""https://i.stack.imgur.com/5CB6N.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/5CB6N.png"" alt=""After a couple of days running the agents"" /></a></p>
+<p>errors when trying to do a git-clean
+<a href=""https://i.stack.imgur.com/DbUcW.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/DbUcW.png"" alt=""will result errors when trying run git-clean"" /></a></p>
+<p>The following is our build-pipeline:</p>
+<pre><code>trigger:
+- master
+pool:
+    name: 'ONPREM'
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Debug'
+steps:
+- task: NuGetToolInstaller@1
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    msbuildArgs: /m /r /p:Configuration=$(buildConfiguration));UseEnv=true;BuildInParallel=true 
+/nr:false /nologo
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+</code></pre>
+<p>Any feedback and assistance is appreciated.</p>
+","8","432869",""
+"32337695","2259942","2015-09-01 17:33:53","4","1047","<git>","Git - Cleanup squashed branches?","<p>I understand how to delete branches that have been merged into master (<a href=""http://stevenharman.net/git-clean-delete-already-merged-branches"" rel=""nofollow"">http://stevenharman.net/git-clean-delete-already-merged-branches</a>). How do I delete branches that have been squashed, then merged into master?</p>
+
+<p>For example:</p>
+
+<pre><code>C:\source [master]&gt; git checkout -b feature-a-inprogress
+C:\source [feature-a-inprogress]&gt; git ac ""WIP""
+C:\source [feature-a-inprogress]&gt; git ac ""WIP""
+C:\source [feature-a-inprogress]&gt; git checkout master
+C:\source [master]&gt; git checkout -b feature-a-complete
+C:\source [feature-a-complete]&gt; git merge --squash feature-a-inprogress
+C:\source [feature-a-complete]&gt; git ac ""Completed Feature A""
+C:\source [feature-a-complete]&gt; git push origin feature-a-complete
+</code></pre>
+
+<p>When I run the above cleanup it would delete <em>Feature-A-Complete</em>, but not <em>Feature-A-InProgress</em>. If you were to compare the current state of <em>Feature-A-Complete</em> and <em>Feature-A-InProgress</em> they would be identical (though their histories would be different). </p>
+
+<p>I understand that deleting <em>Feature-A-InProgress</em> isn’t necessarily safe because the intermediate versions would be lost, but in this case I don’t care because the final state was committed to master.</p>
+
+<p>Thanks!</p>
+
+<p><em>edit: fixed inconsistent branch names in example</em></p>
+","6","2259942",""
+"68755433","8716257","2021-08-12 10:09:31","0","241","<git><git-clean>","can't delete "".git"" using git clean -xdff","<p><code>git clean</code> with the <code>-ffxd</code> option does not clean directories called <code>.git</code> - how can I do this?</p>
+<p>Using git 2.32.0</p>
+<pre><code>mkdir myrepo &amp;&amp; cd myrepo
+git init .
+mkdir src &amp;&amp; cd src
+touch code.cpp
+git add code.cpp
+git commit -m &quot;my commit&quot;
+mkdir .git .git2
+git clean -ffxdn
+Would remove .git2/
+</code></pre>
+<p>but I want git clean to remove <code>.git</code> as well. but it is ignored.</p>
+<p>from <code>man git-clean</code>:</p>
+<pre><code>       -f, --force
+           If the Git configuration variable clean.requireForce is not
+           set to false, git clean will refuse to delete files or
+           directories unless given -f or -i. Git will refuse to
+           modify untracked nested git repositories (directories with
+           a .git subdirectory) unless a second -f is given.
+</code></pre>
+<p>so what am I doing wrong?</p>
+","3","8716257",""
+"60937009","13020603","2020-03-30 18:23:08","1","140","<git><jupyter-notebook>","How to run a filter when calling git status?","<p>Following <a href=""https://stackoverflow.com/questions/33646172/git-clean-and-smudge-filters-dont-do-anything/60569968#60569968"">Git clean and smudge filters don&#39;t do anything</a> If I run <code>strace -qqqqqqq -fe execve -e signal=none git status</code> it only runs <code>git status</code>. Does this mean that there is no way to run filters before showing the modified files in the working-tree? I would like to omit those jupyter notebooks that appear as modified because of the <code>execution_count property</code> of the cells were changed, but not the actual code. I already have the script that would output a clean version of the notebook, but I would like to know if it is possible to run like a <code>git diff</code> to the files to decide whether to show or not after I do a <code>git status</code>. Thanks</p>
+","1","13020603",""
+"6906790","851277","2011-08-02 02:56:21","2","267","<c><git>","Why are there so many identical executables of git when compiled from source?","<pre><code>git                       
+git-add                   
+git-annotate              
+git-apply                 
+git-archive               
+git-bisect--helper        
+git-blame                 
+git-branch                
+git-bundle                
+git-cat-file              
+git-check-attr            
+git-checkout              
+git-checkout-index        
+git-check-ref-format      
+git-cherry                
+git-cherry-pick           
+git-clean                 
+git-clone                 
+git-commit                
+git-commit-tree           
+git-config                
+git-count-objects         
+git-describe              
+git-diff                  
+git-diff-files            
+git-diff-index            
+git-diff-tree             
+git-fast-export           
+git-fetch                 
+git-fetch-pack            
+git-fmt-merge-msg         
+git-for-each-ref          
+git-format-patch          
+git-fsck                  
+git-fsck-objects          
+git-gc                    
+git-get-tar-commit-id     
+git-grep                  
+git-hash-object           
+git-help                  
+git-index-pack            
+git-init                  
+git-init-db               
+git-log                   
+git-ls-files              
+git-ls-remote             
+git-ls-tree               
+git-mailinfo              
+git-mailsplit             
+git-merge                 
+git-merge-base            
+git-merge-file            
+git-merge-index           
+git-merge-ours            
+git-merge-recursive       
+git-merge-subtree         
+git-merge-tree            
+git-mktag                 
+git-mktree                
+git-mv                    
+git-name-rev              
+git-notes                 
+git-pack-objects          
+git-pack-redundant        
+git-pack-refs             
+git-patch-id              
+git-peek-remote           
+git-prune                 
+git-prune-packed          
+git-push                  
+git-read-tree             
+git-receive-pack          
+git-reflog                
+git-remote                
+git-remote-ext            
+git-remote-fd             
+git-replace               
+git-repo-config           
+git-rerere                
+git-reset                 
+git-revert                
+git-rev-list              
+git-rev-parse             
+git-rm                    
+git-send-pack             
+git-shortlog              
+git-show                  
+git-show-branch           
+git-show-ref              
+git-stage                 
+git-status                
+git-stripspace            
+git-symbolic-ref          
+git-tag                   
+git-tar-tree              
+git-unpack-file           
+git-unpack-objects        
+git-update-index          
+git-update-ref            
+git-update-server-info    
+git-upload-archive        
+git-var                   
+git-verify-pack           
+git-verify-tag            
+git-whatchanged           
+git-write-tree            
+</code></pre>
+
+<p>All these targets are of the same size: <code>4951925</code>, and their contents are identical.Why?</p>
+
+<pre><code>[root@ git-1.7.6]$ ls -il /usr/bin/git*
+17823222 lrwxrwxrwx 1 root root 22 2011-01-24 11:43 /usr/bin/git -&gt; /usr/local/git/bin/git
+17823223 lrwxrwxrwx 1 root root 32 2011-01-24 11:43 /usr/bin/git-cvsserver -&gt; /usr/local/git/bin/git-cvsserver
+17823224 lrwxrwxrwx 1 root root 23 2011-01-24 11:43 /usr/bin/gitk -&gt; /usr/local/git/bin/gitk
+17823225 lrwxrwxrwx 1 root root 35 2011-01-24 11:43 /usr/bin/git-receive-pack -&gt; /usr/local/git/bin/git-receive-pack
+17823226 lrwxrwxrwx 1 root root 28 2011-01-24 11:43 /usr/bin/git-shell -&gt; /usr/local/git/bin/git-shell
+17823227 lrwxrwxrwx 1 root root 37 2011-01-24 11:43 /usr/bin/git-upload-archive -&gt; /usr/local/git/bin/git-upload-archive
+17823228 lrwxrwxrwx 1 root root 34 2011-01-24 11:43 /usr/bin/git-upload-pack -&gt; /usr/local/git/bin/git-upload-pack
+
+
+
+[root@ git-1.7.6]$ ls -li /usr/local/git/bin/git*
+126612251 -rwxr-xr-x 107 root root 4686039 2011-01-24 11:42 /usr/local/git/bin/git
+126614976 -rwxr-xr-x   2 root root  120960 2011-01-24 11:42 /usr/local/git/bin/git-cvsserver
+126614978 -rwxr-xr-x   1 root root  321995 2011-01-24 11:42 /usr/local/git/bin/gitk
+126612251 -rwxr-xr-x 107 root root 4686039 2011-01-24 11:42 /usr/local/git/bin/git-receive-pack
+126612255 -rwxr-xr-x   2 root root 1952607 2011-01-24 11:42 /usr/local/git/bin/git-shell
+126612251 -rwxr-xr-x 107 root root 4686039 2011-01-24 11:42 /usr/local/git/bin/git-upload-archive
+126612252 -rwxr-xr-x   2 root root 2001993 2011-01-24 11:42 /usr/local/git/bin/git-upload-pack
+</code></pre>
+","5","851277","0"
+"23207542","1676287","2014-04-21 23:08:36","3","259","<wordpress><git><git-submodules><git-reset>","WordPress as git submodule, accidentally updated through WP admin instead of git, now modified content","<p>I followed David Winter's workflow to ""Install and Manage WordPress with Git."" WordPress is a git submodule. On the latest WordPress 3.9 upgrade, I accidentally updated through the WordPress admin instead of via git. Now when I run <code>git status</code> I get:</p>
+
+<pre><code>modified:   wordpress (modified content, untracked content)
+</code></pre>
+
+<p>Which makes sense. But I can't commit the modified wordpress content. The WordPress submodule is dirty. If I run <code>git diff</code> within my main repo, I get this:</p>
+
+<pre><code>-Subproject commit 22bb60277036651db73dc872eaa7d2a50276b00d
++Subproject commit 22bb60277036651db73dc872eaa7d2a50276b00d-dirty
+</code></pre>
+
+<p>What's the best way to fix this? If I run the following within my main repo, will it mess up my WordPress install? (Note: I had also updated some plugins.)</p>
+
+<pre><code>git clean -dfx             # delete everything in the worktree that isn't tracked
+git reset --hard           # wipe all modifications to tracked files
+git checkout 3.8.1         # return to previous version tag
+</code></pre>
+
+<p>Update: The commands above work perfectly. I checked the documentation on git clean to learn what the options 'd', 'f', and 'x' were: <a href=""https://www.kernel.org/pub/software/scm/git/docs/git-clean.html"" rel=""nofollow"">https://www.kernel.org/pub/software/scm/git/docs/git-clean.html</a>. After I ran the previous commands within the WordPress directory, I was able to then checkout version 3.9, thus correctly updating WordPress.</p>
+","4","1676287","0"
+"60987136","","2020-04-02 08:22:19","5","343","<git>","git: Reset Repository into a Clean State","<p>I'm looking for a way to ""reset"" a repository into a clean state. Hold up! Before you say</p>
+
+<ul>
+<li>just use <code>git-clean</code></li>
+<li>... or <code>git-reset</code></li>
+</ul>
+
+<p>this is not what I am looking for! I don't want to reset files, but state. That means, aborting all in-progress operations like rebases, merges, bisect, and removing any auxiliary files like <code>MERGE_HEAD</code> or <code>MERGE_MSG</code> inside the <code>.git</code> directory itself.</p>
+
+<p>I could do it manually of course with a series of commands, but I was hoping for something more elegant that doesn't require me to know what state the repo currently is in.</p>
+","5","",""
+"62057729","188535","2020-05-28 05:38:38","1","79","<git>","What happened to git clean's --exclude-from option?","<p>Back story: I have some files in various Git repos that I don't want added to the repo, but also don't want cleaned with <code>git clean -x</code>. What I <em>really</em> want is a new class of versioning in Git like GNU Arch's ""precious"", but failing that, I can use the <code>--exclude</code> or <code>-e</code> argument to provide ignore patterns to <code>git clean</code>. I thought I would try to write something that read the patterns from a file (like <code>.gitignore</code>) and turned each line into a <code>-e</code> argument (or the equivalent under the hood).</p>
+
+<p>It turns out, someone already did that: <a href=""https://public-inbox.org/git/1448549065-16337-1-git-send-email-rouzier@gmail.com/"" rel=""nofollow noreferrer"">here's a patch to add <code>--exclude-from FILE</code> to <code>git clean</code></a>. The patch is discussed, everyone seems fine with it, but... evidently <code>git clean</code> does not have an <code>--exclude-from FILE</code> option as of <a href=""https://git-scm.com/docs/git-clean"" rel=""nofollow noreferrer"">v2.24.2</a>, even though the patch was discussed five years ago.</p>
+
+<p>What happened to this idea and the patch for it? I cannot find any more information on it. Was it eventually rejected? Was it superseded by something else (something that I could use)?</p>
+","4","188535","0"
+"25205592","1410905","2014-08-08 14:16:28","5","1016","<libgit2>","Can I do git-clean with libgit2?","<p>I want to remove untracked files from the working tree. Like here
+<a href=""https://www.kernel.org/pub/software/scm/git/docs/git-clean.html"" rel=""noreferrer"">https://www.kernel.org/pub/software/scm/git/docs/git-clean.html</a></p>
+","0","1410905",""
+"63140004","11070463","2020-07-28 17:50:11","1","83","<git>","Delete git repo and tracked files","<p>I have a git repo that contains the following (simplified):</p>
+<pre><code>-- .git/
+-- data/
+   |_ bar.txt
+-- src/
+   |_ foo.py
+-- .gitignore
+</code></pre>
+<p>The <code>.gitignore</code> ignores only the data directory. So, in this case, <code>src/foo.py</code> and <code>.gitignore</code> were staged and commited.</p>
+<p>I want to remove the <code>.git</code> repo AND all files/folders tracked by git without deleting the entire directory as I want to keep the untracked files (ie remove <code>src/foo.py</code>, <code>.gitignore</code>, and <code>.git</code> but keep the <code>data</code> folder and it's contents).</p>
+<p>I looked at <a href=""https://git-scm.com/docs/git-clean"" rel=""nofollow noreferrer""><code>git clean</code></a> and tried searching stack overflow, but I couldn't seem to find an answer.</p>
+<p><strong>Note:</strong> The above repo is just used as an example, the actual repo I'm concerned with is much more complex and populated.</p>
+","0","11070463",""
+"64702803","551456","2020-11-05 17:59:17","0","86","<git>","Is there an inverse operation to git-clean (keep non-git files)?","<p>Is there a git command to do the inverse of a git-clean operation?  I want to delete the .git folder and all tracked files, leaving only untracked files and folders.</p>
+<p>Background: I have a tendency to create note files and other context throughout my git repos.  For example, I might create a hints file or Windows shortcut file that make it easy for me to jump to a folder with related content.  When I make a new repo from the tip of a branch in another repo, I would like to add back in the context files.  I'm looking for a procedure that would allow me to make a copy of the original repo structure, remove all git-related stuff, then copy what remains into the new clean repo I just built, effectively transferring all my non-git files from one repo to another.</p>
+","3","551456",""
+"28896926","1934428","2015-03-06 10:32:55","2","47","<git>","How can I git clean manually created files","<p>Is it possible (without doing a git clone again) to bring by repo to a ""clean"" state, in that also files, which are manually created, are removed?</p>
+
+<p>I have a directory which is gitignored:</p>
+
+<pre><code># .gitignore
+mydir/
+</code></pre>
+
+<p>The directory mydir has been manually created and contains files. When I do a</p>
+
+<pre><code>git clean -X -f .
+</code></pre>
+
+<p>in the base directory of my repo, mydir is not removed. This seems to be in concordance with the documentation, as we can see <a href=""https://stackoverflow.com/questions/19905016/git-clean-ndx-doesnt-remove-directory"">here</a>. </p>
+
+<p>My question is now: What would be the best way of cleaning my repo? I could <code>rm -rf</code> my repo and then run <code>git clone</code>, but maybe there is a ""better"" way to do it?</p>
+","0","1934428",""
+"70780151","11249864","2022-01-20 02:29:03","2","1516","<git>","Git clean -x option","<p>In git-clean <a href=""https://git-scm.com/docs/git-clean"" rel=""nofollow noreferrer"">documentation</a>, it says:</p>
+<blockquote>
+<p>-x</p>
+<p>Don’t use <strong>the standard ignore rules</strong> (see gitignore[5]), but still use the ignore rules given with -e options from the command line. This allows removing all untracked files, including build products. This can be used (possibly in conjunction with git restore or git reset) to create a pristine working directory to test a clean build.</p>
+</blockquote>
+<p>While the output of <code>git clean -h</code> says:</p>
+<pre><code>...
+-x                    remove ignored files, too
+...
+</code></pre>
+<p>Aren't they contradictory? In my understanding, <strong>the standard ignore rules</strong> is rules from file <code>.gitignre</code> and <code>.git/info/exclude</code>, etc. According to the documentation, ignored files defined in file <code>.gitignore</code> shouldn't be cleaned by <code>git clean -fdx</code>, but in fact they are.</p>
+","2","11249864",""
+"14549415","1686113","2013-01-27 16:26:18","11","2194","<git>","Difference between git clean and system rm","<p>What is the difference between:</p>
+
+<pre><code>git clean -f temp1.txt
+</code></pre>
+
+<p>and </p>
+
+<pre><code>rm temp1.txt
+</code></pre>
+
+<p>Git doc says:</p>
+
+<p><code>git-clean</code> - Remove untracked files from the working tree</p>
+
+<p>So what is really the point of doing this instead of only the system command?</p>
+","0","1686113","0"
+"32458304","21728","2015-09-08 12:48:18","2","99","<git>","What do ""untracked directories"" mean in Git?","<p>From the <a href=""http://git-scm.com/docs/git-clean"" rel=""nofollow"">git clean</a> documentation, specifically the <code>-d</code> parameter:</p>
+
+<blockquote>
+  <p>-d</p>
+  
+  <p>Remove untracked directories in addition to untracked files. If an untracked directory is managed by a different Git repository, it is not removed by default. Use -f option twice if you really want to remove such a directory.</p>
+</blockquote>
+
+<p>What are ""untracked directories""? Directories that don't have any tracked files in them? Because I don't think Git has a concept of tracking directories in the first place.</p>
+
+<p>Are there other commands that work with this concept, or is it just <code>clean</code>?</p>
+","0","21728",""

@@ -1,0 +1,145 @@
+Post Link,User Link,CreationDate,Score,ViewCount,Tags,Title,Body,CommentCount,AnswerCount,FavoriteCount
+"51457263","7277402","2018-07-21 15:01:16","0","58","<git><bare><git-ls-tree>","What's the best way to see files of an updated git bare repository? (concept of ls-tree)","<p>I'm looking for a way to see the files on a git bare repository that were updated by other remote but without do a pull in my repository.</p>
+
+<p>I'll try to describe my doubt using an <strong>example locally</strong>.</p>
+
+<p>I create a folder, add two files and make a new repository.</p>
+
+<pre><code>&gt; mkdir stackOF &amp;&amp; cd stackOF
+&gt; touch file1 file2
+&gt; git init
+</code></pre>
+
+<p>Then I create a bare repository from this repo.</p>
+
+<pre><code>&gt; cd .. &amp;&amp; git clone --bare stackOF stackOF.git
+</code></pre>
+
+<p>Now I want to create two clones of that bare repo and simulate some actions of too coworkers.</p>
+
+<pre><code>&gt; git clone stackOF.git stackOF.clone1
+&gt; git clone stackOF.git stackOF.clone2
+</code></pre>
+
+<p>First, <code>clone1</code> will create a file, commit and push the change.</p>
+
+<pre><code>&gt; cd stackOF.clone1 &amp;&amp; touch file_clone1
+&gt; git add . &amp;&amp; git commit -m ""File from clone 1.""
+&gt; git push
+</code></pre>
+
+<p>Second, <code>clone2</code> will create a file and only commit.</p>
+
+<pre><code>&gt; cd ../stackOF.clone2 &amp;&amp; touch file_clone2
+&gt; git add . &amp;&amp; git commit -m ""File from clone 2.""
+</code></pre>
+
+<p>At this point starts my doubt over the <code>ls-tree</code> concept. Executing the next command I'd expect to see the file pushed by the clone1 but I receive the following:</p>
+
+<pre><code>&gt; git ls-tree origin
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5392    file1
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5392    file2
+</code></pre>
+
+<p>I want to receive a result like doing the ls-tree command at the bare repository directory:</p>
+
+<pre><code>&gt; cd ../stackOF.git
+&gt; git ls-tree master
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5392    file1
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5392    file2
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5392    file_clone1
+</code></pre>
+
+<p>Studying this case, I found a command that shows me what I want but with a lot of other informations. So, returning to the <code>clone2</code> and executing the command:</p>
+
+<pre><code>&gt; cd ../stackOF.clone2
+&gt; git archive -v --remote=file:///f/gits/stackOF.git master
+pax_global_header00006660000000000000000000000064133246307500014515gustar00rootroot0000000000000052 comment=0085439d6a07481e6a21db545edd3f7960c038e2
+file1000066400000000000000000000000001332463075000117720ustar00rootroot00000000000000file2000066400000000000000000000000001332463075000117730ustar00rootroot00000000000000file_clone1000066400000000000000000000000001332463075000131520ustar00rootroot00000000000000remote: file1
+remote: file2
+remote: file_clone1
+</code></pre>
+
+<p>Summarizing, I'm on the <code>clone2</code> repository and looking which files is on the bare repository without make a pull. But I want something much clean like using <code>ls_tree</code> on the bare repository.</p>
+","3","7277402","0"
+"737673","56149","2009-04-10 13:53:06","115","35217","<git><file-permissions><git-ls-tree>","How to read the mode field of git-ls-tree's output","<pre><code>$ git ls-tree fb3a8bdd0ce
+100644 blob 63c918c667fa005ff12ad89437f2fdc80926e21c    .gitignore
+100644 blob 5529b198e8d14decbe4ad99db3f7fb632de0439d    .mailmap
+100644 blob 6ff87c4664981e4397625791c8ea3bbb5f2279a3    COPYING
+040000 tree 2fb783e477100ce076f6bf57e4a6f026013dc745    Documentation
+100755 blob 3c0032cec592a765692234f1cba47dfdcc3a9200    GIT-VERSION-GEN
+100644 blob 289b046a443c0647624607d471289b2c7dcd470b    INSTALL
+100644 blob 4eb463797adc693dc168b926b6932ff53f17d0b1    Makefile
+100644 blob 548142c327a6790ff8821d67c2ee1eff7a656b52    README
+...
+</code></pre>
+
+<p>I know the last 3 oct digits are file mode, but what are the first 3 digits for?
+I can't find it out in git user's manual.</p>
+","1","56149","0"
+"60681868","4906754","2020-03-14 10:41:07","2","444","<git><git-ls-files><git-ls-remote><git-ls-tree>","How to compare local and remote git files?","<p>I need to list all <s>tracked</s> commited files that only exist locally. Let's say my local repo is a commit forward the remote repo (on github or gitlab) and these are my local <s>tracked</s> commited files:</p>
+
+<pre><code>a.txt
+b.txt
+</code></pre>
+
+<p>Now imagine in my remote repo there is just one of those files:</p>
+
+<pre><code>a.txt
+</code></pre>
+
+<p>What git command could be used to list the diff between local and remote repos in terms of <s>tracked</s> commited files? To be cristal clear, which git command (git-ls-files, gt-ls-remote, git-ls-tree, etc) could generate the following output:</p>
+
+<pre><code>b.txt
+</code></pre>
+
+<p><strong>EDIT 1</strong>: I have to do this without pulling commits from the remote repo.</p>
+
+<p><strong>EDIT 2</strong>: I need this to write a git hook to prevent pushes, but I'm not sure this is a good use case for git hooks.</p>
+","8","4906754","0"
+"54899946","5604326","2019-02-27 07:12:14","0","56","<git><git-ls-tree>","How to list only eixsting files in a git repo?","<p>I used <code>sparse checkout</code> to clone subfolders and files from a repo, as the instructions in <a href=""https://stackoverflow.com/questions/600079/how-do-i-clone-a-subdirectory-only-of-a-git-repository"">this question</a>. Currently, I want to list the checked out files in my disk - not the full repo tree, only the existing files, is there any command can do this?</p>
+
+<p>I know I can use <code>git ls-tree</code> command to list the whole files in the repo, but that's not I want, I just need to list the existing files in my current repo.</p>
+
+<p>Thanks in advance.</p>
+","5","5604326",""
+"10082514","10608","2012-04-10 02:47:11","18","30770","<git><git-ls-tree>","git ls-tree output of working directory?","<p>I am looking for a way to have output in the same manner as <code>ls-tree</code>, but of my working directory. Whenever I run <code>git ls-tree .</code> it says <code>fatal: Not a valid object name .</code></p>
+","2","10608","0"
+"32470210","1212596","2015-09-09 02:56:09","2","221","<git><git-ls-tree>","Alternative to git ls-tree -r HEAD -- . :!foo","<p>I want to retrieve a list of paths, permissions, and content hashes for files for revision in a set of paths, excluding some paths.</p>
+
+<p><code>git ls-tree</code> seems perfect. For example, in the Git repo,</p>
+
+<pre><code>$ git ls-tree -r v2.2.2 -- Documentation ':!Documentation/RelNotes'
+100644 blob ddb030137d54ef3fb0ee01d973ec5cee4bb2b2b3    Documentation/.gitattributes
+100644 blob 2c8b2d612ee0d6c1f687bfa062bb7fe6471d9280    Documentation/.gitignore
+100644 blob 894546dd75416fcf09542096a67b2f22a7d0de7a    Documentation/CodingGuidelines
+100644 blob 2f6b6aabd74a24abdb3ac189118095fcee19f8d2    Documentation/Makefile
+100644 blob fa71b5f0b62f43483d02c24d809e6282fa49576a    Documentation/SubmittingPatches
+100644 blob 2c16c536ba830ec12bbf335d09f689d23e325197    Documentation/asciidoc.conf
+100644 blob 0cebc4f6927211ffbc013de9368f03f480dba65d    Documentation/blame-options.txt
+100755 blob ba4205e0302a267a5da6bef504f3e69eb0c4aa6d    Documentation/build-docdep.perl
+100755 blob 87437f8a95768595e040b8c4c1d48e5c29ada087    Documentation/cat-texi.perl
+</code></pre>
+
+<hr>
+
+<p>But this was <a href=""https://github.com/git/git/commit/5c6cb9888df9d21ddbb5c3478d511edcdf3cda7c"" rel=""nofollow"">removed</a> in 2.3.0, with the message</p>
+
+<blockquote>
+  <p>ls-tree: disable negative pathspec because it's not supported</p>
+</blockquote>
+
+<p>Well that's circular ;)</p>
+
+<hr>
+
+<p>What is the new, ""correct"" way to do this in git 2.3.0 and later?</p>
+","5","1212596",""
+"71195560","12832465","2022-02-20 14:48:30","0","124","<git><hash><git-ls-tree>","calculate git worktree hash","<p>I've been using 'git rev-parse HEAD:' to calculate hash of a folder in a worktree.
+this is basically the same behavior as 'git ls-tree :'.</p>
+<p>this is calculating the hash not of the current worktree, but of a specific commit (HEAD in my case), so changes to the worktree (modified, new files, deleted, staged) are not a part of the calculation.</p>
+<p>Now i want to change my logic to include these changes, to calculate hash of a folder but from the worktree current state and not a commit.
+preferably using the same logic as ls-tree (because we've used this code so far, and want to maintain compatibility).</p>
+<p>how can this be done?
+would very much appreciate any help</p>
+","0","12832465",""

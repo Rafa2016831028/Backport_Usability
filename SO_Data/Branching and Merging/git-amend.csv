@@ -1,0 +1,846 @@
+Post Link,User Link,CreationDate,Score,ViewCount,Tags,Title,Body,CommentCount,AnswerCount,FavoriteCount
+"54584915","141719","2019-02-08 01:32:14","1","120","<git><git-commit><build-system><git-amend>","Is `git commit --amend` touching more files than is necessary?","<p>I often experience the following:</p>
+
+<ol>
+<li>Modify files A, B, and C.</li>
+<li>Commit the modifications with <code>git commit</code>.</li>
+<li>Build the project, so the build is up to date.</li>
+<li>Make a follow-up / fix-up modification to file A only.</li>
+<li>Run <code>git commit -a --amend</code> (or <code>git commit --amend path/to/A</code>)</li>
+<li>Rebuild the project incrementally.</li>
+</ol>
+
+<p>Now, since I've only modified file A since the last time I've built, I would expect that only file A gets rebuilt, but what I invariably see is that all of A, B, and C (i.e., all the files touched by the entire commit) are rebuilt.</p>
+
+<p>It seems to me that <code>git commit --amend</code> it <code>touch</code>ing / bumping the last modified timestamps of each of A, B, and C, even though I'm only adding a modification of A to the commit.</p>
+
+<p><strong>Is this necessary? Can it be avoided, so only A is touched and only A gets rebuilt?</strong></p>
+
+<p>If it matters, my project is in C++ and my build system is cmake+ninja, but I think that's largely besides the point as it's fairly standard for build systems to rely on last modified timestamps to determine what to rebuild.</p>
+","0","141719",""
+"40512166","1669457","2016-11-09 16:54:11","1","1208","<git><commit><rebase><git-amend>","How do I know if a git commit has been changed?","<p>Someone has committed something a few months ago. After that, multiple other commits have been done. Is it possible to see if someone has changed the contents of that certain commit by amending or by rebasing? If yes, how?</p>
+","6","1669457","0"
+"15479609","1316620","2013-03-18 14:44:29","134","28838","<git><git-commit><git-amend>","git commit --amend without asking for message","<p>From time to time I find myself <em>commit-amending</em> using the same message.</p>
+
+<p>Typically, I do:</p>
+
+<ol>
+<li>Add my changes to staging area.</li>
+<li>Do <code>git commit --amend</code>.</li>
+<li>Wait for the text editor to open.</li>
+<li>Save and close it (without changing the message).</li>
+</ol>
+
+<p>There is anyway to tell git that I don't want to change the commit message (skipping the step of opening my text editor and saving the message)? Like:</p>
+
+<ol>
+<li>Add my changes to staging area.</li>
+<li>Tell git to amend my staging area to the last commit without asking me for another message.</li>
+</ol>
+
+<hr>
+
+<p>I know I can avoid git firing up my text editor by doing <code>git commit --amend -m ""&lt;message&gt;""</code>. But this way I would have to retype the message.</p>
+","0","1316620","0"
+"17368423","2131316","2013-06-28 15:33:19","0","518","<git><gerrit><git-commit><git-amend>","how the git commit --amend working together with gerrit?","<p>I staged and committed 5 files and pushed it gerrit, but before it is merged in to git, I updated 3 of them then I git commit --amend to the last commit, and if I do push to gerrit again, does this second path contains the updates in the other two files?</p>
+","0","2131316",""
+"73649220","2444661","2022-09-08 12:36:58","0","172","<git><git-amend>","git amend: Commit not amended","<p>I see a bit strange behavior with Git.</p>
+<p>So I have a feature branch locally, say F1, and I add a commit, C1, to it. I push it to repo, get reviews and finally merge to master. So master has my commit C1 on top.</p>
+<p>Then I realized that some changes in C1 are not needed. So I created another feature branch, say F2, from latest in master. Fortunately commit C1 is still at top. So I amended C1 itself, and changed the commit message with</p>
+<blockquote>
+<p>'git commit --amend -m &quot;new message&quot;</p>
+</blockquote>
+<p>pushed the branch, got it reviewed, got it merged to master.</p>
+<p>I was expecting C1 to be still at top in master, with amended commit message. But it's not and new commit is on the top with new commit message, with C1 at position 2.</p>
+<p>Is this 'amend' behaviour as expected?</p>
+","5","2444661",""
+"75068887","11402587","2023-01-10 10:53:07","0","36","<git><git-amend>","How do you add to the last commit message when running git commit --amend","<p>not sure if you can do this but I am looking for the Syntax / Placement to add a new message when editing a commit via <code>git commit --amend</code></p>
+<p>I am aware that you can overwrite a message via <code>git commit --amend -m '&lt;over write message goes here&gt;'</code>.</p>
+<p>In this case I have some commits that all fall into one batch - they are quick fixes and the aim is to reference there issue numbers on the message so this is shown in gitlabs.</p>
+<p>Instead of having X commits per issue, I wanted to write a message like &quot;#22 #24 #26 - batch update of small low level issues&quot;.</p>
+<p>When I run: <code>git commit --amend</code> I am greeted with a VIM screen:</p>
+<p><a href=""https://i.stack.imgur.com/lZO8U.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/lZO8U.png"" alt=""enter image description here"" /></a></p>
+<p>Where and how do I add to the current commit message on this page / is this possible?</p>
+<p>I tried:</p>
+<p>Keycommand: i (allows you to insert)</p>
+<p>Then adding to the currently shown commit message at the top:</p>
+<p><a href=""https://i.stack.imgur.com/4hM8K.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/4hM8K.png"" alt=""enter image description here"" /></a></p>
+<p>then</p>
+<p>Keycommand: :wq (to write and save)</p>
+<p>I get an issue: <code>Aborting commit due to empty commit message.</code></p>
+<p>So where do I need to add the commit message using this system?</p>
+<p>thanks - W</p>
+","0","11402587",""
+"76089744","16955154","2023-04-24 07:58:11","-2","71","<git><visual-studio-code><commit><git-amend>","git commit --amend not opening a new tab in VS Code","<p>I used to use <code>git commit --amend</code> and it used to open a new tab in VS Code where I can edit the commit and when I close this tab the commit is changed, but for some reason this doesn't happen any more.</p>
+<p>Now when I use <code>git commit --amend</code> it doesn't open the new tab and displays the commit message in the command line, and I can't edit it there.</p>
+<p>How can I have the VS Code tab back, or edit the message in the command line?</p>
+<p>I tried to edit the message in the command line but nothing changed, I can't even quit this phase with Ctrl + C and I exit it by closing Powershell.</p>
+","2","16955154",""
+"11540824","699012","2012-07-18 11:58:11","4","981","<git><rebase><git-amend>","Changing the code of previous commits with git rebase -i","<p>I have a repository with various commits which I want merged in two patches.
+One patch introducing the feature and another changing the existing code to use it.
+Problem is, when I was coding and committing I didn't have that in mind, so there are commits which do both. How can I split these commits?</p>
+
+<p>I know that somehow I can do it with git rebase -i and picking edit for each commit I'd like to change, but this way I can only change the commit message, not the code </p>
+","0","699012","0"
+"2310080","55562","2010-02-22 10:01:42","2","969","<svn><git><git-svn><commit><git-amend>","How to remove a file from a git commit to push to svn","<p>I replaced a folder and all its contents with a symlink. That is removed the folder and added a symlink, in a single git commit.</p>
+
+<p>Git commit happened normally. However when I try to push to the upstream svn, it complains that the file exists.</p>
+
+<p>Now, how do I amend my commit to not contain the git add of the new symlink and make it a new commit, so SVN can understand to remove and replace the folder; or can I use the svn commit force via git amend.</p>
+
+<p>This is the error I get: </p>
+
+<pre><code>RA layer file already exists: File '/svn/uswaretech_zobpress/site_media/frontend' already exists at /usr/lib/git-core/git-svn line 508
+</code></pre>
+","0","55562","0"
+"21316534","3207330","2014-01-23 18:33:27","3","2342","<git-amend><git>","Git not-fast-forward errors after git commit --amend","<p>I used git commit --amend to amend the previous commit. After that when I push my changes, I was rejected because of 'not -fast-forward' Errors. I have search for answers. Unfortunately, commands such as, <code>git pull --rebase</code>, <code>git fetech origin</code> don't work. If there is no conflict in my local repo, why my push failed.</p>
+","0","3207330",""
+"1459150","109305","2009-09-22 09:56:19","1838","591015","<git><commit><undo><git-amend>","How to undo ""git commit --amend"" done instead of ""git commit""","<p>I accidentally amended my previous commit. The commit should have been separate to keep history of the changes I made to a particular file.</p>
+
+<p>Is there a way to undo that last commit? If I do something like <code>git reset --hard HEAD^</code>, the first commit also is undone.</p>
+
+<p>(I have not yet pushed to any remote directories)</p>
+","1","109305","0"
+"58668299","711085","2019-11-02 04:44:16","3","2350","<git><corruption><git-amend><reflog>","git - fatal: your current branch appears to be broken (possibly from interrupted pull)","<h1>Problem:</h1>
+
+<ol>
+<li>accidentally did a git --amend and pushed it to a usb key from first computer</li>
+<li>pulled from the usb key to a second computer</li>
+<li>second computer repository is now corrupted</li>
+<li>git pull to first computer results in a merge conflict; confused about whether this would be a corrupted state as well (if the --amend is corrupt)</li>
+</ol>
+
+<h1>Symptoms:</h1>
+
+<p>most commands:</p>
+
+<pre><code>fatal: your current branch appears to be broken
+</code></pre>
+
+<p>.git/refs/heads/master:</p>
+
+<pre><code>$ cat .git/refs/heads/master
+</code></pre>
+
+<p>file conents of .git/refs/heads/master:</p>
+
+<p><code>'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'</code></p>
+
+<pre><code>$ git status
+new file: ...
+new file: ... [for every file in the repository; expected since on a corrupted branch]
+</code></pre>
+
+<p>I'm not sure I am willing to blame git --amend since it seems somewhat benign; maybe something else happened.</p>
+
+<h1>How to fix?:</h1>
+
+<p>Is fixing this as simple as taking the hash from the latest good commit of .git/logs/refs/heads/master and inserting it manually into .git/refs/heads/master ? How would I do this, if</p>
+
+<p>If so, should I destroy the offending commit (so it doesn't corrupt things later on, with say a <code>git-repack</code> or something)?</p>
+
+<p>When I tried to <code>less .git/logs/refs/heads/master</code> and took the [edit:typo] <em>first</em> hash from the last line of the form...</p>
+
+<pre><code>...
+[hash for HEAD~2] [hash for HEAD~1] [authorname] ...
+[hash for HEAD~1] [hash for HEAD] [authorname] ...
+^^^^^^^^^^^^^^^^^   (corrupted)
+EOF
+</code></pre>
+
+<p>... and then pasted into the .git/refs/heads/master file, I am now stuck with...</p>
+
+<pre><code>$ git fsck
+error: inflate: data stream error (unknown compression method)
+error: unable to unpack header of .git/objects/8f/1da374ffac3711f8cdde57379f90cb03bbb9ea
+error: 8f1da374ffac3711f8cdde57379f90cb03bbb9ea: object corrupt or missing: .git/objects/8f/1da374ffac3711f8cdde57379f90cb03bbb9ea
+error: inflate: data stream error (unknown compression method)
+error: unable to unpack header of .git/objects/ac/2fcd052804fb7adac465220da5bcb04d008fc7
+error: ac2fcd052804fb7adac465220da5bcb04d008fc7: object corrupt or missing: .git/objects/ac/2fcd052804fb7adac465220da5bcb04d008fc7
+Checking object directories: 100% (256/256), done.
+Checking objects: 100% (1147/1147), done.
+error: inflate: data stream error (unknown compression method)
+error: unable to unpack 8f1da374ffac3711f8cdde57379f90cb03bbb9ea header
+error: inflate: data stream error (unknown compression method)
+error: unable to unpack 8f1da374ffac3711f8cdde57379f90cb03bbb9ea header
+fatal: loose object 8f1da374ffac3711f8cdde57379f90cb03bbb9ea (stored in .git/objects/8f/1da374ffac3711f8cdde57379f90cb03bbb9ea) is corrupt
+</code></pre>
+
+<p>I could try destroying the loose object, but I'm not sure if it is, in turn, a pointer to (e.g. a tree) of more corrupt objects that must be destroyed as well. I could certainly try to destroy this object if I knew the commend (or could try to <code>rm</code> it on a backup); should I try that?</p>
+
+<p><strong>Furthermore, how would I repair the USB key and other repo from this mess? Thanks.</strong></p>
+
+<p>(potentially useful references for newbies, unlikely to help people capable of answering this question: <a href=""https://aboullaite.me/deep-dive-into-git-git-refs/"" rel=""nofollow noreferrer"">https://aboullaite.me/deep-dive-into-git-git-refs/</a> )
+(similar question <a href=""https://stackoverflow.com/questions/57580891/fatal-your-current-branch-appears-to-be-broken"">fatal: your current branch appears to be broken</a> -- does not specify cause of error; many things may cause this error)</p>
+
+<hr>
+
+<p>edit:</p>
+
+<p>I did <code>rm .git/objects/...</code> for every object listed above, and now I have...</p>
+
+<pre><code>$ git fsck
+Checking object directories: 100% (256/256), done.
+Checking objects: 100% (1147/1147), done.
+error: refs/remotes/origin/HEAD: invalid sha1 pointer 0000000000000000000000000000000000000000
+error: refs/remotes/origin/master: invalid sha1 pointer 0000000000000000000000000000000000000000
+error: HEAD: invalid reflog entry 8f1da374ffac3711f8cdde57379f90cb03bbb9ea
+error: refs/heads/master: invalid reflog entry 8f1da374ffac3711f8cdde57379f90cb03bbb9ea
+error: bad ref for .git/logs/refs/remotes/origin/HEAD
+error: bad ref for .git/logs/refs/remotes/origin/master
+error: ac2fcd052804fb7adac465220da5bcb04d008fc7: invalid sha1 pointer in cache-tree
+broken link from    tree b0d598ef5427d59ed31eb1b315c761fc89af40b7
+              to    tree ac2fcd052804fb7adac465220da5bcb04d008fc7
+dangling blob f4e39c36cc8df3f9f324c0ccca4ed6a7a3ffe6ac
+dangling tree 068716abcf815b4eaf8f0fe74c3020bf6251bba0
+dangling blob fb4cfe7c94e8b4d800fdb4935806577b2b99fd94
+dangling blob 35cf2ca2ed03811c14f1598c50daacfab9032b8f
+missing tree ac2fcd052804fb7adac465220da5bcb04d008fc7
+dangling blob d056e38af637cf0de76dac5689a8c5e735d75793
+dangling blob 3b3903cc7b4eb035e9c4508024acc3f81c015741
+dangling blob b09c3cc95935a327ecf7fad8374f14c4e320f67e
+</code></pre>
+","0","711085","0"
+"21018486","2630106","2014-01-09 11:08:36","0","390","<git><github><git-commit><git-amend>","Why i can't use comand ""git commit --amend"" and push that to github","<p>firstly I cloned my own repo from github, because i wanna amend the last commit, so i type ""git commit --amend"" and push to github, but some errors occur. Some guys said that the operation doesn't allowed by github, unless make another commit, Is that true?  and how can i amend the last commit on github?</p>
+","0","2630106",""
+"51027756","5061860","2018-06-25 16:10:00","0","849","<git><git-amend>","git Changing a commit message (amend)","<p>I am in a situation where I would like to edit the commit message of an old, already pushed code.
+In my case I have , of course, my master branch and several other branches, for example v1.0, v2.0 and v3.0. The commit I want to update its messages was made at the time when the branch v1.0 was the 'master'. At each new release of my code I also put a tag on each branch to start and later to follow the different fixes (1.0, 1.1, and so on). For example in branch v1.0, I have a fix (which represents a new version) tagged as 1.1.
+In my case the code where the commit messages appears is under the tag 1.0.
+I tried the whole procedure described here <a href=""https://help.github.com/articles/changing-a-commit-message/"" rel=""nofollow noreferrer"">https://help.github.com/articles/changing-a-commit-message/</a> (Amending the message of older or multiple commit messages) but I am still being displayed the commit messages appear ""under"" the tag 1.0 (I am using SmartGit , that's why I am saying ""under""). If I type <code>git show commit_id</code> I still see the commit with the old message...</p>
+
+<p>Does anybody has an idea how to remove this commit message completely from git?
+Thanks in advance for the replies.</p>
+
+<p>(I am not very good with git, so for now I am just trying to follow the explanations given in internet...)</p>
+
+<p>May be I can recreate the repository and change these commit messages and at the same time keep the rest of the repository's history ? Someone may be did already that ? :)</p>
+","1","5061860",""
+"9941829","626939","2012-03-30 11:11:56","0","513","<git><editor><git-amend>","git --amend in external editor","<p>I am working on learning how to use git and the section I am on now is using --amend. When I run this in terminal it opens up TextMate for me to change the message. I change the message and then save. I go back to terminal and nothing has happened.</p>
+
+<p>What step am I missing here or am I not doing this correct?</p>
+","2","626939",""
+"65941381","15100202","2021-01-28 16:36:17","1","1260","<git><commit><undo><git-amend>","How can i revert a git commit --amend -m without losing my original hashcode and the code i supposed to commit?","<p>I need to revert a wrong git commit --amend -m</p>
+<ol>
+<li>did git commit without -m</li>
+<li>did git commit --amend -m &quot;commit message&quot;</li>
+<li>git commit --amend -m &quot;commit message&quot; changed my previous commit instead of the one i supposed to commit.</li>
+</ol>
+<p>is it possible to revert to before the step 1 without losing my original hashcode or the code i supposed to commit?</p>
+<p>commit is not pushed yet btw</p>
+","1","15100202",""
+"31411830","2409125","2015-07-14 16:06:53","2","950","<git><github><version-control><git-filter-branch><git-amend>","git mirroring to GitHub and filtering private files","<p>Currently working on a project. We want to open-source our day-to-day commits with full info (author, etc...) while filtering out some specific private folders.</p>
+
+<p>Let's say I commit A/file1 and B/file2 in branch master, I would like to have it mirrored on GitHub with B folder filtered (this commit would only have A/file1).</p>
+
+<p>One way I was thinking to do this is a remote update hook that:</p>
+
+<ul>
+<li>List all new commits added by newref (let's say lastfoundcommit..newref)</li>
+<li>Amend those commits one by one (from lastfoundcommit to newref) to remove unwanted files</li>
+<li>In the process, it might create a local master-filtered branch (if it helps to have it locally)</li>
+<li>Push this branch to public repository</li>
+<li>Somehow keep a mapping of commit ID between private and public commits, to easily compute ""lastfoundcommit"" on next push</li>
+</ul>
+
+<p>Ideally it could go both way (i.e., it would be nice if we could also import back github branches and pull requests and have them ""rebased"" on top of our private repository, either automatically or with a simple process -- probably not so hard as it is likely just a rebase).</p>
+
+<p>This is somewhat similar to what git-subtree can do, except it is not to extract a subdir but to filter various files instead.</p>
+
+<p>Does that seem feasible? Or any other suggestion? (maybe based on git filter-branch? or any other existing tool/script that might help me?)</p>
+
+<p>Note: submodule is not a viable option, as they might be sparse and it would get in the way too much. Also, list of ""private"" files might extend/change over time.</p>
+","0","2409125",""
+"2730720","262667","2010-04-28 15:11:51","1","686","<git><git-commit><git-amend>","What happens when amending an old commit with git?","<p>I don't really understand what happens if I check out an old commit, do some modifications, and commit using <code>git commit --amend</code>. </p>
+
+<p>Will that change automatically propagate to future commits? How does it work?</p>
+","0","262667",""
+"11184267","1479142","2012-06-25 06:18:20","23","17875","<git><git-commit><git-amend>","How to push to repo after doing 'git commit --amend'","<p>I made a commit &amp; pushed to repo. Later I modified the commit message by using <code>git commit --amend</code>, In the pop-up window I entered the new message. I could see the new message via <code>git log</code>. After all this process, my <code>git status</code> shows like this. I don't know how to push this change to repo.</p>
+
+<pre><code>On branch master
+Your branch and `origin/master` have diverged,
+and have 1 and 1 different commit(s) each, respectively.
+</code></pre>
+
+<p>Expecting a feasible solution for this.</p>
+","3","1479142","0"
+"11856141","105878","2012-08-08 00:44:13","18","5276","<git><rebase><git-amend>","How to git commit --amend a commit that's the base of a branch","<p>I have branch foo off of master/head.  I wanted to ammend the master/head and have these changes picked up on branch foo.  I did the following:</p>
+
+<pre><code>git checkout master
+git add ...
+git commit --amend
+git checkout foo
+git rebase master
+</code></pre>
+
+<p>The problem was the old non-amended commit shows up as part of branch foo after the amend, and it got rebased onto master.  I did a git rebase -i and deleted the old commit and that worked, but is there an easier/safer way to modify the commit that's the base of a branch?  And yes, it's all local commits that haven't been pushed..</p>
+","0","105878","0"
+"18874613","1136257","2013-09-18 14:13:43","13","6819","<git><git-push><git-amend>","How to undo the initial commit on a remote repository in git?","<p>If my very first commit is wrong, yet pushed to a (currently private) remote, how do I undo that commit on the remote?</p>
+
+<p>I'm guessing I can just amend and then push --force?</p>
+","3","1136257","0"
+"69413913","10692636","2021-10-02 04:14:00","0","227","<git><gerrit><git-amend>","Prevent git commit --amend from trying to amend an already submitted change?","<p>We are using Gerrit for code reviews.</p>
+<p>The normal workflow is:</p>
+<ol>
+<li>git commit</li>
+<li>run a script to push the commit, which does:
+<ol>
+<li>git commit --amend, which I think triggers a hook</li>
+<li>git push</li>
+</ol>
+</li>
+</ol>
+<p>Every now and then, I forget to do the commit and I totally mess myself up by calling the script first, which then amends the last commit, which has already been submitted (merged).</p>
+<p>If I don't get too far ahead of myself, I can do:</p>
+<pre><code>git reset --soft HEAD~1
+</code></pre>
+<p>And then I can fix it, albeit with a bit of pain.  If I get too far ahead, then I end up having to fix conflicts, rebase, fix conflicts again before I am back in-sync with the branch (master in this case).  The conflict resolution is usually not too difficult, but it wastes a lot of time if it was a bunch of files.</p>
+<p>What I would like to do, is to have a safeguard in the script to somehow detect if the last commit has been submitted (aka merged via Gerrit) and abort the script in that case, because there is probably never a scenario where I want to amend a commit</p>
+<p>A web search proved fruitless to find a solution, hopefully someone in the SO community has a way to work around this?</p>
+<p>TIA,
+-Dave</p>
+","1","10692636",""
+"48699317","6610946","2018-02-09 05:34:18","1","16393","<github><git-commit><git-amend>","What is a comment in commit_editmsg in github","<p>I have spent a long time reading and trying to figure out git commit --amend, but I still do not understand how the # are used in the editmsg.</p>
+
+<p>I am worried to edit this without knowing what I am doing because I have read that git commit --amend only does the most recent commit,and once I save and exit , it will be counted as a new commit.</p>
+
+<p>I have accidentally committed and pushed (but the push failed) some large files.  But I have also written scripts that were supposed to be pushed from the same commit as the large files.</p>
+
+<p>I am trying to delete the lines with the large files in the new commit , but I don't understand how to do this. </p>
+
+<p>This is my commit file below, but I don't understadn if I should delete the lines with the # (I tried this but it didn't work , and the git log is the same ): </p>
+
+<pre><code>the commit message of the one I want to change is here but I don't want to just change the message, I want to delete the large files in the commit so that the push works.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Thu Feb 8 18:30:32 2018 -0900
+#
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use ""git push"" to publish your local commits)
+#
+# Changes to be committed:
+#   new file:   script.py
+#   new file:   super_large_file.npy &lt;--- I deleted this line but it appeared again, it is becuase deleting a line with # is ignored?  Do I just rewrite the stuff after the # lines? 
+</code></pre>
+
+<p>My question is , why does deleting the line of the large file (including the # ) not work and the commit remains still wanting to push the large file?</p>
+
+<p>Should I just rewrite the commit file without the # ? But I also read that git takes away the # , so I am confused</p>
+","0","6610946","0"
+"41770679","1506969","2017-01-20 19:03:12","1","870","<git><github><commit><git-amend>","How to fix a git commit --amend on the head of a remote branch?","<p>I make this git mistake sometimes and its incredibly annoying. I was wondering whether anyone in the community had ideas for what to do when you accidentally do a commit --amend on the head of a remote branch. Right now I end up doing a pull, diffing against my own partial change, and pushing, resulting in a duplicate commit message on the HEAD.</p>
+
+<p>For clarity, I'm asking the best way to fix the following:</p>
+
+<ol>
+<li>Pull remote branch (e.g. master)</li>
+<li>Make change</li>
+<li>Commit --amend change</li>
+<li>Try to push, get rejected</li>
+<li>Curse self and/or gods</li>
+</ol>
+","2","1506969",""
+"47842980","2020214","2017-12-16 05:55:36","3","1986","<git><git-tag><git-amend>","git commit amendment without losing the tags","<p>I have the following script that runs on post-commit hook of Git:</p>
+
+<pre><code>#!/bin/sh
+# by Martin Seeler, and
+# by Jorge Javier Araya Navarro
+
+# destination of the final changelog file
+OUTPUT_FILE=CHANGELOG.md
+
+# generate the changelog
+if ! type gitchangelog &gt; /dev/null; then
+    echo ""ERROR: Please install gitchangelog""
+    exit 1
+fi
+
+gitchangelog &gt; $OUTPUT_FILE
+
+# prevent recursion!
+# since a 'commit --amend' will trigger the post-commit script again
+# we have to check if the changelog file has changed or not
+res=$(git status --porcelain | grep $OUTPUT_FILE | wc -l)
+if [ ""$res"" -gt 0 ]; then
+  git add $OUTPUT_FILE
+  git commit --amend --no-edit
+  echo ""Populated Changelog in $OUTPUT_FILE""
+fi
+</code></pre>
+
+<p>This is convenient for generating a CHANGELOG file using gitchangelog without creating a new commit to register the change on that file.</p>
+
+<p>However, if I had a tag on HEAD, after <code>commit --amend</code> is ran the tag is <em>""lost""</em>, thus I have to delete it locally and remotely and recreate it which is annoying.</p>
+
+<p>I'm trying to figure a way for the script to move the tags after the amend, but at this point I not sure what I'm doing. Should I list first the tags on HEAD? May I move the tags after the amend? Will Git know what I mean anyway?</p>
+","0","2020214","0"
+"13811962","862877","2012-12-11 00:59:29","4","442","<git><git-commit><git-amend>","Why doesn't git amend warn you when there's nothing to amend?","<p>I oftentimes make the mistake of making a change to a file right after a commit, then running <code>git commit --amend</code> followed by a quick <code>git push -f origin master</code></p>
+
+<p>The issue, obviously, is that I never ran <code>git add foo.md</code>. So my amend didn't actually amend any of my committed code.</p>
+
+<p>Question is: Why doesn't git warn you when amending a commit with no changes? Better yet, why does it even complete successfully? Is it merely behaving like a ""touch"" in changing the timestamp of a given commit?</p>
+","0","862877","0"
+"3435010","87399","2010-08-08 16:06:11","1","2204","<ruby><git><git-amend>","How can I detect whether a git commit is a parent of other commits?","<p>I'm writing a script that makes some trivial changes and then commits them to git. Because these are trivial changes, I want to do <code>git commit --amend</code> whenever I can get away with it -- specifically, when an amend won't ""mess up"" any other branches' history. If an amend would mess up another branch, I want to do a standard <code>git commit</code> instead.</p>
+
+<p>For example, if my branches looked like this (a la ""Visualize all branch history"" in Git GUI):</p>
+
+<pre><code>* [experimental branch] Added feature.
+* [master branch] Trivial change from script
+* ...
+</code></pre>
+
+<p>and I'm running this script on the master branch, then I don't want to do an amend, because I would be replacing part of the experimental branch's history. Technically, this won't actually break anything -- the original commit will still be part of experimental's history, and will still be referenced so it won't get garbage collected -- but having nearly-but-not-quite-identical commits in two different branches makes life difficult when I later want to rebase or merge, so it's a situation I want to avoid.</p>
+
+<p>How can I make my script automatically detect whether a commit has anything branched from it?</p>
+
+<p>If simplifying assumptions help, I always run this script on the head of master, and I only use git as a local repository -- I don't push or pull changes anywhere.</p>
+
+<p>This script is in Ruby, so I can either shell out to the git command line, or I can use Ruby bindings for git -- whichever would make this task easier.</p>
+","0","87399","0"
+"43289444","228521","2017-04-08 02:12:03","20","6880","<git><merge-conflict-resolution><git-amend>","git merge conflict after git amend - ""Your branch and 'origin/master' have diverged""","<p>This is what happens:</p>
+
+<ol>
+<li>After a recent commit to remote master, I make a small trivial change to my local repo</li>
+<li>I add <code>git commit --amend</code> and leave the same commit message as HEAD</li>
+<li>I try to push the repo to master with <code>git push</code></li>
+</ol>
+
+<p>And now I get</p>
+
+<pre><code>On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 1 different commit each, respectively.
+  (use ""git pull"" to merge the remote branch into yours)
+nothing to commit, working directory clean
+</code></pre>
+
+<p>I want to understand:</p>
+
+<ol>
+<li>Why this exactly happens?</li>
+<li>What can I do to prevent this?</li>
+<li>How do I reconcile master with local after a git amend?</li>
+</ol>
+","0","228521","0"
+"16006518","364569","2013-04-15 01:52:00","5","10431","<git><branching-and-merging><git-amend>","How to change author name on git branch","<p>I branched my github project to create the static page the other day but messed up with my author name</p>
+
+<p><a href=""https://github.com/ronaldsuwandi/le-simplepage/commits/gh-pages"" rel=""nofollow noreferrer"">https://github.com/ronaldsuwandi/le-simplepage/commits/gh-pages</a></p>
+
+<p>How do I rename the author for the first commit for the branch? </p>
+
+<p>I've tried </p>
+
+<ul>
+<li><a href=""https://stackoverflow.com/questions/750172/how-do-i-change-the-author-of-a-commit-in-git"">Change the author and committer name and e-mail of multiple commits in Git</a></li>
+<li><a href=""https://stackoverflow.com/questions/3042437/change-commit-author-at-one-specific-commit"">Change commit author at one specific commit</a></li>
+</ul>
+
+<p>But no luck - I'm still really new to git..</p>
+
+<p>EDIT: The answer given by <a href=""https://stackoverflow.com/a/3042512/364569"">Amber</a> does not work if I want to change the first commit (e.g. if my commit history is <code>A-B-C-D</code> and I would like to change the commit history of <code>B</code> I can do <code>git rebase -i A</code>. But I'm not sure what to do if I want to change commit history of <code>A</code> itself.</p>
+","0","364569","0"
+"34851805","3952386","2016-01-18 09:56:37","3","6210","<git><github><git-commit><git-amend>","How do I push amended commit to the remote git repo on a specific commit","<p>I already edit some files in my repo and push them.<br>
+After some other work, I noticed that i keep a line commented.<br>
+So, i don't want to create a new commit for it and I want to change it in the previous commit (Not the last one commit).<br>
+I think that i can use the commit ID, but i don't know how or maybe Git not tolerating this feature.<br></p>
+","2","3952386","0"
+"34915268","5812628","2016-01-21 04:09:56","1","206","<git><commit><git-amend>","git I forgot to edit a line before commiting and pushing","<p>I decided to integrate a library into my code.
+I add the library, and change a couple lines of code to start implementing it.
+It compiles, so I commit and push to the repo.</p>
+
+<p>I only realise later that I've missed a line that is still on old code.
+I give it a google search and find out about <code>git commit --amend</code>, and lucky for me, there are no other commits.
+I thought all I had to do was fix the line of code, <code>git add</code> the file, <code>git commit --amend</code>, and finally <code>git push</code> that to the repo, but git tells me</p>
+
+<blockquote>
+  <p>! [rejected]        master -> master (non-fast-forward) hint: Updates
+  were rejected because the tip of your current branch is behind</p>
+</blockquote>
+
+<p>I find that strange since I'm on the latest commit and if I <code>git reset -soft HEAD~1</code> I am back to being aligned with the repo, besides the single line of code I've changed.</p>
+
+<p>Am I doing it wrong? I really don't want to make an entirely new commit just for this single line of code that should've been part of the last commit.</p>
+","0","5812628",""
+"23215385","1199226","2014-04-22 09:18:52","19","4512","<git><commit><git-amend>","Why does git call me ""clever"" when I reword the last commit message?","<p>I regularly run</p>
+
+<pre><code>git commit --only --amend
+</code></pre>
+
+<p>to reword the commit message of the latest commit I made. This will work irrespective of whether my working directory is clean or not.</p>
+
+<p>Today I noticed that when doing this, the default instructions for writing commit messages shown in my <code>core.editor</code> include the following comment:</p>
+
+<pre><code># Clever... amending the last one with dirty index.
+</code></pre>
+
+<p>Aside from having a bit of an easter egg charm to it, <strong>what is this message supposed to tell me?</strong> Is it an ironic way of saying that I should be careful when messing with previous commits (esp. if there are staged/unstaged changes present)? <strong>And why does it show up even if my working directory is clean?</strong></p>
+","6","1199226","0"
+"62090839","2370337","2020-05-29 16:47:19","0","3509","<git><git-push><git-remote><git-amend>","I have two git commits that appear the same after a pushed amend","<p>I have a git branch that I am working on locally.  After editing some code and doing a commit and a push to a remote repo, I noticed that I had an error in my commit message.  I used amend to correct this.  First I tried to push, but this was not allowed,  So I did a pull and then a push.  Everything appeared to work.  When I look at the repo, I can see two commits, one for each message (both correct and incorrect, so I guess my correction was useless lol.)  Then I noticed that both commits contained the same code changes.  This seems strange, because I don't think that both should contain code changes.  Does this mean that the changes are applied twice?  Is this a problem that could cause issues later?  Does this need to be fixed?  If so, how do I fix this?</p>
+
+<p>=====</p>
+
+<p>commands</p>
+
+<ol>
+<li>(IDE) Changes made, added and committed </li>
+<li>git push -u origin BRANCH_NAME</li>
+<li>(IDE) Amend performed</li>
+<li>git push (error: failed to push some refs)</li>
+<li>git pull</li>
+<li>git push</li>
+</ol>
+","0","2370337",""
+"7194939","524281","2011-08-25 17:52:28","48","14837","<git><commit><git-amend>","git: change one line in file for the complete history","<p>When I started my git repo I commited a few files as initial commit to it. Now, many commits later, I noticed that I included in those files a line with information which I do not want to publish (unlike the rest of the code). So I want to <strong>remove/change this one line</strong> and <strong>keep the rest</strong> of the code.</p>
+
+<p>Searching around I found this solution: Insert an empty commit as initial commit (described here: <a href=""https://stackoverflow.com/questions/645450/git-how-to-insert-a-commit-as-the-first-shifting-all-the-others"">Insert a commit before the root commit in Git?</a>), do a rebase on it and then edit the old first commit via amend. Unfortunately, many cruel merge conflicts arise during rebase (as described here: <a href=""https://stackoverflow.com/questions/7194023/git-solving-conflicts-caused-by-rebase/7194301#7194301"">git: solving conflicts caused by rebase</a>).</p>
+
+<p>Is there a different way to solve my problem or do have to rebase and edit all conflicts by hand?</p>
+
+<p>Thanks in advance :)</p>
+","6","524281","0"
+"26050327","1108891","2014-09-26 00:43:05","26","25693","<git><git-commit><git-amend>","How does git commit --amend work, exactly?","<p>I have seen <em><a href=""https://stackoverflow.com/questions/25948049/git-commit-amend-in-detached-head-state/25948372#25948372"">&#39;git commit --amend&#39; in detached HEAD state</a></em>. The question requires the answer to be more complex than needs be.</p>
+<p>I'd like to understand just how <code>git commit --amend</code> works in a normal HEAD situation.</p>
+","1","1108891","0"
+"5032374","72530","2011-02-17 17:29:52","69","46892","<git><git-commit><git-amend>","Accidentally pushed commit: change git commit message","<p>In my local repo I have one commit with an incorrect commit message.</p>
+
+<p>I've already published the incorrect commit message with <code>git push</code>.</p>
+
+<p>Now the remote repo (which is GitHub-hosted) has the incorrect commit message, too.</p>
+
+<p>I've already tried <code>git commit --amend</code>, but found that it will not work for me in this situation because I've made additional commits since the incorrect one.</p>
+
+<p>How would you fix this situation?</p>
+","2","72530","0"
+"23791999","2541573","2014-05-21 19:20:29","40","24633","<git><sha><git-amend>","Why does git commit --amend change the hash even if I don't make any changes?","<p>Why does the SHA-1 hash of my latest commit change even if I don't make any changes to the commit (message, files) after running <code>git commit --amend</code>?</p>
+
+<p>Say I run the following at the command line.</p>
+
+<pre><code>cd ~/Desktop
+mkdir test_amend
+cd test_amend
+git init
+echo 'foo' &gt; test.txt
+git add test.txt
+git commit -m 'initial commit'
+</code></pre>
+
+<p>Then, invoking </p>
+
+<pre><code>git log --pretty=oneline --abbrev-commit
+</code></pre>
+
+<p>prints the following message:</p>
+
+<pre><code>b96a901 initial commit
+</code></pre>
+
+<p>I then do</p>
+
+<pre><code>git commit --amend
+</code></pre>
+
+<p>but I change my mind and decide not to change anything in the last commit. In other words, I leave the files, directories, and message of the last commit untouched (I just save the message file and close my editor).</p>
+
+<p>Then, I do</p>
+
+<pre><code>git log --pretty=oneline --abbrev-commit
+</code></pre>
+
+<p>one more time, I see that the hash of the commit has changed:</p>
+
+<pre><code>3ce92dc initial commit
+</code></pre>
+
+<p>What causes the hash to change? Does it have to do with the time stamp of the commit?</p>
+","0","2541573","0"
+"43629228","173149","2017-04-26 08:48:11","1","1486","<git><git-amend>","""git commit --amend"" without ""git add"" / changing staging area","<p>After further development I need to add additional changes to previous commit.</p>
+
+<p>I've made a lot of changes including from IDE, that handle file renames, creating new files, etc.</p>
+
+<p>So <code>git status</code> shows a lot of files in staging area.</p>
+
+<p>I do not want to add this files with <code>git commit --amend --no-message</code>.</p>
+
+<p>Can I list these files as arguments to <code>git commit --amend --no-message</code>? Any other possibilities without disturbing index?</p>
+
+<p>I think about stashing index - but it is complicated thing to list 40 files to ignore instead 2 files for amend....</p>
+","5","173149",""
+"25948049","349169","2014-09-20 11:01:30","16","4068","<git><commit><rebase><git-commit><git-amend>","'git commit --amend' in detached HEAD state","<p>I understand that the correct way of amending an old Git commit is to use <code>rebase --interactive</code>, but just to get clear on the concepts, I would like to understand what happens when I do</p>
+<ul>
+<li><code>git checkout &lt;commit&gt;</code></li>
+<li>change something in a file</li>
+<li>add the changed file to the index</li>
+<li>and then <code>git commit . --amend</code></li>
+</ul>
+<p>When I do this, instead of amending the commit, it branches a new commit off of the PARENT of that same commit.</p>
+<p>Is this just Git's way of telling me that I cannot amend a commit that already has children commits?</p>
+","0","349169","0"
+"7590069","969985","2011-09-28 21:52:20","1","186","<git><git-amend>","git: getting rid of previous commit so that you can amend the one before","<p>what happened:
+change1,
+git commit,
+git push,
+change2,
+git commit</p>
+
+<p>what should have happened:
+change1,
+git commit,
+git push,
+change2,
+git commit <strong>--amend</strong></p>
+
+<p>It's not important that I retain change2, but it is important that I am able to amend the original commit. How do I do this?</p>
+","0","969985",""
+"26419992","840710","2014-10-17 07:26:22","1","1062","<git><git-commit><git-amend>","git: How to refresh a commit that isn't on top","<p>In my working branch, I have three dependent patches. All of them not merged.</p>
+
+<pre><code>&lt;commit id -1&gt;
+&lt;Commit id -2&gt;
+&lt;Commit id -3&gt;
+</code></pre>
+
+<p><strong>How can i add new changes to <code>&lt;Commit id -2&gt;</code>?</strong></p>
+
+<p>Currently here is how I am doing it.</p>
+
+<pre><code>git stash
+git reset --hard HEAD~1
+git stash apply
+git add .
+git commit --amend
+git cherry-pick &lt;commit id -1&gt;
+</code></pre>
+
+<p>This is working without any problem. But is there a better way where I can commit the staged files to whichever commit I want?</p>
+","2","840710",""
+"52402176","9358141","2018-09-19 09:09:04","0","356","<git><commit><git-commit><git-extensions><git-amend>","Understanding git commit with amend option","<p>let's say i have a file 'A'
+i have modified the file and pushed it to the repository by the following commands</p>
+
+<pre><code>git add A
+git commit -m ""changed A""
+git push 
+</code></pre>
+
+<p>later after i have realised that i need  changes in file 'B' so i have modified it and ran following commands</p>
+
+<pre><code>    git add B
+    git commit --amend -m ""changed AandB""
+    git push
+</code></pre>
+
+<p>but i get error..</p>
+
+<pre><code>error: failed to push some refs to 'https://xxx@github.com/xx/xx'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+</code></pre>
+
+<p>what should i do to overcome that error</p>
+","4","9358141",""
+"52485769","2954142","2018-09-24 19:06:48","2","535","<git><commit><undo><git-amend>","How to undo multiple “git commit --amend"" or to get difference for each amend commit?","<p>I did by mistake more than 100 amend commits. How can i convert them to usual commits? Or at least to get git log with difference for each amend commit?
+I can see only difference for all amend commits at once if i run <code>gitk</code> or <code>git log -p</code> now. i can see all amend commits hashes but only with reflog. I can also see difference with <code>git diff amend_hash1 amend_hash2</code> but not in <code>gitk</code> or <code>git log -p</code>. They jump over these amends although they are linked correctly in <code>.git/logs/refs/heads/master</code> and <code>.git/logs/HEAD</code> </p>
+
+<p>i just ran <code>git commit --amend</code> 100 times, one time for each of 100 changes. Then I got one big commit for all 100 changes when i ran git commit without amend.</p>
+
+<p>I found how to undo only one amend commit...</p>
+","8","2954142",""
+"70570322","4465440","2022-01-03 19:07:28","1","473","<git><gitlab><git-commit><git-revert><git-amend>","git: change a commit and delete the old one","<p>I would like to modify the current git commit and remove its previous form. In other words the &quot;old&quot; current commit has to disapper and it is replaced by the &quot;new&quot; one with the same commit message.</p>
+<p>At the moment I am doing:</p>
+<pre><code>git add .
+git commit --amend --no-edit
+git push --force
+</code></pre>
+<p>From the web interface (gitlab) or using <code>git log</code>, I can see only the &quot;new&quot; current commit; but if I search for the &quot;old&quot; current commit hash (web interface or in <code>.git</code>) I am still able to see the &quot;old&quot; commit content.</p>
+<p>Is there a way to completely remove the old &quot;current&quot; commit?</p>
+<p>Thanks</p>
+<h1>Update</h1>
+<p>Following some advice I have tried:</p>
+<pre><code>git add .
+git commit --amend --no-edit
+git stash clear
+git fsck --unreachable --no-reflogs
+git reflog expire --expire-unreachable=now --all
+git gc --prune=now
+git repack
+git push --force
+</code></pre>
+<p>while locally I can see that the commits are not present anymore (<code>git branch -a --contains &lt;commit_id&gt;</code>), the size of the repository on gitlab continue to increase, even if I triggered housekeeping.</p>
+","0","4465440",""
+"64311092","11633894","2020-10-12 02:51:34","12","6996","<git><github><git-commit><git-amend>","How do I add a co-author to latest pushed git commit?","<p>I need to add a co-author to my last commit and I tried using <code>git commit --amend --author=&quot;name &lt;name@email.com&gt;&quot;</code> but change <code>--author</code> to <code>--co-authored-by</code>. I thought this would be an easily google-able fix but everything is only for authors and not co-authors.</p>
+","2","11633894",""
+"28176813","2725435","2015-01-27 17:50:45","27","39065","<git><terminal><git-commit><git-amend>","How to confirm changes after `git commit --amend` in Terminal?","<p>When I write <code>git commit --amend</code> I get some kind of editor, where I can change the name of this commit. How to confirm and save my changes using keyboard?</p>
+","5","2725435","0"
+"28091171","2851353","2015-01-22 14:28:11","0","1226","<git><git-commit><git-amend>","git amend added files in the staging area too","<p>I had changed a lot of files and added them in the Git staging area. Then, before committing them, I realised that I had to change the commit message of the previous commit. So, I did a <code>git commit --amend</code> and changed the commit message without going through the change log. Well, that added the files in the staging area to the previous commit too.</p>
+
+<p>What should I do so as to make the previous commit in its original form and get my changed files back in the staging area so I could commit them separately ?</p>
+
+<p>For what it's worth, I realise that I should have committed my changes first and then changed the commit message history using <code>git rebase -i</code>.</p>
+","4","2851353",""
+"66043176","15048710","2021-02-04 09:50:51","1","140","<git><gitlab><git-amend>","Cannot git merge because git commit --amend","<p>In master branch, I have the <em>Initial Commit</em> pushed gitlab</p>
+<p>After that I create a new branch called &quot;branchA&quot;</p>
+<p>I rename the initial commit with</p>
+<pre><code>git commit --amend -am Initial Commit v2
+</code></pre>
+<p>and do some modif and commit it</p>
+<p>In this example, you can see something like that</p>
+<pre><code>master :
+    - Initial Commit
+branchA :
+    - Initial Commit v2
+    - Commit number 2
+    - ....
+</code></pre>
+<p>I want to merge branchA into master how can I do that?</p>
+","0","15048710","0"
+"12499107","1542339","2012-09-19 16:38:05","2","1339","<git><version-control><git-push><git-commit><git-amend>","why git commit --amend make confliction happened? that is quite strange","<pre><code>*   84b134d - (HEAD, origin/lab_master, lab_master) comment macro defination which is protent to be a fun
+|\
+| * 735d88f - add small script to ease ctag related option (13 minutes ago) 
+* | 6623a94 - add small script to ease ctag related option (4 minutes ago) 
+|/
+* 0d0913a - add gitignore to ignore ctags file (57 minutes ago) 
+</code></pre>
+
+<p>735d88f is a --amend commit, but conflict happened at this moment, why?</p>
+
+<p>i have only one pc, and i always edit files on it, also i have only one local repo, what's more this repo is only used by here, <strong>i think there is no  possibility that conflict may happen</strong>?</p>
+
+<p>but it happened, why?</p>
+","1","1542339",""
+"49114137","754587","2018-03-05 15:41:31","2","6028","<git><push><git-amend>","git --amend --no-edit rejected push","<p>Today I discovered the <code>--no-edit</code> for the <code>--amend</code>. However, it leads me to the following problem. Here the steps:</p>
+
+<ul>
+<li>git clone </li>
+<li>did some changes to the code</li>
+<li>git add .</li>
+<li>git commit --amend --no-edit</li>
+<li><p>git push origin master</p>
+
+<pre><code>! [rejected]        master -&gt; master (non-fast-forward)
+error: failed to push some refs to 'https://me@bitbucket.org/myRepo.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</code></pre></li>
+</ul>
+
+<p>Why?</p>
+
+<p>Note: I'm the only one which works on that repo.</p>
+","7","754587","0"
+"14446799","1675642","2013-01-21 20:37:29","2","104","<git><commit><git-amend>","Is it possible to make a git commit non-amendable?","<p>Is there a way to protect a given git commit from being amended?</p>
+
+<p>All I can think to do is to write a pre-commit hook to check the SHA against a list of 'non-amendable' SHAs. Does anyone know of a standard/better way?</p>
+
+<p>Thanks.</p>
+","1","1675642",""
+"49858890","5447906","2018-04-16 13:47:24","14","7347","<git><merge><git-amend>","git fake merge (marking a commit as merged without a real merge)","<p>Assume I have the following history in my repository:</p>
+
+<pre><code>     E--F
+    /
+A--B--C---D
+</code></pre>
+
+<p>And I want to modify it to be this:</p>
+
+<pre><code>     E--F
+    /    \
+A--B--C---D
+</code></pre>
+
+<p>I don't want to modify file content of revisions, I just want to ""draw a merge arrow"". How can I do this?</p>
+
+<p>I tried to do this by the following commands:</p>
+
+<pre><code>git checkout D
+git merge F -s ours --no-ff --no-commit
+git commit --amend
+</code></pre>
+
+<p>But I got the following error message:</p>
+
+<pre><code>fatal: You are in the middle of a merge -- cannot amend.
+</code></pre>
+
+<p>I want to leave the commit information unchanged (author, date, message). The only thing I want to change is to add pseudo merge-info to the commit.</p>
+","2","5447906","0"
+"67825530","1752221","2021-06-03 16:47:03","1","313","<git><github><git-amend>","why does github show current date instead of real date of an ammended commit?","<p>I amended a commit in a github repository (wrong version in a Changelog file) some days later after the commit was pushed. When I do a <code>git log</code> I see that the amended commit still has the date of the original  commit as it should, but in github it shows the current date instead of the original commit date as <code>git log</code> does. Why is this ?</p>
+","4","1752221",""
+"32468333","892628","2015-09-08 22:36:08","6","3223","<git><hash><commit><git-amend>","git commit --amend - commit hash is changed when no changes are made","<p>I open for some correction of my understanding of this, but I am not sure why this happens.</p>
+
+<p>When using git, I understand that if I make a change to a file and then commit it I get a new hash because the file has changed.</p>
+
+<p>My understanding of <code>git commit --amend</code> is that I can make changes to the last commit. </p>
+
+<p>Now I can understand that if I change the commit message, the hash will change.</p>
+
+<p>But when I do not make any changes and just save and exit out of the editor (I may have changed my mind on needing a change) why does the hash change? 
+All my files and everything is the same, but I have saved it. When I of a <code>git log</code> the time of the commit hasn't changed, it just appears twice in the log with the same time, the same message, same files except a different commit hash.</p>
+
+<p>Why does it change if no alterations have been done??</p>
+","0","892628",""
+"50632722","1790753","2018-05-31 21:01:00","16","21783","<git><git-rebase><git-commit><git-amend>","How can I edit an old git commit message programmatically?","<p>You can programmatically edit only the last commit message:</p>
+
+<pre><code>git commit --amend -m 'xxxxxxx'
+</code></pre>
+
+<p>Or a random commit interactively:</p>
+
+<pre><code>git rebase -i HEAD~n
+# Vim opens up, select the commit you want to modify, and change the word ""pick"" for ""edit""
+git commit --amend -m ""Changing an old commit message!""
+git rebase --continue
+</code></pre>
+
+<p>How do I combine both? I want to change a message programmatically, but to a prior commit, not just the last one.</p>
+
+<p>The commit I want to modify has already been pushed to a git server, but having other people re-sync the git project is not a concern. </p>
+","10","1790753","0"
+"71937661","3719101","2022-04-20 09:58:25","2","55","<git><rebase><git-stash><git-amend><git-stage>","Quick, small, casual git rebase for only one or a few hunks: any facility?","<p>I'm in the process of editing my source files to produce a new commit atop my <code>dev</code> branch. My changes are saved on disk but not yet staged.</p>
+<p>Then I notice a small mistake introduced by a former commit, say <code>HEAD~10</code>. Once fixed, the result is only one (or a few) additional git diff hunk(s) on my disk.</p>
+<p>I don't want these hunks to be recorded within the new commit, because they belong to <code>HEAD~10</code>. So I need to rebase. Here is my workflow then, but I'm not satisfied with it:</p>
+<pre class=""lang-sh prettyprint-override""><code>$ git stash # save my current work + the small fix
+$ git rebase --interactive HEAD~11
+# set first commit appearing in todo list to `edit` action
+
+$ git stash pop # re-introduce my changes here (**may conflict**)
+$ git add --patch fixed_files # or similar, to only stage relevant fix hunk(s)
+$ git commit --amend # fix old commit
+$ git stash # save my current work again
+$ git rebase --continue # get back to my current commit (will likely *not* conflict)
+$ git stash pop # back here with HEAD~10 fixed
+</code></pre>
+<p>What I'm not happy with is that the process is complicated, and that the first <code>git stash pop</code> line may introduce meaningless conflicts, even though I'm confident that no conflicts will occur during execution of the <code>git rebase --continue</code> line.</p>
+<p>Is there a better way? Suppose I only have a few staged hunks in <code>HEAD</code>, can I easily introduce them earlier in my branch with some magical:</p>
+<pre><code>git amend-old-commit-then-rebase HEAD~10
+</code></pre>
+<p>yet keep my unstaged changes? (of course I'd be warned in case the inherent rebase does conflict)</p>
+","3","3719101",""
+"72871977","14975271","2022-07-05 15:28:14","0","49","<git><merge><git-rebase><git-squash><git-amend>","Undo git commit message in 2 different branches (develop and feature) after git push","<p>do not want to break anything in the master branch.</p>
+<ol>
+<li><p>I forked a develop branch through below commands
+git checkout develop
+git pull upstream develop # pull the updates locally based on the
+git push origin develop # sync your local develop branch with</p>
+</li>
+<li><p>accidentally made few commits in that develop branch then reverted back with below commits
+d3b229f9 (develop) Merge branch 'develop' of github.com:ROCmSoftwarePlatform/bench into develop
+16daa203 Revert &quot;kernel converter tool to create yaml file from lib
+97e834cb kernel converter tool to create yaml file from lib&quot;</p>
+</li>
+<li><p>Created below work branch from develop,<br />
+git checkout -b kernel</p>
+</li>
+<li><p>did all my changes in &quot;kernel&quot; branch, pushed,created PR, now need to complete the PR. ie merge all kernel branch changes to develop but I do not want to see d3b229f9,16daa203,97e834cb commit messages, only want to see 5a555e7a from the below list. how can I get rid of 3 commit messages from both &quot;develop&quot; branch and &quot;kernel&quot; branch seamlessly?</p>
+</li>
+</ol>
+<p>Note: I did squash merge for kernel branch yet I could not get rid of commits I made in develop branch</p>
+<p>&quot;kernel&quot; Branch has the below commits, I only want 5a555e7a message after the merge</p>
+<p>5a555e7a (HEAD -&gt; kernel, origin/kernel) new tool yaml file</p>
+<p><strong>d3b229f9 (develop) Merge branch 'develop' of github.com:softwarePlatform/Benchmark into develop</strong></p>
+<p><strong>16daa203 Revert &quot;kernel converter tool to create yaml file from lib logic&quot;</strong></p>
+<p><strong>97e834cb kernel converter tool to create yaml file from lib logic</strong></p>
+<p>f4af1648 (upstream/develop) Merge pull request #1244 from xxxxx/develop</p>
+<p>b1a07da2 update version for new release</p>
+","0","14975271",""

@@ -24,7 +24,7 @@ SELECT Id as [Post Link], owneruserid as [User Link], CreationDate,
  WHERE Title Like '%backport%' or Tags like '%backport%';
  ```
 
- ```
+  ```
 SELECT Id as [Post Link], owneruserid as [User Link], CreationDate,
        Score, ViewCount, Tags, Title,Body, CommentCount,OwnerUserId
        AnswerCount, FavoriteCount
@@ -32,3 +32,15 @@ SELECT Id as [Post Link], owneruserid as [User Link], CreationDate,
  WHERE Title Like '%cherry-pick%' or Body Like '%cherry-pick%';
 
  ```
+
+ # Keywords
+ LTS , backport , cherry-picking, workflow
+
+ # Install
+  ```
+  sudo apt-get install python-pip
+  sudo pip install numpy
+  sudo pip install pandas
+  pip3 install -U scikit-learn
+   ```
+

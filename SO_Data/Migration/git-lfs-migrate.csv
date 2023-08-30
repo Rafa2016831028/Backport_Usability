@@ -1,0 +1,449 @@
+Post Link,User Link,CreationDate,Score,ViewCount,Tags,Title,Body,CommentCount,AnswerCount,FavoriteCount
+"76444534","1350400","2023-06-10 02:53:20","0","42","<git><github><git-lfs><gitattributes><git-lfs-migrate>","How to `git lfs migrate` all branches using .gitattributes","<p>We have a repository with multiple branches and merge commits. There was some disagreement at the start on whether we wanted to use LFS or not, and the result was that no files have yet been tracked with Git LFS. Now, however, we've run into issues and we would like to migrate the entire repository history, including all branches and merges, to use LFS for files specified in a new .gitattributes file. Note that this .gitattributes file is not part of the repository history.</p>
+<p>So far, we've tried a  few variations on <code>git lfs migrate import --everything</code> without success. When using the <code>--fixup</code> option, the history is rewritten but nothing gets tracked by LFS. Without that option, the migration modifies our .gitattributes file and adds EVERY file type in the repo, plain text files included. We haven't yet been able to get it to respect our .gitattributes the way it was written, without modification. We tried committing our .gitattributes before the migration as well as not committing it, and also explicitly running <code>git lfs track</code> before the migration as well as not doing that.</p>
+<p>We've looked at existing SO questions, but none of the answers seem to match our situation. Here are some of the others that we looked at:</p>
+<ul>
+<li><a href=""https://stackoverflow.com/questions/62014426/git-lfs-git-lfs-migrate-import-include-all-file-types-specified-in-gitattribute"">Git LFS git lfs migrate import include all file types specified in .gitattribute?</a></li>
+<li><a href=""https://stackoverflow.com/questions/58163427/git-lfs-migrate-using-the-new-gitattributes-file"">Git-LFS migrate using the new .gitattributes file</a></li>
+<li><a href=""https://stackoverflow.com/questions/76106119/how-to-use-git-lfs-and-re-write-history"">How to use Git LFS and re-write history</a></li>
+</ul>
+<p>Any help is greatly appreciated. Thank you!</p>
+<p>Postscript: We understand that we could probably use the <code>--import</code> option repeatedly to make migrate re-create the desired .gitattributes, but I'd love to know if this is doable without that.</p>
+","0","1350400",""
+"74622328","214526","2022-11-30 02:43:58","0","389","<git><gitlab><git-lfs><git-lfs-migrate>","git lfs migrate for existing files in remote","<p>Recently, I enabled git lfs for my gitlab project while checking in a 200 MB file. And this I could successfully and verify that in remote this new 200 MB file shows <code>LFS</code>.</p>
+<p>In the past I had checked-in few 10 MB files without lfs. Those exist in remote too. What is the best way to migrate those to lfs?</p>
+<p>I tried following:</p>
+<pre><code>git lfs migrate import --everything --include=&quot;*.pkl&quot; --verbose
+
+</code></pre>
+<p>And then when I try <code>git push</code>, I get an error -</p>
+<pre><code> ! [rejected]        master -&gt; master (non-fast-forward)
+error: failed to push some refs to 'yourgit.internal.yourdomain.com:&lt;user&gt;/project.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</code></pre>
+<p><code>git pull</code> does not work either. What is the way to migrate existing files to lfs? Will adding <code>--include-ref=refs/heads/master</code> to the migrate command help?</p>
+<p>And do I need to do anything extra for the other branches?</p>
+","0","214526",""
+"75227161","2084478","2023-01-24 20:51:11","1","291","<git><git-lfs><git-lfs-migrate>","Is there a good way to determine if a file is stored using git-lfs?","<p>We have a git repo that is exclusively setup to store large binary files; the intention is that every file will be stored using git-lfs (which is new to most of the team).  There are 106564 files.</p>
+<p>We are running in to issues where certain team members (graphic artists - who are not git experts) are committing changes without git-lfs installed and we're consequently running in to issues where we see this warning:</p>
+<p>Encountered 1 file(s) that should have been pointers, but weren't:</p>
+<p>I've written some python code to compare the output of these two commands:</p>
+<pre><code>git ls-files (list all files)
+git lfs ls-files -n (list all files tracked by lfs)
+</code></pre>
+<p>The difference between the two lists (once I've dealt with some other issues) in theory provides me with a list of files not tracked by lfs.  Before I start going further down the rabbit hole, I'd like to manually confirm on a file basis if my code is working.  According to my code I have 1008 not tracked by LFS, if I run the following command on one of the 1008 files I get this output:</p>
+<pre><code>git check-attr -a dirA/dirB/dirC/aFile.ext 
+</code></pre>
+<p>gives:</p>
+<pre><code>dirA/dirB/dirC/aFile.ext: diff: lfs 
+dirA/dirB/dirC/aFile.ext: merge: lfs
+dirA/dirB/dirC/aFile.ext: filter: lfs
+dirA/dirB/dirC/aFile.ext: crlf: unset
+</code></pre>
+<p>In this case the particular file shows up in the “git ls-files” list but not in the “git lfs ls-files” list, implying to me that the file is not tracked by lfs; yet the output of the “git check-attr -a” command leads me to believe otherwise…  What am I missing and is there something better than the “git check-attr -a” command to check a file?</p>
+<p>I’m using git lfs version as follows on Ubuntu 20.04:</p>
+<pre><code>git-lfs/3.3.0 (GitHub; linux amd64; go 1.19.3)
+</code></pre>
+<p>I was expecting the following command to tell me this file is not tracked by lfs:</p>
+<pre><code>git check-attr -a dirA/dirB/dirC/aFile.ext
+</code></pre>
+<p>It doesn't!  Ultimately I'm looking to migrate these files to lfs.</p>
+","1","2084478",""
+"75757287","19189796","2023-03-16 13:56:35","0","100","<git><git-lfs><tfvc><git-tfs><git-lfs-migrate>","git lfs push is throwing ""RPC failed"" error","<p>I am trying to migrate the repository from <strong>TFVC to Git with History of 4 months</strong> which is a huge data. I am using <code>git tfs</code> to clone it from a branch of a repo from TFVC to my local and trying to push it to a empty Git repository by enabling <code>git lfs</code> to track the large files and upload.</p>
+<p>Steps:
+I cloned a TFVC repo branch files with history of 4 months using git tfs clone to my local. then,
+git remote add origin '<em>URL of the empty git repo</em>' -- empty repo refers to my new git repo created.</p>
+<p>Enabled LFS</p>
+<p>Tracked the Large files</p>
+<p>Made a commit</p>
+<p>Migrated the LFS files using <code>git lfs migrate import --include=&quot;*.*&quot; --include-ref=refs/heads/master</code></p>
+<p>The above successfully converts pre-existing git objects to lfs objects. However, the regular objects still persist in the .git directory. These will be cleaned up eventually by git, but to clean them up right away, run:</p>
+<pre><code> git reflog expire --expire-unreachable=now --all
+         git gc --prune=now
+</code></pre>
+<p>&amp; Trying to push it using <code>git push origin -u -all</code></p>
+<p>But facing below error:</p>
+<pre><code>error: RPC failed; HTTP 503 curl 22 The requested URL returned error: 503
+send-pack: unexpected disconnect while reading sideband packet
+fatal: the remote end hung up unexpectedly
+Everything up-to-date
+##[error]PowerShell exited with code '1'.
+Finishing: Migrate whole source code to git (git push)```
+</code></pre>
+","8","19189796",""
+"63341408","397830","2020-08-10 13:41:37","1","3238","<git><azure-devops><git-lfs><git-lfs-migrate>","How to transfer a git repository with LFS file to another repository?","<p>We have a local git server, with LFS files. We are planning to move everything on MS Azure DevOps.
+After some research, I read that it was advise to do a &quot;mirror&quot; clone, to have everything(tags at least):</p>
+<blockquote>
+<p>git clone --mirror</p>
+</blockquote>
+<p>Then, since I've some LFS files, I wanted to get them too:</p>
+<blockquote>
+<p>git lfs fetch --all</p>
+</blockquote>
+<p>But I get this error:</p>
+<pre><code>Error: Failed to call git rev-parse --git-dir --show-toplevel: &quot;fatal: this operation must be run in a work tree\n&quot;
+Not in a git repository.
+</code></pre>
+<p>For what I'm reading, git lfs fetch doesn't work on a <code>bare</code> repository(not that I know what this is, but I think it's related to the <code>--mirror</code> option.</p>
+<p>So my question is: What should I do to transfer everything to this new repository? (the local server will be shutdown after this).</p>
+<p>Thank you</p>
+","0","397830","0"
+"63780802","10159768","2020-09-07 15:53:22","0","1258","<git><git-lfs><git-lfs-migrate>","git lfs migrate import --no-rewrite unknown flag --no-rewrite","<p>I'm trying to fix missing pointers issue using <code>git lfs migrate import --no-rewrite</code> first i list all the files that had missing pointers using <code>git reset --hard</code>:</p>
+<pre><code>new Promise((resolve, reject) =&gt; {
+    exec(&quot;git reset --hard&quot;, (error, stdout, stderr) =&gt; {
+        if (error) {
+            console.error(`exec error: ${error}`);
+
+            reject(error);
+            return;
+        }
+
+        const filesWithMissingPointers = Array.from(
+            stderr.matchAll(/\t(.*)/g)
+        ).map((m) =&gt; m[1]);
+
+        resolve(filesWithMissingPointers);
+    });
+});
+</code></pre>
+<p>Then i log the output:</p>
+<pre><code>console.log(
+    `Problem files before lfs migrating: \t\n${problemFilesBefore.join(&quot;\t\n&quot;)}`
+);
+</code></pre>
+<p>Output:</p>
+<pre><code>Problem files before lfs migrating:     
+IdleGame/Assets/Plugins/Fonts/Localization/Korean/NotoSansCJKkr-Medium.otf  
+IdleGame/Assets/Plugins/Fonts/Localization/Latin_Cyrillic_Greek/OctoberPro-Black.otf    
+IdleGame/Assets/Plugins/Fonts/Localization/Latin_Cyrillic_Greek/OctoberPro-HeavyItalic.otf  
+IdleGame/Assets/Plugins/Fonts/Localization/Persian/NotoNaskhArabicUI-Bold.ttf   
+IdleGame/Assets/Plugins/Fonts/Localization/Thai/NotoSansThaiUI-CondensedMedium.ttf  
+IdleGame/Assets/Plugins/Fonts/Oswald-Bold.ttf   
+IdleGame/Assets/Plugins/Fonts/PoetsenOneRegular/TrueType font file/PoetsenOne-Regular 1.ttf 
+IdleGame/Assets/Plugins/Fonts/Roboto Medium/TrueType font file/roboto-medium.ttf    
+IdleGame/Assets/Plugins/Fonts/nevis.ttf 
+IdleGame/Assets/Plugins/LibrariesDesign/BeautifulDissolves/_Examples/_Assets/Textures/ZomBearSpecular.tif   
+IdleGame/Assets/Plugins/LibrariesDesign/BeautifulDissolves/_Examples/_Assets/Textures/ZomBunnySpecular.tif
+</code></pre>
+<p>I'm then trying to run:</p>
+<pre><code>execSync(
+  `git lfs migrate import --no-rewrite \ -m &quot;AutoCommit Bot: fix missing LFS points ${process.env.CI_PIPELINE_URL}&quot; ${problemFilesBefore.join(&quot; &quot;)} --yes`
+);
+</code></pre>
+<p>And i encounter:</p>
+<pre><code>Error: unknown flag: --no-rewrite
+</code></pre>
+<p>I'm encountering the same issue locally when running the command in powershell but i do not encounter it when running it in bash. My scripts runs in docker container (linux) with installed git lfs. Since it's Unix it should use bash as default command line so i don't think that the problem lies in the shell.</p>
+<p>Note: I run this script as a job on gitlab</p>
+","2","10159768",""
+"66307854","11637415","2021-02-21 22:33:13","17","12619","<git><github><git-lfs><git-lfs-migrate>","How to setup a git lfs server at home?","<p>I am making use of <code>git lfs</code> for storage of large files in a github repository. The only problem is that there is a quota for <code>git lfs</code>; specifically you can only store 1 GB and only stream (download) 1 GB per month. After you run out of that, you must pay $5 for 5 more GB. This could become expensive.</p>
+<p>I have an old PC I could boot Linux and port forward on.</p>
+<p>Does anyone know how to setup a <code>git lfs</code> server at home rather than using Github's lfs built in CPU's?</p>
+","2","11637415","0"
+"69410915","2779461","2021-10-01 19:07:08","1","644","<git-lfs><git-lfs-migrate>","git lfs fails to track a file after I rename it","<p>I keep running into this issue where I rename a file that is being tracked under git lfs, and when I push up the change to my repo, the file is no longer being tracked by git lfs.</p>
+<p>Does anyone know how to resolve this?</p>
+","0","2779461",""
+"62014426","12004523","2020-05-26 03:56:48","1","2426","<git><git-lfs><git-lfs-migrate>","Git LFS git lfs migrate import include all file types specified in .gitattribute?","<p>I installed git lfs and created a gitattribute file with a lot of file types to track. I'd like to now run the git lfs migrate command for all file types specfied in the .gitattribute. How can I do this?</p>
+
+<p>All the sources I've found seem to only do either a single file type at a time, or a list of file type seperated by a comma:</p>
+
+<pre><code>$ git lfs migrate import --include='*.psd'
+
+</code></pre>
+
+<pre><code>$ git lfs migrate import --include='*.psd,*.jpg'
+
+</code></pre>
+","0","12004523",""
+"60995429","1222355","2020-04-02 15:40:02","1","223","<git-lfs><git-lfs-migrate>","Gradually converting a repo to use git-lfs for certain files. One file at a time","<p>We have a repo that is high value and expensive to disrupt.</p>
+
+<p>It also has large XML files that cause significant problems when using a webapp for merges and git log history. In addition it is likely making our CI/CD inefficient. In other words ... the regular things that spur people to move to git-lfs.</p>
+
+<p>We want to carefully do this. One file at a time.</p>
+
+<p>I have seen approaches similar to what's listed below:</p>
+
+<pre class=""lang-sh prettyprint-override""><code>cp *.xml ~/tmp
+git rm *.xml
+git commit
+git lfs track *.xml
+git add .gitattributes
+git commit; git push
+</code></pre>
+
+<p>In a fresh directory:</p>
+
+<pre class=""lang-sh prettyprint-override""><code>git clone --mirror $remote; cd repo
+bfg --delete-files '*.xml'
+git reflog expire --expire=now --all &amp;&amp; git gc --prune=now --aggressive
+git push
+</code></pre>
+
+<p>Back in src:</p>
+
+<pre class=""lang-sh prettyprint-override""><code>mv repo repo.bloated
+git clone $remote; cd repo
+cp ~/tmp/*.xml .
+git add *.xml # (it now puts them in lfs)
+git commit; git push
+</code></pre>
+
+<p>How can I do something similar but just start with one large xml file to mitigate risk during this transition. We prefer to be in easy contact with the dev maintaining that file, isolate changes and crawl here. Changing 100s of files could hold up developers and be expensive.</p>
+
+<p>Do we just change <code>*</code> to the specific file name in the above example?</p>
+","0","1222355",""
+"61237382","893557","2020-04-15 19:47:42","2","181","<git><git-lfs><git-lfs-migrate>","Debugging Git LFS - why isn't my pack file shrinking after git lfs import?","<p>I have a UnrealEngine project with a bunch of uasset and umap files that I've tracked with LFS and not getting the results I expect.  The repository is a single pack file thats about 21gb. the working copy is about 25gb for a total of 46gb for the whole folder.</p>
+
+<p>Have done the following with a new copy of the repo:</p>
+
+<ol>
+<li>git lfs install</li>
+<li>git lfs track ""*.uasset""</li>
+<li>git lfs track ""*.umap""</li>
+<li>git lfs migrate import --include=""<em>.uasset,</em>.umap"" --verbose --everything</li>
+</ol>
+
+<p>This results in a ton of files being migrated based on what I'm seeing. Once its done I did:</p>
+
+<ol>
+<li>git reflog expire --expire-unreachable=now --all</li>
+<li>git gc --prune=now --aggressive</li>
+</ol>
+
+<p>After running this I'm expecting the pack file to be a lot smaller but already know its not going to be because the gc takes forever, which means its re-compressing a ton of stuff. When its all said and done the pack file hasnt really changed size at all which is not what i'm expecting. I also now have a 20-something GB LFS folder.</p>
+
+<p>Am I missing something? Not understanding how migrate is supposed to work? The usasset files are the majority of the space used in this repo.</p>
+","0","893557",""
+"61816770","336827","2020-05-15 10:08:47","4","9091","<git><large-files><git-lfs><git-lfs-migrate>","How to migrate to git lfs","<p>I have a git repo where many files should be lfs because they are larger than 100M. </p>
+
+<p>Looking around I was unable to find a step by step guide that explain how to migrate a real existing repo with many branches and where lfs files are within subdirectories.</p>
+
+<p>In my case large files are spread around the repo like this:</p>
+
+<pre><code>code/track1/file000.pkl
+code/track3/dat000.bin
+code/track4/pip000.pkl
+code/subcode/track5/pip000.pkl
+code/subcode/track5/pop000.model
+</code></pre>
+
+<p>I suppose to convert the git project into git lfs just using <code>git lfs migrate</code>:</p>
+
+<pre><code>git lfs install
+git lfs migrate import --include=""*.pkl""
+git lfs migrate import --include=""*.bin""
+git lfs migrate import --include=""*.model""
+git commit -m ""migrating models""
+</code></pre>
+
+<p>but this does not do anything.</p>
+
+<pre><code>nothing to commit, working tree clean
+</code></pre>
+
+<p>I want convert all the repo, I mean all the files, the history and also all existing branches.</p>
+
+<p>In other words, <code>git lfs migrate</code> seems to be stable now but not so user frendly.</p>
+
+<p>Running <code>git lfs track ""*.pkl""</code> seems to have an effect:</p>
+
+<pre><code>modified:  code/track1/file000.pkl
+modified:  code/track4/pip000.pkl
+modified:  code/subcode/track5/pip000.pkl
+</code></pre>
+
+<p>but what to do next. I see that <code>git lfs track</code> will begin tracking a new file or an existing file that is already checked in to your repository. </p>
+
+<p>But what about the history? I'm struggling because I don't want end up with a messed repository that I have to reimport from scratch or where have to deal with filter-branch..</p>
+","7","336827","0"
+"61823844","68231","2020-05-15 16:17:33","8","2214","<git><github><git-lfs><git-lfs-migrate>","git lfs migrate doesn't seem to be migrating files","<p>We've been using <code>git-lfs</code> successfully for several years. However, we've periodically added to the file types that we're including in <code>git-lfs</code>. One of the more recent file types that we've moved over to <code>git-lfs</code> is all of our <code>*.csv</code> files.</p>
+
+<p>The problem is that we've got several very large <code>*.csv</code> files in our history that didn't get caught in the initial migration, and I need to move <em>those</em> files to <code>git-lfs</code> as well. (We're moving from BitBucket to GitHub, and GitHub has stricter rules on the maximum size of files it will allow, so I need to make sure all the old large files are on <code>git-lfs</code> as well.)</p>
+
+<p>The obvious way to do it is something like this:</p>
+
+<p><code>git lfs migrate import --everything --include=""*.csv""</code></p>
+
+<p>And when I run that command, it appears to succeed. It rewrites history, and the output looks something like this:</p>
+
+<pre><code>PS E:\source\swyfft_web_ken&gt; git lfs migrate import --everything --include=""*.csv""
+migrate: Sorting commits: ..., done.
+migrate: Rewriting commits: 100% (131623/131623), done.
+  development                                   1b042eeebfb346af8f7e90d1f6c7b6abfc64d014 -&gt; 1b042eeebfb346af8f7e90d1f6c7
+b6abfc64d014
+  feature/ks/20200205_ImsWebServicesV2          e2b5b267d5215ef48d5ef4e3f0924613c6076cd7 -&gt; e2b5b267d5215ef48d5ef4e3f092
+4613c6076cd7
+  master                                        2029338210697c795a536faa9dd4c141c6edd6c2 -&gt; 2029338210697c795a536faa9dd4
+c141c6edd6c2
+  1.0                                           752143ee1b87020e9b285886b3986703d6c74a38 -&gt; 752143ee1b87020e9b285886b398
+6703d6c74a38
+  1.1                                           5fefda3de45651107218a953e789ea5121002756 -&gt; 5fefda3de45651107218a953e789
+ea5121002756
+  1.2                                           30f87f08e672d10de0029985ad5acc1bf5a82457 -&gt; 30f87f08e672d10de0029985ad5a
+cc1bf5a82457
+  1.2.1                                         a4206c0ffb957401012385306157b7e1d14332bb -&gt; a4206c0ffb957401012385306157
+b7e1d14332bb
+  1.3                                           dc5d6c88a9c64150a33c60963f9ba8b03b1399de -&gt; dc5d6c88a9c64150a33c60963f9b
+a8b03b1399de
+  1.3.1                                         e3306023d55c5195ed12936a0b7cafb752d7d1f8 -&gt; e3306023d55c5195ed12936a0b7c
+</code></pre>
+
+<p>(lots more like that)</p>
+
+<p>But then when I try to run <code>git lfs migrate info --everything</code>, it doesn't appear that those files have actually been touched.</p>
+
+<pre><code>PS E:\source\swyfft_web_ken&gt; git lfs migrate info --everything
+migrate: Sorting commits: ..., done.
+migrate: Examining commits: 100% (131623/131623), done.
+*.cs            3.1 GB  142030/142038 files(s)  100%
+*.csv           1.3 GB      2102/2102 files(s)  100%
+*.csproj        1.1 GB    15634/15634 files(s)  100%
+*.exe           224 MB          43/43 files(s)  100%
+*.ts            150 MB      6133/6134 files(s)  100%
+</code></pre>
+
+<p>And when I try to push the rewritten repository to GitHub, it still complains about there being *.csv files that are too large for GitHub to accept. (Can't get the exact error message, as the error takes about 8 hours to show up, and the last time I got it has scrolled off my screen.)</p>
+
+<p>I've also tried pruning and GC'ing the repo afterwards, just in case that was interefering, but it doesn't seem to have made any difference.</p>
+
+<pre><code>PS E:\source\swyfft_web_ken&gt; git reflog expire --expire-unreachable=now --all
+
+PS E:\source\swyfft_web_ken&gt; git gc --prune=now
+Enumerating objects: 709351, done.
+Counting objects: 100% (709351/709351), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (210504/210504), done.
+Writing objects: 100% (709351/709351), done.
+Total 709351 (delta 579094), reused 583494 (delta 492112)
+Removing duplicate objects: 100% (256/256), done.
+Checking connectivity: 709351, done.
+Expanding reachable commits in commit graph: 131646, done.
+
+PS E:\source\swyfft_web_ken&gt; git lfs migrate info --everything --include=""*.csv""
+migrate: Sorting commits: ..., done.
+migrate: Examining commits: 100% (131623/131623), done.
+*.csv   1.3 GB  2102/2102 files(s)      100%
+</code></pre>
+
+<p>Am I misunderstanding something about how <code>git lfs migrate</code> is supposed to work? Or am I doing something wrong?</p>
+","8","68231","0"
+"63408225","6224662","2020-08-14 07:16:10","2","868","<git><git-lfs><git-lfs-migrate>","Files have become unreadbale post git lfs migrate import, how to undo","<p>I did the following on my repository and now all the files have been replaced by statements like these(I have replaced the value in the second line with *s):</p>
+<pre><code>version https://git-lfs.github.com/spec/v1
+oid sha256:8*****************************************93
+size 1003203
+</code></pre>
+<p>lfs commands run:</p>
+<pre><code>git lfs install
+git lfs track &quot;*.xyz&quot;
+git lfs migrate import
+</code></pre>
+<p>Now all files including the xyz files are unreadable. How can I possibly undo these ?</p>
+","3","6224662",""
+"63974443","669683","2020-09-20 00:11:59","1","477","<git><git-lfs><git-lfs-migrate>","Why does the number of commits increase after git lfs migrate?","<p>I tried running <code>git lfs migrate import --everything --include=&quot;*.dll&quot;</code> on a large repository. Before I ran this there were about 70k commits. After running the migration (and expiring reflog and pruning etc) <code>git rev-list --all --count</code> shows around 130k commits. Why are there so many commits added, and what are those commits?</p>
+","6","669683","0"
+"64100708","4681265","2020-09-28 10:48:06","0","77","<git><git-lfs><git-lfs-migrate>","Why git clone fails for some repository names?","<p>I just migrated with <code>git-lfs</code> a clone of my existing repository from the local directory <code>/mnt/1TB/DataWin_to_sync/GITRepoWin/ubuntu18-config.git</code> but without pushing (the push failed in fact).</p>
+<p>Then I created a new git repository in another directory (<code>/home/adr/GITRepoUbuntu/ubuntu18-config.git</code>) and tried to clone it:</p>
+<pre class=""lang-sh prettyprint-override""><code>git clone https://adrhc.go.ro/ubuntu18-config.git
+Cloning into 'ubuntu18-config'...
+fatal: repository 'https://adrhc.go.ro/ubuntu18-config.git/' not found
+</code></pre>
+<p>All directories in <code>/home/adr/GITRepoUbuntu</code> are exposed to <code>https://adrhc.go.ro/&lt;&lt;directory&gt;&gt;.git</code> by using gitweb + nginx.</p>
+<p>But when I created the new git repository <code>/home/adr/GITRepoUbuntu/xubuntu18-config.git</code> and clone it:</p>
+<pre class=""lang-sh prettyprint-override""><code>git clone https://adrhc.go.ro/xubuntu18-config.git
+Cloning into 'xubuntu18-config'...
+warning: You appear to have cloned an empty repository.
+</code></pre>
+<p>My nginx logs this:</p>
+<pre><code>2020/09/28 13:38:11 [error] 26114#0: *120 open() &quot;/fast-disk/apache-htdocs/ubuntu_packages/info/refs&quot; failed (2: No such file or directory), client: 127.0.0.1, server: adrhc.go.ro, request: &quot;GET /ubuntu_packages/info/refs?service=git-upload-pack HTTP/1.1&quot;, host: &quot;adrhc.go.ro&quot;
+</code></pre>
+<p>Both <code>find /mnt/1TB/DataWin_to_sync/GITRepoWin -name ubuntu_packages</code> and <code>locate ubuntu_packages/info/refs</code> finds nothing on my HDDs.</p>
+<p>Same fail I have for names:</p>
+<ul>
+<li>ubuntu16-config</li>
+<li>ubuntu10-config</li>
+<li>ubuntu0-config</li>
+<li>ubuntuNN-config</li>
+</ul>
+<p>but no error (when cloning) for the names:</p>
+<ul>
+<li>uubuntu18-config</li>
+<li>uubuntu0-config</li>
+<li>uubuntu0</li>
+<li>uubuntuNN-config</li>
+<li>uubuntuNN</li>
+</ul>
+<p>What is the issue and how should I solve it?</p>
+","0","4681265","0"
+"71294988","11441089","2022-02-28 12:22:52","0","420","<git><bitbucket><git-lfs><git-lfs-migrate>","git lfs migrate info outputs Git can't resolve ref: ""HEAD""","<p>I'm trying to migrate a git repository to Git LFS. I already installed Git LFS with <code>git lfs install</code>. But when I'm executing <code>git lfs migrate info</code> I get the following output (with GIT_TRACE enabled):</p>
+<pre><code>&gt; git lfs migrate info
+13:10:41.420197 git.c:703               trace: exec: git-lfs migrate info
+13:10:41.420282 run-command.c:663       trace: run_command: git-lfs migrate info
+13:10:41.426809 trace git-lfs: exec: git 'version'
+13:10:41.434261 trace git-lfs: exec: git 'config' '-l'
+13:10:41.754159 trace git-lfs: exec: git '-c' 'filter.lfs.smudge=' '-c' 'filter.lfs.clean=' '-c' 'filter.lfs.process=' '-c' 'filter.lfs.required=false' 'rev-parse' 'HEAD' '--symbolic-full-name' 'HEAD'
+Git can't resolve ref: &quot;HEAD&quot;
+</code></pre>
+<p>I'm not sure what git lfs is doeing but when I execute the last command of the trace myself it seems to work:</p>
+<pre><code>&gt; git '-c' 'filter.lfs.smudge=' '-c' 'filter.lfs.clean=' '-c' 'filter.lfs.process=' '-c' 'filter.lfs.required=false' 'rev-parse' 'HEAD' '--symbolic-full-name' 'HEAD'
+13:14:35.705088 git.c:439               trace: built-in: git rev-parse HEAD --symbolic-full-name HEAD
+453332128e48ab30cb60cd06e334c76b0571dd76
+refs/heads/main
+</code></pre>
+<p>My Git-LFS setup is following:</p>
+<pre><code>&gt; git lfs env
+13:15:36.500676 git.c:703               trace: exec: git-lfs env
+13:15:36.500746 run-command.c:663       trace: run_command: git-lfs env
+13:15:36.506168 trace git-lfs: exec: git 'version'
+git-lfs/2.9.2 (GitHub; linux amd64; go 1.13.5)
+git version 2.25.1
+
+13:15:36.508870 trace git-lfs: exec: git '-c' 'filter.lfs.smudge=' '-c' 'filter.lfs.clean=' '-c' 'filter.lfs.process=' '-c' 'filter.lfs.required=false' 'rev-parse' 'HEAD' '--symbolic-full-name' 'HEAD'
+13:15:36.520625 trace git-lfs: exec: git 'config' '-l'
+Endpoint (bitbucket)=https://***CENSORED***.git/info/lfs (auth=none)
+LocalWorkingDir=/some/path/MyGitRepo
+LocalGitDir=/some/path/MyGitRepo/.git
+LocalGitStorageDir=/some/path/MyGitRepo/.git
+LocalMediaDir=/some/path/MyGitRepo/.git/lfs/objects
+LocalReferenceDirs=
+TempDir=/some/path/MyGitRepo/.git/lfs/tmp
+ConcurrentTransfers=3
+TusTransfers=false
+BasicTransfersOnly=false
+SkipDownloadErrors=false
+FetchRecentAlways=false
+FetchRecentRefsDays=7
+FetchRecentCommitsDays=0
+FetchRecentRefsIncludeRemotes=true
+PruneOffsetDays=3
+PruneVerifyRemoteAlways=false
+PruneRemoteName=origin
+LfsStorageDir=/some/path/MyGitRepo/.git/lfs
+AccessDownload=none
+AccessUpload=none
+DownloadTransfers=basic,lfs-standalone-file
+UploadTransfers=basic,lfs-standalone-file
+GIT_CURL_VERBOSE=1
+GIT_EXEC_PATH=/usr/lib/git-core
+GIT_TRACE=1
+git config filter.lfs.process = &quot;git-lfs filter-process&quot;
+git config filter.lfs.smudge = &quot;git-lfs smudge -- %f&quot;
+git config filter.lfs.clean = &quot;git-lfs clean -- %f&quot;
+13:15:36.524541 trace git-lfs: filepathfilter: rewrite &quot;.git&quot; as &quot;**/.git/**&quot;
+13:15:36.524562 trace git-lfs: filepathfilter: rewrite &quot;**/.git&quot; as &quot;**/.git&quot;
+13:15:36.524731 trace git-lfs: filepathfilter: accepting &quot;tmp&quot;
+</code></pre>
+<p>I should mention that I did not push the repository yet to the server as I first wanted to migrat e to Git-LFS. Has anyone an idea where the issue could be?</p>
+","0","11441089",""
+"72125944","2384296","2022-05-05 10:48:46","1","219","<git><git-lfs><git-lfs-migrate>","Does git lfs migrate --no-rewrite change all the branches? And will it change the large file from history to LFS objects?","<p>In my repo, I have large files committed in history and also present in latest commit.</p>
+<p>I want to use git lfs migrate --no-rewirte so that the previous commits SHAs does not get changed</p>
+<p>But will --no-rewrite change all the large files objects from history with LFS object?</p>
+<p>Can I use &quot;--everything&quot; flag to update all the remote branches?</p>
+","0","2384296",""
+"72205544","2384296","2022-05-11 17:54:02","8","536","<git-lfs><git-lfs-migrate>","git lfs migrate with --everything is not migrating all the remote branches","<p>I cloned a repo which has 10+ remote branches and 20+ tags.</p>
+<p>Cloned repo has the default branch master checkout.</p>
+<p>When I ran git lfs migrate, it migrated all the tags but migrated only master branch, other remote branches were not migrated. Is this the expected behavior? Do I need to checkout all the remote branches before running &quot;git lfs migrate import  --everything --include=&quot;*.bin&quot;&quot; ?</p>
+<p>LFS version is 3.1.4</p>
+","2","2384296",""
